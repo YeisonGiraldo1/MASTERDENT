@@ -1,5 +1,5 @@
 <?php
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 $id=$_POST['id'];
 $contraseña= md5 (mysqli_real_escape_string($conexion,$_POST['contraseña']));
 $confirmar= md5 (mysqli_real_escape_string ( $conexion,$_POST['confirmar']));

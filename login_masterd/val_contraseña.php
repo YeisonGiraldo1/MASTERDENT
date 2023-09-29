@@ -1,6 +1,6 @@
 <?php
 
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 $cedula=mysqli_real_escape_string($conexion,$_POST['usuario']);
 $query=mysqli_query($conexion,"SELECT *FROM usuario WHERE Cedula='$cedula'");
 mysqli_close($conexion);

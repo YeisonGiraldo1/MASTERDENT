@@ -1,8 +1,7 @@
 <?php
 //echo "bienvenido al consolidado por estaciones";
 
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
-
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 $fechaDesde = isset( $_POST['fechaDesde'] ) ? $_POST['fechaDesde'] : '';
 $fechaHasta = isset( $_POST['fechaHasta'] ) ? $_POST['fechaHasta'] : '';
 

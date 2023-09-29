@@ -22,7 +22,7 @@ if(!isset ($_SESSION['Cedula']) or !isset($_SESSION['Contrasena'])){
     $contrasena=$_SESSION['Contrasena']; 
    $rol=$_SESSION['Rol'];
   
-    $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+   $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
   
   }
