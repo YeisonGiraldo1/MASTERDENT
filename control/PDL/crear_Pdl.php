@@ -1,5 +1,5 @@
 <?php 
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 //funcion  para  guardar datos de  selecion inventario para el muchacho del almacen 
 
 if(isset($_POST['codigo'])AND ($_POST['unidades'])AND ($_POST['fecha'])){

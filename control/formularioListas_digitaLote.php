@@ -1,6 +1,5 @@
 <?php
-   $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
-$pedido=$_GET ["pedido"];
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");$pedido=$_GET ["pedido"];
 $caja=$_GET ["caja"];
 $metodo=$_GET ["metodo"];
 
@@ -44,10 +43,10 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
 <!DOCTYPE html>
 <html lang="en">
     
-    	<button onclick="location.href='https://trazabilidadmasterdent.online/control/'">Inicio</button>
-    	<button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_seleccionPedido.php'">Seleccionar otro pedido</button>
-    	<button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_seleccionPedido.php?destino=inventario&Crear=Enviar'">Inventarios</button>
-    	<button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_seleccionPedido.php?destino=asignacion&Crear=Enviar'">Asignaciones</button>
+    	<button onclick="location.href='../control/'">Inicio</button>
+    	<button onclick="location.href='../control/formulario_seleccionPedido.php'">Seleccionar otro pedido</button>
+    	<button onclick="location.href='../control/formulario_seleccionPedido.php?destino=inventario&Crear=Enviar'">Inventarios</button>
+    	<button onclick="location.href='../control/formulario_seleccionPedido.php?destino=asignacion&Crear=Enviar'">Asignaciones</button>
 			
 			
 			<html lang="en">
@@ -333,7 +332,7 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
             let ifRegistro = $(this).attr('data-rg');
 
             $.ajax({
-                url: "https://trazabilidadmasterdent.online/control/registro-eliminado.php",
+                url: "../control/registro-eliminado.php",
                 data: {
                     id: ifRegistro
                 },

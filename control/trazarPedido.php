@@ -31,8 +31,7 @@
 
 
 
-  $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
-  
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");  
   $sumaItem=array();
   $juegosItem=array(array());
   $nombreItem='';
@@ -164,8 +163,8 @@ $resultCol=mysqli_query($conexion,$sqlCol);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
-     <button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaPedidos.php?origenBusqueda=<?php echo $origenBusqueda ?>'">Atrás</button>
+    <button onclick="location.href='../control'">Inicio</button>
+     <button onclick="location.href='../control/vistas/modulos/verTablaPedidos.php?origenBusqueda=<?php echo $origenBusqueda ?>'">Atrás</button>
     
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

@@ -29,8 +29,7 @@
 
 
 
-  $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
-  
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");  
   $pedidoId=$_GET ['idP'];
   
             
@@ -116,8 +115,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
-     <button onclick="location.href='https://trazabilidadmasterdent.online/control/trazarPedido.php?id=<?php echo $pedidoId; ?>&referenciaId=<?php echo $referenciaId; ?>&colorId=<?php echo $colorId; ?>&origenBusqueda=<?php echo $origenBusqueda?>&Crear=Enviar'">Atrás</button>
+    <button onclick="location.href='../control'">Inicio</button>
+     <button onclick="location.href='../control/trazarPedido.php?id=<?php echo $pedidoId; ?>&referenciaId=<?php echo $referenciaId; ?>&colorId=<?php echo $colorId; ?>&origenBusqueda=<?php echo $origenBusqueda?>&Crear=Enviar'">Atrás</button>
     
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -333,7 +332,7 @@ $resultCol=mysqli_query($conexion,$sqlCol);
             let ifRegistro = $(this).attr('data-rg');
 
             $.ajax({
-                url: "https://trazabilidadmasterdent.online/control/eliminaDetalle.php",
+                url: "../control/eliminaDetalle.php",
                 data: {
                     id: ifRegistro
                 },

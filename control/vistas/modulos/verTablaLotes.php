@@ -1,5 +1,5 @@
 <?php
-  $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
   
 $color = isset( $_POST['color'] ) ? $_POST['color'] : '';
 $lote = isset( $_POST['lote'] ) ? $_POST['lote'] : '';
@@ -14,8 +14,8 @@ $filtros = array();
     }
     
      
-    if($filtros[0]=='' || is_null($filtros)){
-        $filtros[0]="1 ";
+    if (empty($filtros)) {
+        $filtros[] = "1";
     }
 
 
@@ -63,7 +63,7 @@ $filtros = array();
 </head>
 <body>
     
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
+    <button onclick="location.href='../../control'">Inicio</button>
 
 <center>
     <h1>Lotes</h1>

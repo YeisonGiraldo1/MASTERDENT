@@ -1,7 +1,7 @@
 <?php
 
 
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 //require_once("herramienta_introducir_datos.php");
 
     $rotuloId=$_GET ["rotuloId"];
@@ -48,7 +48,7 @@ $sqlActualizaPedido = "UPDATE rotulos2 SET pedido='".$pedidoId."' WHERE id ='".$
 
 	<html lang="en">
 			    <head>
-			    <meta http-equiv="refresh" content="0.2; url= https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaGranel.php?idP=<?php echo $pedidoId; ?>&referenciaId=<?php echo $referenciaId ?>&colorId=<?php echo $colorId ?>">
+			    <meta http-equiv="refresh" content="0.2; url= ../control/vistas/modulos/verTablaGranel.php?idP=<?php echo $pedidoId; ?>&referenciaId=<?php echo $referenciaId ?>&colorId=<?php echo $colorId ?>">
 			    </head>
 <body>
 <p align="left">¡Registro Exitoso!</p>

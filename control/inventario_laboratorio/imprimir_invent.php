@@ -1,6 +1,6 @@
 <?php
 //require_once "https://trazabilidadmasterdent.online/control/PDL/https://trazabilidadmasterdent.online/control/PDL/ingreso_datos/conexion2.php";
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
 
 date_default_timezone_set('America/Bogota');

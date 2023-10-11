@@ -1,5 +1,5 @@
 <?php
-   $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
 
 ?>
@@ -55,9 +55,9 @@
     <br>
 
     </br>
-<button onclick="location.href='https://trazabilidadmasterdent.online/control/formularioListas.php'">Ingreso uno a uno</button>
-<button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaReferencias.php'">Exportar</button>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control/limpiarTabla.php'">Limpiar Tabla</button>
+<button onclick="location.href='../control/formularioListas.php'">Ingreso uno a uno</button>
+<button onclick="location.href='../control/vistas/modulos/verTablaReferencias.php'">Exportar</button>
+    <button onclick="location.href='../control/limpiarTabla.php'">Limpiar Tabla</button>
     
     
 

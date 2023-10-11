@@ -1,8 +1,7 @@
 
 <?php
   
-    $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
-
+  $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
    
 ?>
 
@@ -20,8 +19,8 @@
 <body>
     <div class="container mt-5">
         
-        <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
-        <button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaTemperaturaPlanchas.php'">Ver registros de temperatura</button>
+        <button onclick="location.href='/control'">Inicio</button>
+        <button onclick="location.href='/control/vistas/modulos/verTablaTemperaturaPlanchas.php'">Ver registros de temperatura</button>
 			
         <div class="row">
             <form action="registraTemperatura.php" method="get">

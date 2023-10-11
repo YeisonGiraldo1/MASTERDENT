@@ -40,13 +40,13 @@
 </head>
 <body>
     <center>
-        <button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_lotes.php'">Nuevo Lote</button>
+        <button onclick="location.href='../control/formulario_lotes.php'">Nuevo Lote</button>
      <h1>Materiales</h1>
     <br>
     
    
-        <button onclick="location.href='https://trazabilidadmasterdent.online/control/material_preparado.php'">Material Preparado</button>
-        <button onclick="location.href='https://trazabilidadmasterdent.online/control/'">Material Pigmentado</button>
+        <button onclick="location.href='../control/material_preparado.php'">Material Preparado</button>
+        <button onclick="location.href='../control/'">Material Pigmentado</button>
         
         
          <br></br>

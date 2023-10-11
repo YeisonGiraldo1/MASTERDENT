@@ -1,6 +1,6 @@
 <?php
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
-    $color=$_GET["color"];
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
+$color=$_GET["color"];
     $referencia=$_GET["referencia"];
     $lote=$_GET["lote"];
     $fecha=$_GET["fecha"];

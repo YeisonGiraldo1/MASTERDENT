@@ -1,5 +1,5 @@
 <?php
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 $id=$_GET['id'];
 
 $consulta_inv=mysqli_query($conexion,"SELECT producto_lab.*,inventario_lab.*, inventario_lab.id AS ninv FROM inventario_lab INNER JOIN producto_lab ON inventario_lab.ProductoId=producto_lab.id  WHERE  inventario_lab.id=$id");

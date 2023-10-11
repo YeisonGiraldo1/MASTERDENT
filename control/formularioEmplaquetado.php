@@ -1,7 +1,6 @@
 <?php
     // $refs = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
-    $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
-
+    $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
     // $sql1="SELECT * from colores2 ORDER BY id ASC";
     // $result=mysqli_query($conexion,$sql1);
     
@@ -13,8 +12,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control/tableroTerminacion1.php'">Tablero</button>
+    <button onclick="location.href='../control'">Inicio</button>
+    <button onclick="location.href='../control/tableroTerminacion1.php'">Tablero</button>
     <br></br>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

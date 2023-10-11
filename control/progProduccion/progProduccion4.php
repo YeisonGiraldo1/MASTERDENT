@@ -1,5 +1,5 @@
 <?php
-   $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
    
    $moldesPrensada=null;
    $lote=null;
@@ -136,10 +136,10 @@ while($mostrar5=mysqli_fetch_array($result5)){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 
     
-    	<button onclick="location.href='https://trazabilidadmasterdent.online/control/'">Inicio</button>
-    	<button onclick="location.href='https://trazabilidadmasterdent.online/control/progProduccion/progProduccion2.php?fecha=<?php echo $fecha?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>'">Cambiar prensada/turno/fecha</button>
-    	<!--<button onclick="location.href='https://trazabilidadmasterdent.online/control/progProduccion/cambiarPrensada.php?turno=<?php //echo $turno?>&fecha=<?php //echo $fecha?>">Cambiar prensada</button>
-    	<button onclick="location.href='https://trazabilidadmasterdent.online/control/progProduccion/cambiarTurno.php?prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Cambiar Turno</button>-->
+    	<button onclick="location.href='../control/'">Inicio</button>
+    	<button onclick="location.href='../control/progProduccion/progProduccion2.php?fecha=<?php echo $fecha?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>'">Cambiar prensada/turno/fecha</button>
+    	<!--<button onclick="location.href='../control/progProduccion/cambiarPrensada.php?turno=<?php //echo $turno?>&fecha=<?php //echo $fecha?>">Cambiar prensada</button>
+    	<button onclick="location.href='../control/progProduccion/cambiarTurno.php?prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Cambiar Turno</button>-->
     	
 			
 			
@@ -201,7 +201,7 @@ while($mostrar5=mysqli_fetch_array($result5)){
         
         <div class="row">
             
-            <form action="https://trazabilidadmasterdent.online/control/creaRotulo2.php" method="POST">
+            <form action="../control/creaRotulo2.php" method="POST">
         
          <div class="mb-3">
                     <label for="refs" class="form-label">Seleccionar referencia*</label>
@@ -334,7 +334,7 @@ while($mostrar5=mysqli_fetch_array($result5)){
             let ifRegistro = $(this).attr('data-rg');
 
             $.ajax({
-                url: "https://trazabilidadmasterdent.online/control/eliminar_rotulo.php",
+                url: "../control/eliminar_rotulo.php",
                 data: {
                     id: ifRegistro
                 },

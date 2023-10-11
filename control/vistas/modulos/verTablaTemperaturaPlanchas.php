@@ -1,5 +1,5 @@
 <?php
-   $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
 
 ?>
@@ -35,7 +35,7 @@
 </head>
 <body>
     
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
+    <button onclick="location.href='../control'">Inicio</button>
     <br>
     <center>
     <table border="1">
@@ -102,7 +102,7 @@
             let ifRegistro = $(this).attr('data-rg');
 
             $.ajax({
-                url: "https://trazabilidadmasterdent.online/control/eliminar_registro_temperatura.php",
+                url: "../control/eliminar_registro_temperatura.php",
                 data: {
                     id: ifRegistro
                 },

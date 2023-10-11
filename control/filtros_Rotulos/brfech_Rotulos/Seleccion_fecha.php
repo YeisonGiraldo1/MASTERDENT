@@ -1,5 +1,5 @@
 <?php
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 $desde=$_GET["desde"];
  if (is_null($desde)){
         $desde = isset( $_POST['desde'] ) ? $_POST['desde'] : '';

@@ -1,6 +1,6 @@
 <?php 
 // el presente archivo crea la lista de empaque digitando el lote
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 require_once("herramienta_introducir_datos.php");
 $lote=$_GET ["lote"];
 if(is_null($lote)){
@@ -218,7 +218,7 @@ $ingresar_datos_listaEmpaque = $herramienta21->ingresar_datos_listaEmpaque_digit
 
 <html lang="en">
 			    <head>
-			    <meta http-equiv="refresh" content="0.2; url= https://trazabilidadmasterdent.online/control/formularioListas_digitaLote.php?pedido=<?php echo $pedido?>&caja=<?php echo $caja?>&metodo=<?php echo $metodo?>">
+			    <meta http-equiv="refresh" content="0.2; url= ../control/formularioListas_digitaLote.php?pedido=<?php echo $pedido?>&caja=<?php echo $caja?>&metodo=<?php echo $metodo?>">
 			    </head>
 
 </h1>

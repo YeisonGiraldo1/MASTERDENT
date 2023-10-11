@@ -1,5 +1,5 @@
 <?php
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
 
 
@@ -22,7 +22,7 @@ if($sql_update){
 
   echo "<script>
   alert('LOS DATOS SE HAN EDITADO DE FORMA CORRECTA');
-  window.location='https://trazabilidadmasterdent.online/control/formulario_lotes.php' 
+  window.location='../control/formulario_lotes.php' 
   </script>";
 
 }

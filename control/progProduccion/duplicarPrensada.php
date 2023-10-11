@@ -1,6 +1,6 @@
 <?php
-   $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
-   //require_once("herramienta_introducir_datos.php");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
+//require_once("herramienta_introducir_datos.php");
    $moldesPrensada=null;
    $ultimoId=0;
    
@@ -158,14 +158,14 @@ if(!(empty($resultC))){
 		    
 		    
 			    echo "Ingreso Exitoso en tabla rotulos2,";
-				//header("Location: https://trazabilidadmasterdent.online/control/public_html/control/formularioListas2.php");	
+				//header("Location: ../control/public_html/control/formularioListas2.php");	
 				?>
 				<html lang="en">
 			    <head>
           
 
 			<br>
-			    <meta http-equiv="refresh" content="0.3; url= https://trazabilidadmasterdent.online/control/progProduccion/progProduccion3.php?fecha=<?php echo $fecha2?>&turno=<?php echo $turno2?>&prensada=<?php echo $prensada2?>">
+			    <meta http-equiv="refresh" content="0.3; url= ../control/progProduccion/progProduccion3.php?fecha=<?php echo $fecha2?>&turno=<?php echo $turno2?>&prensada=<?php echo $prensada2?>">
 			    </head>
 			    <?php
 			}

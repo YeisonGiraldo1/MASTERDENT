@@ -27,8 +27,7 @@ session_start();
 
 
 
-  $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
-  
+   $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");  
   $pedido=$_GET ["pedido"];
     if(is_null($pedido)){
         $pedido=$_POST['pedido'] ;
@@ -174,11 +173,11 @@ $resultCol=mysqli_query($conexion,$sqlCol);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
-     <button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_seleccionPedido.php?destino=detalles&Crear=Enviar'">Atrás</button>
-     <button onclick="location.href='https://trazabilidadmasterdent.online/control/empaque.php?pedidoId=<?php echo $pedidoId?>&Empacar=Enviar'">Lista de empaque</button>
+    <button onclick="location.href='../control'">Inicio</button>
+     <button onclick="location.href='../control/formulario_seleccionPedido.php?destino=detalles&Crear=Enviar'">Atrás</button>
+     <button onclick="location.href='../control/empaque.php?pedidoId=<?php echo $pedidoId?>&Empacar=Enviar'">Lista de empaque</button>
      
-     <!--https://trazabilidadmasterdent.online/control/empaque.php?pedidoId=693&Empacar=Enviar-->
+     <!--../control/empaque.php?pedidoId=693&Empacar=Enviar-->
     
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -654,7 +653,7 @@ $resultCol=mysqli_query($conexion,$sqlCol);
             let ifRegistro = $(this).attr('data-rg');
 
             $.ajax({
-                url: "https://trazabilidadmasterdent.online/control/eliminar_detallePedido.php",
+                url: "../control/eliminar_detallePedido.php",
                 data: {
                     id: ifRegistro
                 },

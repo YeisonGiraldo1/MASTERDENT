@@ -1,5 +1,5 @@
 <?php
-    $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
     
     $moldesPrensada=null;
     $turnoMayus="";
@@ -78,7 +78,7 @@
 <body>
     
 <center><h1>¡Actualización de datos exitosa!</h1></center>
-		   <meta http-equiv="refresh" content="0.3; url= https://trazabilidadmasterdent.online/control/registroProducidos/registroProducidos1.php">
+		   <meta http-equiv="refresh" content="0.3; url= ../control/registroProducidos/registroProducidos1.php">
 		   
 		   </body>
 		   </head>

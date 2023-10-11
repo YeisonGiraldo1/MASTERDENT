@@ -1,9 +1,9 @@
 <?php
-   $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
-  $filtro=$_GET ["filtro"];
+$filtro=$_GET ["filtro"];
   
-  $prensa=$_GET ["prensa"];
+$prensa=$_GET ["prensa"];
   
 
 ?>
@@ -15,7 +15,7 @@
     <title>Tiempo_Prensas</title>
 </head>
 <body>
-    	<button onclick="location.href='https://trazabilidadmasterdent.online/control/'">Inicio</button>
+    	<button onclick="location.href='../control/'">Inicio</button>
     	
     	<center>
         <h2>Tiempos de la prensa <?php echo $prensa ?></h2>

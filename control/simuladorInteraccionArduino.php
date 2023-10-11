@@ -1,6 +1,5 @@
 <?php
-    $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
-
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
     $estacion=$_GET ["estaciones"];
       
     if(is_null($estacion)){
@@ -110,7 +109,7 @@ $resultLot=mysqli_query($conexion,$sqlLot);
 	<title>Simulador</title>
 </head>
 <body>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
+    <button onclick="location.href='../control'">Inicio</button>
     
     
     <center>
@@ -120,7 +119,7 @@ $resultLot=mysqli_query($conexion,$sqlLot);
             
             <br>
             
-<!--<button onclick="location.href='https://trazabilidadmasterdent.online/control/'">Ver Historial</button>-->
+<!--<button onclick="location.href='../control/'">Ver Historial</button>-->
 <div class="row">
             <form action="interaccion_arduino.php" method="get">
             

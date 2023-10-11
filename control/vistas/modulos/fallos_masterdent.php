@@ -32,7 +32,7 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
       </div>
       <br>
 
-  <form action="https://trazabilidadmasterdent.online/control/vistas/solicitud_fallo.php"method="GET">
+  <form action="../control/vistas/solicitud_fallo.php"method="GET">
   
     <select name="Seleccionado"class="form-select" aria-label="Default select example">
          <option value="">Seleccione la Estación</option>

@@ -1,6 +1,6 @@
 <?php 
 // el presente archivo crea la lista de empaque seleccionando el lote de la lista tomada de la tabla lotes2
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 require_once("herramienta_introducir_datos.php");
 $loteId=$_GET ["lote"];
 $codigoQR=$_GET ["codigoQR"];

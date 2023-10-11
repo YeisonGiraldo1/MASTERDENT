@@ -29,8 +29,7 @@ session_start();
 
 
 
-  $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
-  
+   $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");  
   /*
 
   $pedidoId=$_GET ['id'];
@@ -172,8 +171,8 @@ $resultCol=mysqli_query($conexion,$sqlCol);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
-     <!--<button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaPedidos.php'">Atrás</button>-->
+    <button onclick="location.href='../control'">Inicio</button>
+     <!--<button onclick="location.href='../control/vistas/modulos/verTablaPedidos.php'">Atrás</button>-->
     
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

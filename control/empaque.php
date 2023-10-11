@@ -1,5 +1,5 @@
 <?php
-    $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
     $pedido=$_GET ["pedidoId"];
     if(is_null($pedido)){
@@ -64,8 +64,8 @@
     
     <!DOCTYPE html>
 <html lang="en">
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_seleccionPedido.php'">Despachar otro pedido</button>
-			<button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
+    <button onclick="location.href='../control/formulario_seleccionPedido.php'">Despachar otro pedido</button>
+			<button onclick="location.href='../control'">Inicio</button>
 <head>
 	<meta charset="UTF-8">
 	<title>Empaque</title>

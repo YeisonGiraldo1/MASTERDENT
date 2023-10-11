@@ -1,6 +1,6 @@
 <?php
 
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
  //$ActualizarDespuesDe = 60;
  
  $totalInventario=0;
@@ -124,7 +124,7 @@ $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u6
 </head>
 <body>
     
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
+    <button onclick="location.href='../control'">Inicio</button>
 
 <center>
     <!--<h3><BASEFONT SIZE="20"><?php //echo $fechaActual = date ( 'Y-m-d' );?></h3>-->

@@ -13,7 +13,7 @@ if($resultado >0){
     
 }
  
-$enlace="https://trazabilidadmasterdent.online/login_masterd/cambiar_contrasena.php?a26031997=$id";
+$enlace="../login_masterd/cambiar_contrasena.php?a26031997=$id";
 echo "<script>
 
     window.location='recuperacion_contraseña.php?correo=$correo&enlace=$enlace';

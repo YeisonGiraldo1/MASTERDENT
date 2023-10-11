@@ -27,7 +27,7 @@ session_start();
 
 
 
-  $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+   $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
   
   }
   
@@ -54,10 +54,10 @@ session_start();
      <div class="container mt-5">
         
             
-              <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>   
-               <button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_seleccionPedido.php'">Nueva lista de empaque</button>
-                <button onclick="location.href='https://trazabilidadmasterdent.online/control/lista_empaque/filtrados.php'">Buscar</button>
-                <button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_seleccionPedido.php?destino=inventario&Crear=Enviar'">Inventario</button>
+              <button onclick="location.href='../control'">Inicio</button>   
+               <button onclick="location.href='../control/formulario_seleccionPedido.php'">Nueva lista de empaque</button>
+                <button onclick="location.href='../control/lista_empaque/filtrados.php'">Buscar</button>
+                <button onclick="location.href='../control/formulario_seleccionPedido.php?destino=inventario&Crear=Enviar'">Inventario</button>
           
              </body>
 </html>

@@ -168,9 +168,9 @@ if(!isset ($_SESSION['Cedula']) or !isset($_SESSION['Contrasena'])){
 
                 <br> </br>
         
-        <button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaMoldes.php'">Ver tabla Moldes</button>
-                <button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_moldes.php'">Nuevo  Molde</button>
-                 <button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_prensados.php'">Registrar prensado</button>
+        <button onclick="location.href='../control/vistas/modulos/verTablaMoldes.php'">Ver tabla Moldes</button>
+                <button onclick="location.href='../control/formulario_moldes.php'">Nuevo  Molde</button>
+                 <button onclick="location.href='../control/formulario_prensados.php'">Registrar prensado</button>
 	
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php 
 
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
 $id=$_POST['id'];
 $Existencia=$_POST['Existencia'];
@@ -16,7 +16,7 @@ if($sql_update){
 
   echo "<script>
   
-  window.location='https://trazabilidadmasterdent.online/control/PDL/consultar_inventario.php?fecha=$Fecha';
+  window.location='../control/PDL/consultar_inventario.php?fecha=$Fecha';
   </script>";
 
 }

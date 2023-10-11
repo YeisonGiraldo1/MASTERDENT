@@ -1,6 +1,5 @@
 <?php
-    $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
-    
+   $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
     //defino el tiempo de autorefresh en segundos.
     
     $ActualizarDespuesDe = 30;
@@ -334,8 +333,8 @@ case 3:
 <!DOCTYPE html>
 <html lang="en">
     
-			<button onclick="location.href='https://trazabilidadmasterdent.online/control/'">Inicio</button>
-			<button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaPrensadas.php'">Prensadas Gerneral</button>
+			<button onclick="location.href='../control/'">Inicio</button>
+			<button onclick="location.href='../control/vistas/modulos/verTablaPrensadas.php'">Prensadas Gerneral</button>
 			
 		
 			<!--    botón de ir atrás.

@@ -9,8 +9,8 @@ if(!isset($_GET["id"])){
   $desde=$_GET['desde'];
     $hasta=$_GET['hasta'];
     $id=$_GET["id"];
-    $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
-  ?>
+    $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
+    ?>
 
 <html>
 <head>

@@ -1,6 +1,5 @@
 <?php
-  $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
- $ActualizarDespuesDe = 15;
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB"); $ActualizarDespuesDe = 15;
  
     
     // Envíe un encabezado Refresh al navegador preferido.
@@ -51,7 +50,7 @@ $metaGeneral=6020;
 </head>
 <body>
     
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
+    <button onclick="location.href='../control'">Inicio</button>
 
 <center>
     <h2>RENDIMIENTO TERMINACIÓN</h2>

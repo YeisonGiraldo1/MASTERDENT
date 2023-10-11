@@ -21,7 +21,7 @@
     $contrasena=$_SESSION['Contrasena']; 
    $rol=$_SESSION['Rol'];
   
-  $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+   $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
   
   }
   
@@ -42,9 +42,9 @@
     <br>
     
    
-        <button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_asignaciones.php'">nueva asigación</button>
-        <button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaRotulos.php'">Ver tabla Rótulos</button>
-        <button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaMoldes.php'">Ver tabla Moldes</button>
+        <button onclick="location.href='../control/formulario_asignaciones.php'">nueva asigación</button>
+        <button onclick="location.href='../control/vistas/modulos/verTablaRotulos.php'">Ver tabla Rótulos</button>
+        <button onclick="location.href='../control/vistas/modulos/verTablaMoldes.php'">Ver tabla Moldes</button>
         
          <br></br>
     

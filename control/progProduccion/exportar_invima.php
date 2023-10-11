@@ -1,7 +1,7 @@
 <?php
  $mes=$_GET['Seleccionado'];
  $añodefinitivo="20".$_GET['Selecciono_ano'];
-   $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
 
                  header("Content-Type:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"); 

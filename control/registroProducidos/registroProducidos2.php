@@ -1,5 +1,5 @@
 <?php
-    $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
     
     $moldesPrensada=null;
     $turnoMayus="";
@@ -53,13 +53,13 @@ var_dump($prensada);*/
 
 <!DOCTYPE html>
 <html lang="en">
-    <!--<button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>-->
-    <!--<button onclick="location.href='https://trazabilidadmasterdent.online/control/progProduccion/formularioImprimirProg.php?fecha=<?php echo $fecha?>&turno=<?php //echo $turno?>'">Cambiar Fecha/Turno</button>-->
-    <!--<button onclick="location.href='https://trazabilidadmasterdent.online/control/progProduccion/cambiarPrensada.php?turno=<?php //echo $turno?>&fecha=<?php //echo $fecha?>">Cambiar prensada</button>
-    	<button onclick="location.href='https://trazabilidadmasterdent.online/control/progProduccion/cambiarTurno.php?prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Cambiar Turno</button>-->
+    <!--<button onclick="location.href='../control'">Inicio</button>-->
+    <!--<button onclick="location.href='../control/progProduccion/formularioImprimirProg.php?fecha=<?php echo $fecha?>&turno=<?php //echo $turno?>'">Cambiar Fecha/Turno</button>-->
+    <!--<button onclick="location.href='../control/progProduccion/cambiarPrensada.php?turno=<?php //echo $turno?>&fecha=<?php //echo $fecha?>">Cambiar prensada</button>
+    	<button onclick="location.href='../control/progProduccion/cambiarTurno.php?prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Cambiar Turno</button>-->
 			
 <head>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
+    <button onclick="location.href='../control'">Inicio</button>
 	<meta charset="UTF-8">
 	<title>Producidos</title>
 	

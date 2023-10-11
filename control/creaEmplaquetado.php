@@ -1,7 +1,7 @@
 <?php 
 require_once("herramienta_introducir_datos.php");
 
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
 $emplaquetador=$_GET ["emplaquetador"];
 $cod_rotulo=$_GET["rotulo"];

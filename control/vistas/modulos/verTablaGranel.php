@@ -1,5 +1,5 @@
 <?php
-  $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
   $sumaJuegos=0;
   $diferenciaTotal=0;
   $sumaProducidos=0;
@@ -164,10 +164,10 @@
 </head>
 <body>
     
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_rotulo_granel.php'">Nuevo Rotulo</button>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control/trazarPedido.php?id=<?php echo $pedidoIdPedido?>'">Volver al pedido</button>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control/pedidosConsolidado.php'">Ir al consolidado</button>
+    <button onclick="location.href='../control'">Inicio</button>
+    <button onclick="location.href='../control/formulario_rotulo_granel.php'">Nuevo Rotulo</button>
+    <button onclick="location.href='../control/trazarPedido.php?id=<?php echo $pedidoIdPedido?>'">Volver al pedido</button>
+    <button onclick="location.href='../control/pedidosConsolidado.php'">Ir al consolidado</button>
 
     
     <center>

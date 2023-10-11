@@ -27,7 +27,7 @@ session_start();
 
 
 
-  $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+   $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
   
   }
   
@@ -54,14 +54,14 @@ session_start();
      <div class="container mt-5">
         
             
-              <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>   
-               <button onclick="location.href='https://trazabilidadmasterdent.online/control/progProduccion/progProduccion2.php'">Nueva Programación</button>
-               <button onclick="location.href='https://trazabilidadmasterdent.online/control/registroProducidos/registroProducidos1.php'">Producidos</button>
-                <button onclick="location.href='https://trazabilidadmasterdent.online/control/filtros_Rotulos/filtrados.php'">Filtros de búsqueda</button>
-                <button onclick="location.href='https://trazabilidadmasterdent.online/control/progProduccion/formularioImprimirProg.php'">Imprimir</button>
+              <button onclick="location.href='../control'">Inicio</button>   
+               <button onclick="location.href='../control/progProduccion/progProduccion2.php'">Nueva Programación</button>
+               <button onclick="location.href='../control/registroProducidos/registroProducidos1.php'">Producidos</button>
+                <button onclick="location.href='../control/filtros_Rotulos/filtrados.php'">Filtros de búsqueda</button>
+                <button onclick="location.href='../control/progProduccion/formularioImprimirProg.php'">Imprimir</button>
                 <button onclick="location.href='../progProduccion/invima.php'">INVIMA</button>
                 
-                <!--<button onclick="location.href='https://trazabilidadmasterdent.online/control/interaccion_arduino.php?pre_php=0&hum_php=1.00&temp_php=0&proceso_php=9&dist_php=&rotulo_php=&menorRotulo_php=477&mayorRotulo_php=453">interacción arduino</button>-->
+                <!--<button onclick="location.href='../control/interaccion_arduino.php?pre_php=0&hum_php=1.00&temp_php=0&proceso_php=9&dist_php=&rotulo_php=&menorRotulo_php=477&mayorRotulo_php=453">interacción arduino</button>-->
                 
                 
           

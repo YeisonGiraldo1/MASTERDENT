@@ -1,5 +1,5 @@
 <?php
-    $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
     $estacion=$_GET ["estaciones"];
       //si la estación no llega por get entonces la busco por post.
@@ -112,8 +112,8 @@ $resultLot=mysqli_query($conexion,$sqlLot);
 	<title>PorEstacion</title>
 </head>
 <body>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control/historialEstacion.php?estaciones=<?php echo $estacion ?>&Buscar=Enviar'">Historial Estación</button>
+    <button onclick="location.href='../control'">Inicio</button>
+    <button onclick="location.href='../control/historialEstacion.php?estaciones=<?php echo $estacion ?>&Buscar=Enviar'">Historial Estación</button>
     
     <center>
     <?php
@@ -128,12 +128,12 @@ $resultLot=mysqli_query($conexion,$sqlLot);
         switch ($estacion){
             case 7:
                 ?>
-                <button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaPedidos.php'">Ver tabla Pedidos</button>
-                <button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaListasGeneral.php'">Ver Lista de Empaque Global</button>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_pedidos.php'">Nuevo Pedido</button>
-     <button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_clientes.php'">Nuevo Cliente</button>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control/listaFiltro.php'">Lista de empaque</button>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control/PDL/inventario_Pdl.php'">Inventario PDL</button>
+                <button onclick="location.href='../control/vistas/modulos/verTablaPedidos.php'">Ver tabla Pedidos</button>
+                <button onclick="location.href='../control/vistas/modulos/verTablaListasGeneral.php'">Ver Lista de Empaque Global</button>
+    <button onclick="location.href='../control/formulario_pedidos.php'">Nuevo Pedido</button>
+     <button onclick="location.href='../control/formulario_clientes.php'">Nuevo Cliente</button>
+    <button onclick="location.href='../control/listaFiltro.php'">Lista de empaque</button>
+    <button onclick="location.href='../control/PDL/inventario_Pdl.php'">Inventario PDL</button>
     
     <br>
 
@@ -147,12 +147,12 @@ case 1:
     
             ?>
             
-<button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaTiempoPrensas.php'">Tiempos Prensas</button>
-<button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaPrensadas.php'">Cuenta Prensadas</button>
-<button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_temperaturaPrensas.php'">Temperatura Planchas</button>
-   <!--<button onclick="location.href='https://trazabilidadmasterdent.online/control/nuevaProgramacion.php'">Programación de Producción</button>-->
-   <button onclick="location.href='https://trazabilidadmasterdent.online/control/progProduccion/progProduccion1.php'">Programación</button>
-   <!--<button onclick="location.href='https://trazabilidadmasterdent.online/control/interaccion_arduino.php?proceso_php=9&rotulo_php=700'">simulaciónTags</button>-->
+<button onclick="location.href='../control/vistas/modulos/verTablaTiempoPrensas.php'">Tiempos Prensas</button>
+<button onclick="location.href='../control/vistas/modulos/verTablaPrensadas.php'">Cuenta Prensadas</button>
+<button onclick="location.href='../control/formulario_temperaturaPrensas.php'">Temperatura Planchas</button>
+   <!--<button onclick="location.href='../control/nuevaProgramacion.php'">Programación de Producción</button>-->
+   <button onclick="location.href='../control/progProduccion/progProduccion1.php'">Programación</button>
+   <!--<button onclick="location.href='../control/interaccion_arduino.php?proceso_php=9&rotulo_php=700'">simulaciónTags</button>-->
     
     <br>
 
@@ -165,7 +165,7 @@ case 1:
     
     case 6:
         ?>
-        <button onclick="location.href='https://trazabilidadmasterdent.online/control/simuladorInteraccionArduino.php'">Simulador de interacción arduino</button>
+        <button onclick="location.href='../control/simuladorInteraccionArduino.php'">Simulador de interacción arduino</button>
         <?php
         break;
         }
@@ -196,7 +196,7 @@ case 1:
             
             <br>
             
-<!--<button onclick="location.href='https://trazabilidadmasterdent.online/control/'">Ver Historial</button>-->
+<!--<button onclick="location.href='../control/'">Ver Historial</button>-->
 <div class="row">
             <form action="BusquedaRotulosPorEstacion.php" method="POST">
             

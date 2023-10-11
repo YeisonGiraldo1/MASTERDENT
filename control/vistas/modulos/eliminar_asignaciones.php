@@ -1,6 +1,5 @@
 <?php
-$conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
-
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
 
 if(isset($_GET["id"])){
@@ -89,7 +88,7 @@ $id=$_GET["id"];
 </form>
 &nbsp;&nbsp;&nbsp;
 
-<button type="button" class="btn btn-outline-secondary"><a href="https://trazabilidadmasterdent.online/control/index.php?action=asignaciones">CANCELAR</a></button>
+<button type="button" class="btn btn-outline-secondary"><a href="../control/index.php?action=asignaciones">CANCELAR</a></button>
   
 </div>
 </form>

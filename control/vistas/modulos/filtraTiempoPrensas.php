@@ -1,5 +1,5 @@
 <?php
-    $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+   $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
     
     //defino el tiempo de autorefresh en segundos.
     
@@ -374,11 +374,11 @@ case 3:
 <!DOCTYPE html>
 <html lang="en">
     
-			<button onclick="location.href='https://trazabilidadmasterdent.online/control/'">Inicio</button>
-			<button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaTiempoPrensas.php'">Tiempo Prensas Gerneral</button>
-			<button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/filtraTiempoPrensas.php?desdeAno=<?php echo $desdeAno ?>&desdeMes=<?php echo $desdeMes ?>&desdeDia=<?php echo $desdeDia ?>&desdeHora=<?php echo $desdeHora ?>&filtro=<?php echo intval($filtro) ?>&prensa=1&hastaAno=<?php echo $hastaAno ?>&hastaMes=<?php echo $hastaMes ?>&hastaDia=<?php echo $hastaDia ?>&hastaHora=<?php echo $hastaHora ?>&Crear=Enviar'">Prensa 1</button>
-			<button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/filtraTiempoPrensas.php?desdeAno=<?php echo $desdeAno ?>&desdeMes=<?php echo $desdeMes ?>&desdeDia=<?php echo $desdeDia ?>&desdeHora=<?php echo $desdeHora ?>&filtro=<?php echo intval($filtro) ?>&prensa=2&hastaAno=<?php echo $hastaAno ?>&hastaMes=<?php echo $hastaMes ?>&hastaDia=<?php echo $hastaDia ?>&hastaHora=<?php echo $hastaHora ?>&Crear=Enviar'">Prensa 2</button>
-			<button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/filtraTiempoPrensas.php?desdeAno=<?php echo $desdeAno ?>&desdeMes=<?php echo $desdeMes ?>&desdeDia=<?php echo $desdeDia ?>&desdeHora=<?php echo $desdeHora ?>&filtro=<?php echo intval($filtro) ?>&prensa=3&hastaAno=<?php echo $hastaAno ?>&hastaMes=<?php echo $hastaMes ?>&hastaDia=<?php echo $hastaDia ?>&hastaHora=<?php echo $hastaHora ?>&Crear=Enviar'">Prensa 3</button>
+			<button onclick="location.href='../control/'">Inicio</button>
+			<button onclick="location.href='../control/vistas/modulos/verTablaTiempoPrensas.php'">Tiempo Prensas Gerneral</button>
+			<button onclick="location.href='../control/vistas/modulos/filtraTiempoPrensas.php?desdeAno=<?php echo $desdeAno ?>&desdeMes=<?php echo $desdeMes ?>&desdeDia=<?php echo $desdeDia ?>&desdeHora=<?php echo $desdeHora ?>&filtro=<?php echo intval($filtro) ?>&prensa=1&hastaAno=<?php echo $hastaAno ?>&hastaMes=<?php echo $hastaMes ?>&hastaDia=<?php echo $hastaDia ?>&hastaHora=<?php echo $hastaHora ?>&Crear=Enviar'">Prensa 1</button>
+			<button onclick="location.href='../control/vistas/modulos/filtraTiempoPrensas.php?desdeAno=<?php echo $desdeAno ?>&desdeMes=<?php echo $desdeMes ?>&desdeDia=<?php echo $desdeDia ?>&desdeHora=<?php echo $desdeHora ?>&filtro=<?php echo intval($filtro) ?>&prensa=2&hastaAno=<?php echo $hastaAno ?>&hastaMes=<?php echo $hastaMes ?>&hastaDia=<?php echo $hastaDia ?>&hastaHora=<?php echo $hastaHora ?>&Crear=Enviar'">Prensa 2</button>
+			<button onclick="location.href='../control/vistas/modulos/filtraTiempoPrensas.php?desdeAno=<?php echo $desdeAno ?>&desdeMes=<?php echo $desdeMes ?>&desdeDia=<?php echo $desdeDia ?>&desdeHora=<?php echo $desdeHora ?>&filtro=<?php echo intval($filtro) ?>&prensa=3&hastaAno=<?php echo $hastaAno ?>&hastaMes=<?php echo $hastaMes ?>&hastaDia=<?php echo $hastaDia ?>&hastaHora=<?php echo $hastaHora ?>&Crear=Enviar'">Prensa 3</button>
 			
 			
 			

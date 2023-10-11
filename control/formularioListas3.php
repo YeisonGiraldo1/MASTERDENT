@@ -1,13 +1,12 @@
 <?php
-   $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
-//$cajas=null;
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");//$cajas=null;
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    	<button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaListaEmpaque2.php'">Listas General</button>
-			<button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
+    	<button onclick="location.href='../control/vistas/modulos/verTablaListaEmpaque2.php'">Listas General</button>
+			<button onclick="location.href='../control'">Inicio</button>
 <head>
     <meta charset="UTF-8">
     <title>listaEmpaque</title>

@@ -9,6 +9,7 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 <head>
     <meta charset="UTF-8">
     <title>Estaciones</title>
+    
 </head>
 
 <body>    
@@ -53,11 +54,11 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
                  <body>
 
 
-                <button onclick="location.href='https://trazabilidadmasterdent.online/control/formularioEmplaquetado2.php'">Emplaquetado</button>
+                <button onclick="location.href='../control/formularioEmplaquetado2.php'">Emplaquetado</button>
                 <br></br>
-                <button onclick="location.href='https://trazabilidadmasterdent.online/control/consolidadoEstaciones/consolidadoEstaciones2.php'">Consolidado Estaciones</button>
-                <button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaPedidos.php?origenBusqueda=terminacion'">Pedidos Terminación</button>
-                <button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaPedidos.php?origenBusqueda=almacen'">Pedidos Almacén</button>
+                <button onclick="location.href='../control/consolidadoEstaciones/consolidadoEstaciones2.php'">Consolidado Estaciones</button>
+                <button onclick="location.href='../control/vistas/modulos/verTablaPedidos.php?origenBusqueda=terminacion'">Pedidos Terminación</button>
+                <button onclick="location.href='../control/vistas/modulos/verTablaPedidos.php?origenBusqueda=almacen'">Pedidos Almacén</button>
 
                 </div>
                 <p>Actualmente estamos trabajando las nuevas funcionalidades para la vista de pedidos</p>

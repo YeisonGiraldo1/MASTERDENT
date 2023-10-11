@@ -1,5 +1,5 @@
 <?php
-    $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
     $idMolde=$_GET ["molde"];
 
@@ -116,9 +116,9 @@
 
     </br>
 
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaReferencias.php'">Ver tabla Referencias</button>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaColores.php'">Ver tabla Colores</button>
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control/vistas/modulos/verTablaEstaciones.php'">Ver tabla Estaciones</button>
+    <button onclick="location.href='../control/vistas/modulos/verTablaReferencias.php'">Ver tabla Referencias</button>
+    <button onclick="location.href='../control/vistas/modulos/verTablaColores.php'">Ver tabla Colores</button>
+    <button onclick="location.href='../control/vistas/modulos/verTablaEstaciones.php'">Ver tabla Estaciones</button>
     
 </body>
 </html>

@@ -31,7 +31,7 @@ animation-iteration-count: infinite;
       border-color: black;}
     }
   </style>
-<button onclick="location.href='https://trazabilidadmasterdent.online/control/PDL/inventario_Pdl.php'">REGRESAR</button>
+<button onclick="location.href='../control/PDL/inventario_Pdl.php'">REGRESAR</button>
 <br><br>
 <br>
 <h1  style="text-align:center;color:green;"><i>ALMACEN DE PRODUCTOS DE LABORATORIO (PDL)<i></h1>
@@ -90,7 +90,7 @@ echo"<h1  style='text-align:center;color:red;'> INVENTARIO  DEL   DIA"."  ".$fec
   </thead>
   <tbody>
     <?php
-    $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+    $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
  //require_once "https://trazabilidadmasterdent.online/control/PDL/https://trazabilidadmasterdent.online/control/PDL/ingreso_datos/conexion2.php";
     $consulta_inv=mysqli_query($conexion,"SELECT producto_lab.*,inventario_lab.*, inventario_lab.id AS ninv FROM inventario_lab INNER JOIN producto_lab ON inventario_lab.ProductoId=producto_lab.id  WHERE Fecha LIKE '$fecha' ORDER BY inventario_lab.id DESC");
     mysqli_close($conexion);
