@@ -1,34 +1,35 @@
 <?php
 
-class EnlacesPaginas{
+class EnlacesPaginas
+{
 
-	public static function enlacesPaginasModelo($enlacesModelo){
+	public static function enlacesPaginasModelo($enlacesModelo)
+	{
 
-		if ($enlacesModelo == "estaciones" ||$enlacesModelo == "pedidos" ||
+		if (strcmp("cerrar_session", $enlacesModelo) == 1) {
+			if (!(session_status() === PHP_SESSION_ACTIVE)) {
+				session_start();
+			}
+
+			session_destroy();
+			$ruta = "../index.php";
+			header("Location: $ruta");
+			exit;
+		} else if (
+			$enlacesModelo == "estaciones" || $enlacesModelo == "pedidos" ||
 			$enlacesModelo == "materiales" ||
-			$enlacesModelo == "moldes" || $enlacesModelo=="cerrar_sesion" ||
-			$enlacesModelo == "registro_usuario" || $enlacesModelo == "fallos_masterdent") 
-		
-				
-	$modulo = "vistas/modulos/".$enlacesModelo.".php";
-		
+			$enlacesModelo == "moldes" || $enlacesModelo == "cerrar_sesion" ||
+			$enlacesModelo == "registro_usuario" || $enlacesModelo == "fallos_masterdent" ||
+			$enlacesModelo == "template2"
+		)
 
-		else if($enlacesModelo == "estaciones"){
-			$mudulo = "vistas/modulos/estaciones.php";
-		}
+
+			$modulo = "vistas/modulos/" . $enlacesModelo . ".php";
 
 		else {
-			$mudulo = "vistas/modulos/estaciones.php";
+			$modulo = "vistas/modulos/estaciones.php";
 		}
+
 		return $modulo;
-
 	}
-
-	
-
-			
-
 }
-
-
-?>

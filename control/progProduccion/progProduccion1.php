@@ -54,10 +54,10 @@ session_start();
      <div class="container mt-5">
         
             
-              <button onclick="location.href='../control'">Inicio</button>   
-               <button onclick="location.href='../control/progProduccion/progProduccion2.php'">Nueva Programación</button>
-               <button onclick="location.href='../control/registroProducidos/registroProducidos1.php'">Producidos</button>
-                <button onclick="location.href='../control/filtros_Rotulos/filtrados.php'">Filtros de búsqueda</button>
+              <button onclick="location.href='../control/'">Inicio</button>   
+               <button onclick="location.href='../../control/progProduccion/progProduccion2.php'">Nueva Programación</button>
+               <button onclick="location.href='../../control/registroProducidos/registroProducidos1.php'">Producidos</button>
+                <button onclick="location.href='../../control/filtros_Rotulos/filtrados.php'">Filtros de búsqueda</button>
                 <button onclick="location.href='../control/progProduccion/formularioImprimirProg.php'">Imprimir</button>
                 <button onclick="location.href='../progProduccion/invima.php'">INVIMA</button>
                 

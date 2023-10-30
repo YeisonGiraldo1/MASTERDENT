@@ -1,3 +1,11 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+$_SESSION["barraprincipal"] = "ocultar"; // Ocultar la barra principal
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +25,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+
         }
     </style>
 
@@ -24,30 +33,28 @@
 
 <body>
 
+
     <?php
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
+
+
+if (isset($_GET["submenu"]) && $_GET["submenu"] == "estacion_terminacion") {
+    include "navegacion_terminacion.php";
+} else {
+
+    if (isset($_GET["submenu"]) && $_GET["submenu"] == "estacion_almacen") {
+        include "navegacion_almacen.php";
+    } else {
+        include "navegacion_moldeado.php"; // Incluye la barra de navegación secundaria
     }
-    if (!isset($_SESSION["barraprincipal"])) {
-        $_SESSION["barraprincipal"] = "mostrar"; // Por defecto, mostrar la barra principal
-    }
-
-    $condition = isset($_GET["action"]) && $_GET["action"] == "template2";
-
-    if (isset($_GET["menu"])) {
-        $menu = $_GET["menu"];
-        include "modulos/$menu" . ".php"; 
-    } else if(!$condition) include "modulos/navegacion.php"; //incluye la barra de navegacion principal si la variable de session lo permite
-    
-   
-    
-
+}
     ?>
 
     <section>
         <?php
         $mvc = new MvcController();
-        $mvc->enlacesPaginasController();
+        $mvc->enlacesPaginasController2();
+
+
 
 
         ?>

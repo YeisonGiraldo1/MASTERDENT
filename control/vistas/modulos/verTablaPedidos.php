@@ -21,13 +21,11 @@
     
     //variable para determinar las columnas a mostrar según área de la empresa
     
-   $origenBusqueda=$_GET['origenBusqueda'];
+    $origenBusqueda = isset($_GET['origenBusqueda']) ? $_GET['origenBusqueda'] : '';
+
+    // Otra forma de comprobar si está definido:
+    // $origenBusqueda = (isset($_GET['origenBusqueda'])) ? $_GET['origenBusqueda'] : '';
     
-    if ($origenBusqueda==NULL || $origenBusqueda==''){
-    
-    $origenBusqueda=$_POST['origenBusqueda'];
-    
-    }
     
     $origenBusqueda=trim($origenBusqueda," ");
     
@@ -73,9 +71,10 @@
             $filtros[]= "pedidos2.`fechaCreacion` BETWEEN '$fechaDesde%' AND '$fechaHasta%'";
     }
     
-    if (is_null($filtros[0])){
-        $filtros[]="1";
+    if (empty($filtros)) {
+        $filtros[] = "1";
     }
+    
     
     $consultaFiltros="SELECT pedidos2.*, clientes2.`nombreCliente` AS cliente from pedidos2 INNER JOIN clientes2 ON pedidos2.`idCliente`= clientes2.`id` WHERE";
     
@@ -246,10 +245,12 @@
             
             $totalEmpacados=0;
             
-            $sql= $consultaFiltros." ". implode(" AND ",$filtros) ." ORDER BY `idP` DESC LIMIT 200";
+            $sql = $consultaFiltros . " " . implode(" AND ", $filtros) . " ORDER BY `idP` DESC LIMIT 200";
+
             $result=mysqli_query($conexion,$sql);
             //echo $sql;
-            while($mostrar=mysqli_fetch_array($result)){
+            while ($mostrar = mysqli_fetch_array($result)) {
+                $juegosTotales = isset($mostrar['juegosTotales']) ? $mostrar['juegosTotales'] : '';
             ?>
             <tr>
                 <td><?php echo $mostrar['idP'] ?></td>
@@ -259,34 +260,31 @@
                 <td><?php echo $mostrar['linea'] ?></td>
                 
                 <td><?php echo $mostrar['juegosTotales'] ?></td>
-                <td bgcolor= "<?php if($sumaProgramados[$mostrar['idP']]>$mostrar["juegosTotales"]*1.25){
-                echo "B6FF8A";
-                }?>"><?php 
-                if(is_null ($sumaProgramados[$mostrar['idP']])){
-                    echo "0";
-                }
-                else{
-                    echo $sumaProgramados[$mostrar['idP']];
-                    $totalProgramados=$totalProgramados+$sumaProgramados[$mostrar['idP']];
-                }
-                
-                
-                ?></td>
-                
-                
-                <td bgcolor= "<?php if($sumaEmpacados[$mostrar['idP']]>=$mostrar["juegosTotales"]){
-                echo "B6FF8A";
-                }?>"><?php 
-                if(is_null ($sumaEmpacados[$mostrar['idP']])){
-                    echo "0";
-                }
-                else{
-                    echo $sumaEmpacados[$mostrar['idP']];
-                    $totalEmpacados=$totalEmpacados+$sumaEmpacados[$mostrar['idP']];
-                }
-                
-                
-                ?></td>
+                <td bgcolor="<?php if (isset($sumaProgramados[$mostrar['idP']]) && $sumaProgramados[$mostrar['idP']] > $mostrar['juegosTotales'] * 1.25) {
+    echo "B6FF8A";
+} ?>">
+    <?php
+    if (isset($sumaProgramados[$mostrar['idP']])) {
+        echo $sumaProgramados[$mostrar['idP']];
+        $totalProgramados += $sumaProgramados[$mostrar['idP']];
+    } else {
+        echo "0";
+    }
+    ?>
+</td>
+<td bgcolor="<?php if (isset($sumaEmpacados[$mostrar['idP']]) && $sumaEmpacados[$mostrar['idP']] >= $mostrar['juegosTotales']) {
+    echo "B6FF8A";
+} ?>">
+    <?php
+    if (isset($sumaEmpacados[$mostrar['idP']])) {
+        echo $sumaEmpacados[$mostrar['idP']];
+        $totalEmpacados += $sumaEmpacados[$mostrar['idP']];
+    } else {
+        echo "0";
+    }
+    ?>
+</td>
+
                 
                 
                 

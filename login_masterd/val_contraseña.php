@@ -13,10 +13,10 @@ if($resultado >0){
     
 }
  
-$enlace="../login_masterd/cambiar_contrasena.php?a26031997=$id";
+$enlace="../cambiar_contrasena.php?a26031997=$id";
 echo "<script>
 
-    window.location='recuperacion_contraseña.php?correo=$correo&enlace=$enlace';
+    window.location='../recuperacion_contraseña.php?correo=$correo&enlace=$enlace';
 
 </script>";
 
@@ -32,4 +32,3 @@ else {  echo "<script>
 
 
 }
-?>

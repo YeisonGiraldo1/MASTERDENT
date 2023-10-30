@@ -1,13 +1,12 @@
 <?php
 
- $correo=$_GET['correo'];
- $enlace=$_GET['enlace'];
+$correo = $_GET['correo'];
+$enlace = $_GET['enlace'];
 $to      = $correo;
-$subject = 'Reestablecimiento de clave de usuario' ;
-$message = 'Restablece tu clave de usuario, para que puedas ingresar al sistema Masterdent'.'       '.$enlace;
+$subject = 'Reestablecimiento de clave de usuario';
+$message = 'Restablece tu clave de usuario, para que puedas ingresar al sistema Masterdent' . '       ' . $enlace;
 
 mail($to, $subject, $message);
 
-header("location:../../index.php");
 
-?>
+header("location: ../index.php");

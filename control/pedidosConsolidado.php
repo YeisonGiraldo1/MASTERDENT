@@ -4,168 +4,93 @@
 
 //////////////////////////////////////////////////////////////
 session_start();
-  if(!isset ($_SESSION['Cedula']) or !isset($_SESSION['Contrasena'])){ 
-    $cedula=1993;
-  $contrasena=2050;
+if (!isset($_SESSION['Cedula']) || !isset($_SESSION['Contrasena'])) {
+    $cedula = 1993;
+    $contrasena = 2050;
     echo "<script>
-    alert('Zona  no autorizada,por favor inicia la seccion');
-    window.location='../index.php';
-  
-  
-    
-  </script>";
-  
-   
-  }
-  
-  else{
-    
-    
-    $cedula=$_SESSION['Cedula'];
-    $contrasena=$_SESSION['Contrasena']; 
-   $rol=$_SESSION['Rol'];
-  
+    alert('Zona no autorizada, por favor inicia la sesión');
+    window.location = '../index.php';
+    </script>";
+} else {
+    $cedula = $_SESSION['Cedula'];
+    $contrasena = $_SESSION['Contrasena'];
+    $rol = $_SESSION['Rol'];
 
+    $conexion = mysqli_connect("localhost", "root", "", "u638142989_MasterdentDB");
 
+    $pedido = isset($_POST['pedido']) ? $_POST['pedido'] : '';
+    $cliente = isset($_POST['cliente']) ? $_POST['cliente'] : '';
+    $referencia = isset($_POST['referencia']) ? $_POST['referencia'] : '';
+    $color = isset($_POST['color']) ? $_POST['color'] : '';
+    $uppLow = isset($_POST['uppLow']) ? $_POST['uppLow'] : '';
+    $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : '';
 
+    $granel = 0;
+    $programados = 0;
+    $producidos = 0;
+    $pulidos = 0;
+    $separados = 0;
+    $emplaquetados = 0;
+    $revisados = 0;
+    $verificados = 0;
+    $empacados = 0;
 
-   $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");  
-  /*
+    $filtros = array();
 
-  $pedidoId=$_GET ['id'];
-    if(is_null($pedidoId)){
-        $pedidoId=$_POST['id'] ;
-        
-            }
-            
-            //consulto el nombre o código del pedido a partir del id
-                 //echo "se encontró pedido en POST";
-                 
-            $sqlCod= "SELECT pedidos2.`codigoP` from pedidos2 WHERE idP ='".$pedidoId. "' ";
-        $resultCod=mysqli_query($conexion,$sqlCod);
+    if ($pedido != '') {
+        $sqlPedido = "SELECT `idP` FROM `pedidos2` WHERE `codigoP` = '$pedido'";
+        $resultPedido = mysqli_query($conexion, $sqlPedido);
 
-         
-
-                while($mostrarCod=mysqli_fetch_array($resultCod)){
-                    $pedido=$mostrarCod['codigoP'];
-                }
-       
-        
-    */
-     
-    
-    
-    
- 
-    
-    
-   
-    $pedido= isset( $_POST['pedido'] ) ? $_POST['pedido'] : '';
-    $cliente= isset( $_POST['cliente'] ) ? $_POST['cliente'] : '';
-    $referencia = isset( $_POST['referencia'] ) ? $_POST['referencia'] : '';
-    $color = isset( $_POST['color'] ) ? $_POST['color'] : '';
-    $uppLow = isset( $_POST['uppLow'] ) ? $_POST['uppLow'] : '';
-    $tipo = isset( $_POST['tipo'] ) ? $_POST['tipo'] : '';
-    
-   
-    
-    $granel=0;
-    $programados=0;
-    $producidos=0;    
-    $pulidos=0;
-    $separados=0;
-    $emplaquetados=0;
-    $revisados=0;
-    $verificados=0;
-    $empacados=0;
-    
-    // imprimo las variables 
-   // echo "pedido= ".$pedido;
-   // echo "pedidoId= ".$pedidoId;
-   // echo "referencia= ".$referencia;
-   // echo "color= ".$color;
-    
-     $filtros = array();
-     
-     if ($pedido != ''){
-         
-          // busco el id del pedido según su nombre en la tabla pedidos2
-                
-                
-$sqlPedido= "SELECT `idP` FROM `pedidos2` WHERE `codigoP` = '$pedido'";
-$resultPedido=mysqli_query($conexion,$sqlPedido);       
-
-     
-                while($mostrarPedido=mysqli_fetch_array($resultPedido)){
-                    $pedido=$mostrarPedido['idP'];
-                   
-            }
-         
-        $filtros[]= "pedidoDetalles.`pedidoId` = '$pedido'";
-    }
-    
-        if($cliente != ''){
-            $filtros[]= "nombreCliente LIKE '%$cliente%'";
+        while ($mostrarPedido = mysqli_fetch_array($resultPedido)) {
+            $pedido = $mostrarPedido['idP'];
         }
-       
-    
-         if ($referencia != ''){
-        
-         // busco el id de la referencia según su nombre en la tabla referencias2
-                
-                
-$sqlRef= "SELECT `id` FROM `referencias2` WHERE nombre LIKE '$referencia'";
-$resultRef=mysqli_query($conexion,$sqlRef);       
 
-     
-                while($mostrarRef=mysqli_fetch_array($resultRef)){
-                    $referencia=$mostrarRef['id'];
-                   
-            }
-            
-            $filtros[]= "pedidoDetalles.`referenciaId` = '$referencia'";
-            
-                
+        $filtros[] = "pedidoDetalles.`pedidoId` = '$pedido'";
     }
-    if ($color != ''){
-        
-         // busco el id del color según su nombre 
-                
-                
-$sqlCol= "SELECT `id` FROM `colores2` WHERE nombre = '$color'";
-$resultCol=mysqli_query($conexion,$sqlCol);       
 
-     
-                while($mostrarCol=mysqli_fetch_array($resultCol)){
-                    $color=$mostrarCol['id'];
-                   
-            }
-            
-            $filtros[]= "pedidoDetalles.`colorId` = '$color'";
+    if ($cliente != '') {
+        $filtros[] = "nombreCliente LIKE '%$cliente%'";
     }
-    
-    if ($uppLow != ''){
-            $filtros[]= "referencias2.`nombre` LIKE '%$uppLow'";
+
+    if ($referencia != '') {
+        $sqlRef = "SELECT `id` FROM `referencias2` WHERE nombre LIKE '$referencia'";
+        $resultRef = mysqli_query($conexion, $sqlRef);
+
+        while ($mostrarRef = mysqli_fetch_array($resultRef)) {
+            $referencia = $mostrarRef['id'];
+        }
+
+        $filtros[] = "pedidoDetalles.`referenciaId` = '$referencia'";
     }
-     if ($tipo != ''){
-            $filtros[]= "referencias2.`tipo` = '$tipo'";
+
+    if ($color != '') {
+        $sqlCol = "SELECT `id` FROM `colores2` WHERE nombre = '$color'";
+        $resultCol = mysqli_query($conexion, $sqlCol);
+
+        while ($mostrarCol = mysqli_fetch_array($resultCol)) {
+            $color = $mostrarCol['id'];
+        }
+
+        $filtros[] = "pedidoDetalles.`colorId` = '$color'";
     }
-    
-    if(is_null($filtros[0]) || $filtros[0]==''){
-        $filtros[0]='1';
+
+    if ($uppLow != '') {
+        $filtros[] = "referencias2.`nombre` LIKE '%$uppLow'";
     }
-    
-    
-    $consultaFiltros= "SELECT pedidoDetalles.*, pedidos2.`codigoP` AS pedido, pedidos2.`estado` AS estado, pedidos2.`idCliente` AS idCliente, clientes2.nombreCliente AS nombreCliente, sum(pedidoDetalles.`juegos`) as totalPedidos,sum(pedidoDetalles.`programados`) as totalProgramados, sum(pedidoDetalles.`granel`) as totalGranel, sum(pedidoDetalles.`pulidos`) as totalPulidos, sum(pedidoDetalles.`producidos`) as totalProducidos, sum(pedidoDetalles.`enSeparacion`) as totalEnSeparacion, sum(pedidoDetalles.`separado`) as totalSeparados, sum(pedidoDetalles.`enEmplaquetado`) as totalEnEmplaquetado, sum(pedidoDetalles.`emplaquetados`) as totalEmplaquetados, sum(pedidoDetalles.`revision1`) as totalRevision1, sum(pedidoDetalles.`revision2`) as totalRevision2, sum(pedidoDetalles.`empacados`) as totalEmpacados, referencias2.`nombre` AS referencia, referencias2.`tipo` AS tipo, colores2.`nombre` AS Color FROM pedidoDetalles INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id`  INNER JOIN pedidos2 ON pedidoDetalles.`pedidoId` = pedidos2.`idP`INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id` INNER JOIN clientes2 ON pedidos2.idCliente = clientes2.id WHERE pedidos2.`estado` = 'enProceso' AND";
-    
-    $consultaSuma = "select referencias2.`nombre` AS referencia, referencias2.`tipo` AS tipo, pedidos2.`codigoP` AS pedido, pedidos2.`estado` AS estado, pedidos2.`idCliente` AS idCliente, clientes2.nombreCliente AS nombreCliente, sum(pedidoDetalles.`juegos`) as totalPedidos,sum(pedidoDetalles.`programados`) as totalProgramados, sum(pedidoDetalles.`granel`) as totalGranel, sum(pedidoDetalles.`pulidos`) as totalPulidos, sum(pedidoDetalles.`producidos`) as totalProducidos, sum(pedidoDetalles.`enSeparacion`) as totalEnSeparacion, sum(pedidoDetalles.`separado`) as totalSeparados, sum(pedidoDetalles.`enEmplaquetado`) as totalEnEmplaquetado, sum(pedidoDetalles.`emplaquetados`) as totalEmplaquetados, sum(pedidoDetalles.`revision1`) as totalRevision1, sum(pedidoDetalles.`revision2`) as totalRevision2, sum(pedidoDetalles.`empacados`) as totalEmpacados FROM pedidoDetalles INNER JOIN pedidos2 ON pedidoDetalles.`pedidoId` = pedidos2.`idP` INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` INNER JOIN clientes2 ON pedidos2.idCliente = clientes2.id WHERE pedidos2.`estado` = 'enProceso' AND";
-    
-  }
-  
-  if($rol==1 OR $rol==3 ){
-    
-  
-  
+
+    if ($tipo != '') {
+        $filtros[] = "referencias2.`tipo` = '$tipo'";
+    }
+
+    if (empty($filtros) || (is_null($filtros[0]) || $filtros[0] == '')) {
+        $filtros[0] = '1';
+    }
+
+    $consultaFiltros = "SELECT pedidoDetalles.*, pedidos2.`codigoP` AS pedido, pedidos2.`estado` AS estado, pedidos2.`idCliente` AS idCliente, clientes2.nombreCliente AS nombreCliente, sum(pedidoDetalles.`juegos`) as totalPedidos, sum(pedidoDetalles.`programados`) as totalProgramados, sum(pedidoDetalles.`granel`) as totalGranel, sum(pedidoDetalles.`pulidos`) as totalPulidos, sum(pedidoDetalles.`producidos`) as totalProducidos, sum(pedidoDetalles.`enSeparacion`) as totalEnSeparacion, sum(pedidoDetalles.`separado`) as totalSeparados, sum(pedidoDetalles.`enEmplaquetado`) as totalEnEmplaquetado, sum(pedidoDetalles.`emplaquetados`) as totalEmplaquetados, sum(pedidoDetalles.`revision1`) as totalRevision1, sum(pedidoDetalles.`revision2`) as totalRevision2, sum(pedidoDetalles.`empacados`) as totalEmpacados, referencias2.`nombre` AS referencia, referencias2.`tipo` AS tipo, colores2.`nombre` AS Color FROM pedidoDetalles INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id`  INNER JOIN pedidos2 ON pedidoDetalles.`pedidoId` = pedidos2.`idP` INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id` INNER JOIN clientes2 ON pedidos2.idCliente = clientes2.id WHERE pedidos2.`estado` = 'enProceso' AND";
+    $consultaSuma = "select referencias2.`nombre` AS referencia, referencias2.`tipo` AS tipo, pedidos2.`codigoP` AS pedido, pedidos2.`estado` AS estado, pedidos2.`idCliente` AS idCliente, clientes2.nombreCliente AS nombreCliente, sum(pedidoDetalles.`juegos`) as totalPedidos, sum(pedidoDetalles.`programados`) as totalProgramados, sum(pedidoDetalles.`granel`) as totalGranel, sum(pedidoDetalles.`pulidos`) as totalPulidos, sum(pedidoDetalles.`producidos`) as totalProducidos, sum(pedidoDetalles.`enSeparacion`) as totalEnSeparacion, sum(pedidoDetalles.`separado`) as totalSeparados, sum(pedidoDetalles.`enEmplaquetado`) as totalEnEmplaquetado, sum(pedidoDetalles.`emplaquetados`) as totalEmplaquetados, sum(pedidoDetalles.`revision1`) as totalRevision1, sum(pedidoDetalles.`revision2`) as totalRevision2, sum(pedidoDetalles.`empacados`) as totalEmpacados FROM pedidoDetalles INNER JOIN pedidos2 ON pedidoDetalles.`pedidoId` = pedidos2.`idP` INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` INNER JOIN clientes2 ON pedidos2.idCliente = clientes2.id WHERE pedidos2.`estado` = 'enProceso' AND";
+}
+
+if ($rol == 1 || $rol == 3) {
 ?>
 
 <!DOCTYPE html>

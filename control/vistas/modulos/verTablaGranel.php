@@ -1,128 +1,112 @@
 <?php
-$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
-  $sumaJuegos=0;
-  $diferenciaTotal=0;
-  $sumaProducidos=0;
-  //creo unas variables para la referencia y el color recibidos por método get desde el detalle del pedido
-  $referenciaIdPedido='';
-  $colorIdPedido='';
-  $pedidoIdPedido='';
-  //recibo variables por método get
-  $referenciaIdPedido=$_GET ['referenciaId'];
-  $colorIdPedido=$_GET ['colorId'];
-  $pedidoIdPedido=$_GET ['idP'];
-    
-            //consulta para crear un arreglo con las referencias y sus id
-            
-            $arregloReferencias= array();
-            $gramosJuego=array();
-            $capas=array();
-            $tipo=array();
-            
-            $sqlReferencias= "SELECT id, nombre, gramosJuego, tipo, capas FROM referencias2 WHERE 1";
-            $resultReferencias= mysqli_query($conexion,$sqlReferencias);
-            
-            while($mostrarReferencias=mysqli_fetch_array($resultReferencias)){
-                $arregloReferencias[$mostrarReferencias['id']]=$mostrarReferencias['nombre'];
-                $gramosJuego[$mostrarReferencias['id']]=$mostrarReferencias['gramosJuego'];
-                $capas[$mostrarReferencias['id']]=$mostrarReferencias['capas'];
-                $tipo[$mostrarReferencias['id']]=$mostrarReferencias['tipo'];
-            }
-            
-            //consulta para guardar los colores y sus id en un arreglo
-            
-             $arregloColores= array();
-            
-            $sqlColores= "SELECT id, nombre FROM colores2 WHERE 1";
-            $resultColores= mysqli_query($conexion,$sqlColores);
-            
-            while($mostrarColores=mysqli_fetch_array($resultColores)){
-                $arregloColores[$mostrarColores['id']]=$mostrarColores['nombre'];
-            }
-            
-            //consulta para guardar los pedidos y sus id en un arreglo
-            
-             $arregloPedidos= array();
-            
-            $sqlPedidos= "SELECT idP, codigoP FROM pedidos2 WHERE 1";
-            $resultPedidos= mysqli_query($conexion,$sqlPedidos);
-            
-            while($mostrarPedidos=mysqli_fetch_array($resultPedidos)){
-                $arregloPedidos[$mostrarPedidos['idP']]=$mostrarPedidos['codigoP'];
-            }
-            
-            
-            //obtengo los datos del formulario de filtrado
-            
-            $rotuloId = isset( $_POST['rotuloId'] ) ? $_POST['rotuloId'] : '';
-            $referencia = isset( $_POST['referencia'] ) ? $_POST['referencia'] : '';
-            $color = isset( $_POST['color'] ) ? $_POST['color'] : '';
-            $tipoDato = isset( $_POST['tipo'] ) ? $_POST['tipo'] : '';
-            $capasDato = isset( $_POST['capas'] ) ? $_POST['capas'] : '';
-            $codigoP = isset( $_POST['codigoP'] ) ? $_POST['codigoP'] : '';
-            $fechaDesde = isset( $_POST['fechaDesde'] ) ? $_POST['fechaDesde'] : '';
-            $fechaHasta = isset( $_POST['fechaHasta'] ) ? $_POST['fechaHasta'] : '';
-            $fechaProduccionDesde = isset( $_POST['fechaProduccionDesde'] ) ? $_POST['fechaProduccionDesde'] : '';
-            $fechaProduccionHasta = isset( $_POST['fechaProduccionHasta'] ) ? $_POST['fechaProduccionHasta'] : '';
-            
-            
-            $filtros=array();
-            
-            if ($rotuloId != ''){
-            $filtros[]= "rotuloId = '$rotuloId'";
-    }
-    
-    if ($referencia != ''){
-        $referenciaId= array_search($referencia, $arregloReferencias);
-            $filtros[]= "rotulos2.referenciaId = '$referenciaId'";
-    }
-    else{
-        if($referenciaIdPedido!=''){
-            $filtros[]= "rotulos2.referenciaId = '$referenciaIdPedido'";
-        }
-    }
-    if ($color != ''){
-        $colorId= array_search($color, $arregloColores);
-            $filtros[]= "rotulos2.colorId = '$colorId'";
-    }
-     else{
-        if($colorIdPedido!=''){
-            $filtros[]= "rotulos2.colorId = '$colorIdPedido'";
-        }
-    }
-    if ($tipoDato != ''){
-            $filtros[]= "referencias2.tipo = '$tipoDato'";
-    }
-    if ($capasDato != ''){
-        
-            $filtros[]= "referencias2.capas = '$capasDato'";
-    }
-    if ($codigoP != ''){
-        $idP= array_search($codigoP, $arregloPedidos);
-            $filtros[]= "rotulos2.pedido = '$idP'";
-    }
-    if ($fechaDesde != '' && $fechaHasta != ''){
-            $filtros[]= "productoGranel.`fechaHora` BETWEEN '$fechaDesde%' AND '$fechaHasta%'";
-    }
-    if ($fechaProduccionDesde != '' && $fechaProduccionHasta != ''){
-            $filtros[]= "rotulos2.`fecha` BETWEEN '$fechaProduccionDesde%' AND '$fechaProduccionHasta%'";
-    }
-    
-    
-    
-    //si el formulario llega vacio el Where sera = 1
-    
-    if (is_null($filtros[0])){
-        $filtros[]="1";
-    }
-    
-    
-    //consultas para filtrado
-    
-    $consultaFiltros="SELECT productoGranel.*, rotulos2.referenciaId AS referencia, rotulos2.colorId as color, rotulos2.total AS producidos, rotulos2.pedido AS pedido, rotulos2.fecha AS fechaProduccion, referencias2.tipo AS tipo, referencias2.capas AS capas FROM productoGranel INNER JOIN rotulos2 ON productoGranel.rotuloId = rotulos2.id INNER JOIN referencias2 ON rotulos2.referenciaId = referencias2.id WHERE ";
-    
-    $consultaSuma = "select sum(gramos) as totalGramos, COUNT(productoGranel.id) AS totalRegistros, rotulos2.referenciaId AS referencia, rotulos2.colorId as color FROM productoGranel INNER JOIN rotulos2 ON productoGranel.rotuloId = rotulos2.id INNER JOIN referencias2 ON rotulos2.referenciaId = referencias2.id WHERE ";
+$conexion = mysqli_connect("localhost", "root", "", "u638142989_MasterdentDB");
+$sumaJuegos = 0;
+$diferenciaTotal = 0;
+$sumaProducidos = 0;
 
+$referenciaIdPedido = '';
+$colorIdPedido = '';
+$pedidoIdPedido = '';
+
+$referenciaIdPedido = isset($_GET['referenciaId']) ? $_GET['referenciaId'] : '';
+$colorIdPedido = isset($_GET['colorId']) ? $_GET['colorId'] : '';
+$pedidoIdPedido = isset($_GET['idP']) ? $_GET['idP'] : '';
+
+$arregloReferencias = array();
+$gramosJuego = array();
+$capas = array();
+$tipo = array();
+
+$sqlReferencias = "SELECT id, nombre, gramosJuego, tipo, capas FROM referencias2";
+$resultReferencias = mysqli_query($conexion, $sqlReferencias);
+
+while ($mostrarReferencias = mysqli_fetch_array($resultReferencias)) {
+    $arregloReferencias[$mostrarReferencias['id']] = $mostrarReferencias['nombre'];
+    $gramosJuego[$mostrarReferencias['id']] = $mostrarReferencias['gramosJuego'];
+    $capas[$mostrarReferencias['id']] = $mostrarReferencias['capas'];
+    $tipo[$mostrarReferencias['id']] = $mostrarReferencias['tipo'];
+}
+
+$arregloColores = array();
+
+$sqlColores = "SELECT id, nombre FROM colores2";
+$resultColores = mysqli_query($conexion, $sqlColores);
+
+while ($mostrarColores = mysqli_fetch_array($resultColores)) {
+    $arregloColores[$mostrarColores['id']] = $mostrarColores['nombre'];
+}
+
+$arregloPedidos = array();
+
+$sqlPedidos = "SELECT idP, codigoP FROM pedidos2";
+$resultPedidos = mysqli_query($conexion, $sqlPedidos);
+
+while ($mostrarPedidos = mysqli_fetch_array($resultPedidos)) {
+    $arregloPedidos[$mostrarPedidos['idP']] = $mostrarPedidos['codigoP'];
+}
+
+$rotuloId = isset($_POST['rotuloId']) ? $_POST['rotuloId'] : '';
+$referencia = isset($_POST['referencia']) ? $_POST['referencia'] : '';
+$color = isset($_POST['color']) ? $_POST['color'] : '';
+$tipoDato = isset($_POST['tipo']) ? $_POST['tipo'] : '';
+$capasDato = isset($_POST['capas']) ? $_POST['capas'] : '';
+$codigoP = isset($_POST['codigoP']) ? $_POST['codigoP'] : '';
+$fechaDesde = isset($_POST['fechaDesde']) ? $_POST['fechaDesde'] : '';
+$fechaHasta = isset($_POST['fechaHasta']) ? $_POST['fechaHasta'] : '';
+$fechaProduccionDesde = isset($_POST['fechaProduccionDesde']) ? $_POST['fechaProduccionDesde'] : '';
+$fechaProduccionHasta = isset($_POST['fechaProduccionHasta']) ? $_POST['fechaProduccionHasta'] : '';
+
+$filtros = array();
+
+if ($rotuloId != '') {
+    $filtros[] = "rotuloId = '$rotuloId'";
+}
+
+if ($referencia != '') {
+    $referenciaId = array_search($referencia, $arregloReferencias);
+    $filtros[] = "rotulos2.referenciaId = '$referenciaId'";
+} else {
+    if ($referenciaIdPedido != '') {
+        $filtros[] = "rotulos2.referenciaId = '$referenciaIdPedido'";
+    }
+}
+
+if ($color != '') {
+    $colorId = array_search($color, $arregloColores);
+    $filtros[] = "rotulos2.colorId = '$colorId'";
+} else {
+    if ($colorIdPedido != '') {
+        $filtros[] = "rotulos2.colorId = '$colorIdPedido'";
+    }
+}
+
+if ($tipoDato != '') {
+    $filtros[] = "referencias2.tipo = '$tipoDato'";
+}
+
+if ($capasDato != '') {
+    $filtros[] = "referencias2.capas = '$capasDato'";
+}
+
+if ($codigoP != '') {
+    $idP = array_search($codigoP, $arregloPedidos);
+    $filtros[] = "rotulos2.pedido = '$idP'";
+}
+
+if ($fechaDesde != '' && $fechaHasta != '') {
+    $filtros[] = "productoGranel.`fechaHora` BETWEEN '$fechaDesde%' AND '$fechaHasta%'";
+}
+
+if ($fechaProduccionDesde != '' && $fechaProduccionHasta != '') {
+    $filtros[] = "rotulos2.`fecha` BETWEEN '$fechaProduccionDesde%' AND '$fechaProduccionHasta%'";
+}
+
+if (empty($filtros)) {
+    $filtros[] = "1";
+}
+
+$consultaFiltros = "SELECT productoGranel.*, rotulos2.referenciaId AS referencia, rotulos2.colorId as color, rotulos2.total AS producidos, rotulos2.pedido AS pedido, rotulos2.fecha AS fechaProduccion, referencias2.tipo AS tipo, referencias2.capas AS capas FROM productoGranel INNER JOIN rotulos2 ON productoGranel.rotuloId = rotulos2.id INNER JOIN referencias2 ON rotulos2.referenciaId = referencias2.id WHERE ";
+$consultaSuma = "SELECT SUM(gramos) AS totalGramos, COUNT(productoGranel.id) AS totalRegistros, rotulos2.referenciaId AS referencia, rotulos2.colorId AS color FROM productoGranel INNER JOIN rotulos2 ON productoGranel.rotuloId = rotulos2.id INNER JOIN referencias2 ON rotulos2.referenciaId = referencias2.id WHERE ";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -325,7 +309,10 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
                 <td><?php echo $mostrar['fechaProduccion'] ?></td>
                 <td><?php echo $mostrar['fechaHora'] ?></td>
                
- <td><a href="asignarGranelAPedidio.php?idP=<?php echo $pedidoIdPedido ?>&rotuloId=<?php echo $mostrar['rotuloId'];?>&referenciaId=<?php echo $mostrar['referencia'] ?>&colorId=<?php echo $mostrar['color'] ?>">Asignar a <?php echo $arregloPedidos[$pedidoIdPedido];?></a></td>
+                <td>
+    <a href="asignarGranelAPedidio.php?idP=<?php echo (isset($pedidoIdPedido) && $pedidoIdPedido !== '') ? $pedidoIdPedido : '' ?>&rotuloId=<?php echo $mostrar['rotuloId']; ?>&referenciaId=<?php echo $mostrar['referencia'] ?>&colorId=<?php echo $mostrar['color'] ?>">Asignar a <?php echo (isset($pedidoIdPedido) && $pedidoIdPedido !== '') ? $arregloPedidos[$pedidoIdPedido] : ''; ?></a>
+</td>
+
  <!--<td><a href="editar_lotes.php?id=<?php //echo $mostrar['id'];?>">Editar</a></td>            -->
 </tr>
 <?php
