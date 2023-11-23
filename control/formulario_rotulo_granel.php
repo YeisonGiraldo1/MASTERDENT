@@ -40,7 +40,7 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
     
     
 
-
+ 
 	
 </head>
 <body>
@@ -50,7 +50,7 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
         <h1>Produccion a granel sin ID</h1>
         <h1>Crear Rotulo </h1>
       
-            <form action="creaRotuloGranel.php" method="POST">
+            <form action="../control/creaRotuloGranel.php" method="POST">
             
   
             <div class="row">

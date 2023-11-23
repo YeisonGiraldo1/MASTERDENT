@@ -543,13 +543,13 @@ for($i=1;$i<=$cuantosRotulos;$i++){
                 <td><center>ID_</td>
                 <td><center><?php echo $arrayId[$i] ?></td>
                 <td ROWSPAN="7"></td>
-                <td><center>P=<?php echo $arrayPrensada[$i+1] ?></td>
+                <td><center>P=<?php echo isset($arrayPrensada[$i+1]) ? $arrayPrensada[$i+1]: ''; ?></td>
                 <td><center>ID_</td>
-                <td><center><?php echo $arrayId[$i+1] ?></td>
+                <td><center><?php echo isset($arrayId[$i+1]) ? $arrayId[$i+1]: '';  ?></td>
                 <td ROWSPAN="7"></td>
-                <td><center>P=<?php echo $arrayPrensada[$i+2] ?></td>
+                <td><center>P=<?php echo isset($arrayPrensada[$i+2]) ? $arrayPrensada[$i+2]: ''; ?></td>
                 <td><center>ID_</td>
-                <td><center><?php echo $arrayId[$i+2] ?></td>
+                <td><center><?php echo isset($arrayId[$i+2]) ? $arrayId[$i+2]: ''; ?></td>
                 
                
                 </tr>
@@ -562,12 +562,12 @@ for($i=1;$i<=$cuantosRotulos;$i++){
                 <td><center>CAJAS REQ</td>
                 
                 <td><center>REF_</td>
-                <td><center><b><FONT SIZE=5 face = arial><?php echo $arrayRef[$i+1] ?></font></b></td>
+                <td><center><b><FONT SIZE=5 face = arial><?php echo isset($arrayRef[$i+1]) ? $arrayRef[$i+1]: ''; ?></font></b></td>
                 <!--<td><center>SEPARADOR</td>-->
                 <td><center>CAJAS REQ</td>
                
                 <td><center>REF_</td>
-                <td><center><b><FONT SIZE=5 face = arial><?php echo $arrayRef[$i+2] ?></font></b></td>
+                <td><center><b><FONT SIZE=5 face = arial><?php echo isset($arrayRef[$i+2]) ? $arrayRef[$i+2]: ''; ?></font></b></td>
                 <!--<td><center>SEPARADOR</td>-->
                 <td><center>CAJAS REQ</td>
                 
@@ -581,12 +581,12 @@ for($i=1;$i<=$cuantosRotulos;$i++){
                 <td><center><b><FONT SIZE=5 face = arial><?php echo $arrayColor[$i]?></font></b></td>
                 <td><center></td>
                 <td><center>COLOR</td>
-                <td><center><b><FONT SIZE=5 face = arial><?php echo $arrayColor[$i+1] ?></font></b></td>
+                <td><center><b><FONT SIZE=5 face = arial><?php echo isset($arrayColor[$i+1])  ? $arrayColor[$i+1]: ''; ?></font></b></td>
                 <td><center></td>
                 <td><center>COLOR</td>
-                <td><center><b><FONT SIZE=5 face = arial><?php echo $arrayColor[$i+2] ?></font></b></td>
+                <td><center><b><FONT SIZE=5 face = arial><?php echo isset($arrayColor[$i+2]) ? $arrayColor[$i+2]: ''; ?></font></b></td>
                 <td><center></td>
-                
+               
                 
                 </tr>
                 
@@ -612,10 +612,10 @@ for($i=1;$i<=$cuantosRotulos;$i++){
                 <td><center><?php echo $arrayLinea[$i] ?></td>
                 <td><center>TURNO</td>
                 <td><center><?php echo $turno ?></td>
-                <td><center><?php echo $arrayLinea[$i+1] ?></td>
+                <td><center><?php echo isset($arrayLinea[$i+1]) ? $arrayLinea[$i+1]: ''; ?></td>
                 <td><center>TURNO</td>
                 <td><center><?php echo $turno ?></td>
-                <td><center><?php echo $arrayLinea[$i+2] ?></td>
+                <td><center><?php echo isset($arrayLinea[$i+2]) ? $arrayLinea[$i+2]: '';  ?></td>
                 
                 
                 </tr>
@@ -625,11 +625,11 @@ for($i=1;$i<=$cuantosRotulos;$i++){
                 <td><center><?php echo $arrayNota[$i] ?></td>
                 <td><center><?php echo $arrayPedido[$i] ?></td>
                 <td><center>PEDIDO</td>
-                <td><center><?php echo $arrayNota[$i+1] ?></td>
-                <td><center><?php echo $arrayPedido[$i+1] ?></td>
+                <td><center><?php echo isset($arrayNota[$i+1]) ? $arrayNota[$i+1]: ''; ?></td>
+                <td><center><?php echo isset($arrayPedido[$i+1]) ? $arrayPedido[$i+1]: '';  ?></td>
                 <td><center>PEDIDO</td>
-                <td><center><?php echo $arrayNota[$i+2] ?></td>
-                <td><center><?php echo $arrayPedido[$i+2] ?></td>
+                <td><center><?php echo isset($arrayNota[$i+2]) ? $arrayNota[$i+2]: ''; ?></td>
+                <td><center><?php echo isset($arrayPedido[$i+2]) ? $arrayPedido[$i+2]: ''; ?></td>
                 
                 
                 </tr>
@@ -639,10 +639,10 @@ for($i=1;$i<=$cuantosRotulos;$i++){
                 <td><center><b><FONT SIZE=5 face = arial><?php echo $arrayLote[$i] ?></font></b></td>
                 <td><center></td>
                 <td><center>LOTE</td>
-                <td><center><b><FONT SIZE=5 face = arial><?php echo $arrayLote[$i+1] ?></font></b></td>
+                <td><center><b><FONT SIZE=5 face = arial><?php echo isset($arrayLote[$i+1]) ? $arrayLote[$i+1]: ''; ?></font></b></td>
                 <td><center></td>
                 <td><center>LOTE</td>
-                <td><center><b><FONT SIZE=5 face = arial><?php echo $arrayLote[$i+2] ?></font></b></td>
+                <td><center><b><FONT SIZE=5 face = arial><?php echo isset($arrayLote[$i+2]) ? $arrayLote[$i+2]:''; ?></font></b></td>
                 <td><center></td>
                 
                 

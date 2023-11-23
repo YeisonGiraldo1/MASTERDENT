@@ -19,11 +19,12 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
     
     
         
-       $fecha=$_POST ["fecha"];
-       $turno=$_POST ["turno"];
-       $arregloIdRotulo=(unserialize(base64_decode($_POST['arregloIdRotulo'])) );
-       
-       $cantidadRotulos=$_POST ["cantidadRotulos"];
+       $fecha=  isset($_POST["fecha"]) ? $_POST["fecha"]: "";
+       $turno=  isset($_POST["turno"]) ? $_POST["turno"]: "";
+
+ 
+       $arregloIdRotulo = (isset($_POST['arregloIdRotulo'])) ? unserialize(base64_decode($_POST['arregloIdRotulo'])) : null;
+$cantidadRotulos = (isset($_POST['cantidadRotulos'])) ? $_POST['cantidadRotulos'] : null;
        //var_dump($cantidadRotulos);
        //echo "cantidad rotulos= ". $cantidadRotulos;
        //var_dump($arregloIdRotulo);
@@ -78,7 +79,7 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 <body>
     
 <center><h1>¡Actualización de datos exitosa!</h1></center>
-		   <meta http-equiv="refresh" content="0.3; url= ../control/registroProducidos/registroProducidos1.php">
+		   <meta http-equiv="refresh" content="0.3; url= "registroProducidos1.php">
 		   
 		   </body>
 		   </head>

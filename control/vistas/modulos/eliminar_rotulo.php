@@ -1,11 +1,42 @@
-<?php
+<!-- <?php
 $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
+
+
 
 
 if(isset($_GET["id"])){
 
 $id=$_GET["id"];
 ?>
+ -->
+
+
+
+<?php
+$conexion = mysqli_connect("localhost", "root", "", "u638142989_MasterdentDB");
+
+if (!$conexion) {
+    die("La conexión falló: " . mysqli_connect_error());
+}
+
+if (isset($_GET['id'])) {
+    $id_rotulo = $_GET['id'];
+
+    // Realizar la consulta para eliminar el registro
+    $sql = "DELETE FROM rotulos2 WHERE id = $id_rotulo";
+
+    if (mysqli_query($conexion, $sql)) {
+        echo "Registro eliminado correctamente.";
+    } else {
+        echo "Error al eliminar el registro: " . mysqli_error($conexion);
+    }
+} else {
+    echo "No se proporcionó un ID válido para eliminar.";
+}
+
+mysqli_close($conexion);
+?>
+
 <html>
 <head>
   <title>CONFIRMACION ELIMINAR DEFINITIVAMENTE </title>

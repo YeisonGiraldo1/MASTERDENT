@@ -12,9 +12,9 @@ $idL=$_GET['id'];
         
         //limito el tamaño de los datos
 
-$fecha = substr($fecha, int -12);
-$turno = substr($turno, int -10);
-$prensada = substr($prensada, int -2);
+$fecha = substr($fecha, (int) -12);
+$turno = substr($turno, (int) -10);
+$prensada = substr($prensada, (int) -2);
         
         //elimino los espacios en blanco del string turno.
         

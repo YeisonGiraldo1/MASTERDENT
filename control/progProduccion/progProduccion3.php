@@ -83,12 +83,18 @@ var_dump($prensada);*/
             $moldesPrensada=$mostrarC['total'];
             }
 
+
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-    <button onclick="location.href='../control'">Inicio</button>
-    <button onclick="location.href='progProduccion2.php?fecha=<?php echo $fecha?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>'">Cambiar Prensada/Turno/Fecha</button>
+    <button class="btn btn-primary" onclick="location.href='../../control'">Inicio</button>
+    <button  class="btn btn-primary" onclick="location.href='progProduccion2.php?fecha=<?php echo $fecha?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>'">Cambiar Prensada/Turno/Fecha</button>
     <!--<button onclick="location.href='../control/progProduccion/cambiarPrensada.php?turno=<?php //echo $turno?>&fecha=<?php //echo $fecha?>">Cambiar prensada</button>
     	<button onclick="location.href='../control/progProduccion/cambiarTurno.php?prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Cambiar Turno</button>-->
 			
@@ -117,6 +123,7 @@ var_dump($prensada);*/
     <link rel="stylesheet" href="sweetalert2.min.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	
 </head>
 <body>
@@ -212,7 +219,7 @@ var_dump($prensada);*/
                    
                 </div>
                 <br>
-                <input type="submit" name="Crear" >
+                <input type="submit" name="Crear"  class="btn btn-success">
             </form>
         </div>
         
@@ -223,7 +230,7 @@ var_dump($prensada);*/
     <br>
 
     
-        <table border="1">
+        <table class="table table-striped" >
             <tr>
                 <!--<td>id</td>-->
                
@@ -275,15 +282,18 @@ var_dump($prensada);*/
                 <td></td>
                 <td><?php echo $mostrar['Lote'] ?></td>
                 <td><?php echo $mostrar['nota'] ?></td>
-                <td><a    href="editar_rotulo.php?id=<?php echo $mostrar['id'] ?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>&fecha=<?php echo $fecha?> ">Editar</a></td>
-                <td><a href="#" data-href="eliminar_rotulo.php?id=<?php echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td>
+                <td><a   href="editar_rotulo.php?id=<?php echo $mostrar['id'] ?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>&fecha=<?php echo $fecha?> ">Editar</a></td>
+                <!-- <td><a href="#" data-href="eliminar_rotulo.php?id=<?php echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td> -->
+                <td><a href="#" class="eliminar-btn" data-id="<?php echo $mostrar['id']; ?>">Eliminar</a></td>
+             
+
             </tr>
             <?php
             }
             ?>
         </table>
         
-        <script type="text/javascript">
+        <!-- <script type="text/javascript">
         $(document).on("click", "#delRg", function(event) {
             event.preventDefault();
 
@@ -309,7 +319,33 @@ var_dump($prensada);*/
             });
 
         });
-    </script>
+    </script> -->
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtén todos los elementos con la clase 'eliminar-btn'
+    var botonesEliminar = document.querySelectorAll('.eliminar-btn');
+
+    // Itera sobre los elementos y agrega un evento de clic a cada uno
+    botonesEliminar.forEach(function (boton) {
+        boton.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            // Obtiene el valor del atributo 'data-id'
+            var idRotulo = boton.getAttribute('data-id');
+
+            // Confirma si el usuario realmente desea eliminar antes de enviar la solicitud
+            var confirmacion = confirm('¿Estás seguro de que quieres eliminar este registro?');
+
+            if (confirmacion) {
+                // Envía una solicitud al script 'eliminar_rotulo.php' con el parámetro 'id'
+                window.location.href = '../vistas/modulos/eliminar_rotulo.php?id=' + idRotulo;
+            }
+        });
+    });
+});
+</script>
+
     
     <!--
     <div class="row">
@@ -366,8 +402,8 @@ var_dump($prensada);*/
    
                 
 
-                <button onClick='submitForm()'>Imprimir hoja de producción y etiquetas</button>
-                <br>
+                <button class="btn btn-primary" onClick='submitForm()'>Imprimir hoja de producción y etiquetas</button>
+                <br><br>
             </form>
             
             <script>
@@ -381,7 +417,7 @@ var_dump($prensada);*/
     <br>
     
     <h1>Todas las prensadas del turno</h1>
-    <table border="1">
+    <table class="table table-striped">
             <tr>
                 <!--<td>id</td>-->
                
@@ -433,7 +469,7 @@ var_dump($prensada);*/
                 <td></td>
                 <td><?php echo $mostrar['Lote'] ?></td>
                 <td><?php echo $mostrar['nota'] ?></td>
-                <td><a    href="editar_rotulo.php?id=<?php echo $mostrar['id'] ?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>&fecha=<?php echo $fecha?> ">Editar</a></td>
+                <td><a href="editar_rotulo.php?id=<?php echo $mostrar['id'] ?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>&fecha=<?php echo $fecha?> ">Editar</a></td>
                 <td><a href="#" data-href="eliminar_rotulo.php?id=<?php echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td>
             </tr>
             <?php
@@ -444,5 +480,31 @@ var_dump($prensada);*/
     
     </center>
     
+
+<!-- ELIMINAR REGISTRO -->
+    <?php
+
+if (!$conexion) {
+    die("La conexión falló: " . mysqli_connect_error());
+}
+
+if (isset($_GET['id'])) {
+    $id_rotulo = $_GET['id'];
+
+    // Realizar la consulta para eliminar el registro
+    $sql = "DELETE FROM rotulos2 WHERE id = $id_rotulo";
+
+    if (mysqli_query($conexion, $sql)) {
+        echo "Registro eliminado correctamente.";
+    } else {
+        echo "Error al eliminar el registro: " . mysqli_error($conexion);
+    }
+} else {
+    echo "No se proporcionó un ID válido para eliminar.";
+}
+
+mysqli_close($conexion);
+?>
+    </div>
 </body>
 </html>

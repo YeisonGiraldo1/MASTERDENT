@@ -38,20 +38,17 @@ $date = explode ("-",$fecha);
     <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
     
     <center><h1>Ingrese los datos de la prensada</h1>
     <div class="container mt-5">
+    <form action="progProduccion3.php" method="POST">
         <div class="row">
-            <form action="progProduccion3.php" method="POST">
-                
-               
-               <div class="mb-3">
-    
-                      <div class="mb-3">
-                          
-                    <label for="Ano" class="form-label">Fecha*</label>
+
+        <div class="col-md-4 mb-3">
+                    <label for="Ano" class="form-label">Año</label>
                     <select class="form-select" id="Ano" name="Ano" aria-label="Default select example">
                         <?php   if($fecha==0){?>
                         <option value="">Año</option>
@@ -86,7 +83,16 @@ $date = explode ("-",$fecha);
                         ?>
                         
                     </select>
-                    <label for="Mes" class="form-label"></label>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="col-md-4 mb-3">
+                    <label for="Mes" class="form-label">Mes</label>
                     <select class="form-select" id="Mes" name="Mes" aria-label="Default select example">
                         <?php   if($fecha==0){?>
                         <option value="">Mes</option>
@@ -168,9 +174,11 @@ $date = explode ("-",$fecha);
                         ?>
                         
                     </select>
+                    </div>
                     
-                     
-                    <label for="Dia" class="form-label"></label>
+                    
+                    <div class="col-md-4 mb-3">
+                    <label for="Dia" class="form-label">Dia</label>
                     <select class="form-select" id="Dia" name="Dia" aria-label="Default select example">
                         <?php   if($fecha==0){?>
                         <option value="">Día</option>
@@ -246,8 +254,8 @@ $date = explode ("-",$fecha);
                         }
                         ?>
                          </select>
-                         
                          </div>
+                         </div>  
 <br>
 
   <div class="mb-3">
@@ -312,7 +320,7 @@ $date = explode ("-",$fecha);
                      
                      <br>
                 
-                <input type="submit" name="Programar" >
+                <input type="submit" name="Programar" class="btn btn-success">
             </form>
             </center>
         </div>

@@ -10,12 +10,12 @@ $moldesDisponibles=0;
 $cod_Rotulo=0;
 //$num_dato=$_GET ["numero_molde"];
 // $rotulo=$_GET ["rotulo"];
-$referenciaId=$_GET["referencia"];
+$referenciaId = isset($_GET["referencia"]) ? $_GET["referencia"] : "";
 //$referenciaId=$_GET["refs"];
-$loteId=$_GET ["lote"];
-$pedido=$_GET ["pedido"];
-$fecha=$_GET ["fecha"];
-$prensada=$_GET ["prensada"];
+$loteId = isset($_GET["lote"]) ? $_GET["lote"] : "";
+$pedido= isset($_GET["pedido"]) ? $_GET["pedido"] : "";
+$fecha=  isset($_GET["fecha"]) ? $_GET["fecha"]: "";
+$prensada=  isset($_GET["prensada"]) ? $_GET["prensada"]: "";
 
             //obtengo el color a partir del lote.
 
@@ -33,7 +33,7 @@ $prensada=$_GET ["prensada"];
             
  
 //$colorId=$_GET ["color"];
-$num_moldes=$_GET ["num_moldes"];
+$num_moldes= isset($_GET ["num_moldes"]) ? $_GET ["num_moldes"]: "" ;
 
 //obtengo los juegos de la referencia y los moldes totales que hay de la referencia.
 //consulto también la cantidad de moldes en uso de esta referencia.
@@ -54,11 +54,11 @@ $sql3= "SELECT * FROM referencias2 WHERE id = '". $referenciaId. "'";
             }
             
             //los moldes en uso totales serán iguales a los moldes en uso anteriores más los nuevos moldes requeridos.
-            
-            $moldesEnUso=$moldesEnUso+$num_moldes;
+            $moldesEnUso = 0;
+            $moldesEnUso = intval($moldesEnUso) + intval($num_moldes);
             
             //verifico que los moldes a usar sean menores o iguales a los moldes que hay de la referencia.
-            
+            if (isset($moldesTotales)) {
             if($moldesEnUso<=$moldesTotales){
             
             //actualizo el valor de los moldes en uso y los moldes disponibles en la tabla referencias.
@@ -121,6 +121,7 @@ $herramienta8 = new Herramienta();
 $ingresar_dato_tabla_rotulos2 = $herramienta8->ingresar_datos_tabla_rotulos2($fecha, $prensada, $cod_Rotulo, $referenciaId, $loteId, $colorId, $pedido, $num_moldes, $casillaId, $turno, $juegosRotulo,$juegosTotales);
 
 }
+            }
 else{
     echo "¡Error! los moldes requeridos superan la cantidad existente";
 }

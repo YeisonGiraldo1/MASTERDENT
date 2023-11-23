@@ -34,9 +34,14 @@
 
     $condition = isset($_GET["action"]) && $_GET["action"] == "template2";
 
+
+
+ 
     if (isset($_GET["menu"])) {
         $menu = $_GET["menu"];
-        include "modulos/$menu" . ".php"; 
+        if (isset($menu) && !empty($menu)) {//validar que menu no este vacio
+            include "modulos/$menu" . ".php";
+        }
     } else if(!$condition) include "modulos/navegacion.php"; //incluye la barra de navegacion principal si la variable de session lo permite
     
    

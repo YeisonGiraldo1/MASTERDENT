@@ -85,12 +85,12 @@ while($mostrar5=mysqli_fetch_array($result5)){
     <script src="sweetalert2.all.min.js"></script>
     <script src="sweetalert2.min.js"></script>
     <link rel="stylesheet" href="sweetalert2.min.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 
     
-    	<button onclick="location.href='../../control'">Inicio</button>
-    	<button onclick="location.href='progProduccion2.php?fecha=<?php echo $fecha?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>'">Cambiar prensada/turno/fecha</button>
+    	<button class="btn btn-primary"  onclick="location.href='../../control'">Inicio</button>
+    	<button class="btn btn-primary"  onclick="location.href='progProduccion2.php?fecha=<?php echo $fecha?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>'">Cambiar prensada/turno/fecha</button>
     	<!--<button onclick="location.href='../control/progProduccion/cambiarPrensada.php?turno=<?php //echo $turno?>&fecha=<?php //echo $fecha?>">Cambiar prensada</button>
     	<button onclick="location.href='../control/progProduccion/cambiarTurno.php?prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Cambiar Turno</button>-->
     	
@@ -121,7 +121,7 @@ while($mostrar5=mysqli_fetch_array($result5)){
    
                 
 
-                <button onClick='submitForm()'>Cambiar Pedido / Color </button>
+                <button class="btn btn-primary"  onClick='submitForm()'>Cambiar Pedido / Color </button>
                 <br>
             </form>
             
@@ -144,8 +144,10 @@ while($mostrar5=mysqli_fetch_array($result5)){
     
     <center>
         
-        <h2 style="color: blue ">Prensadas del día: <?php echo $fecha?> </h2>
-        <h2>Turno:  <?php echo $turno ?></h2>
+      
+
+        <h2 style="color: blue ">Prensadas del día: <?php echo isset($fecha) ? $fecha : 'Fecha no definida'; ?> </h2>
+<h2>Turno:  <?php echo isset($turno) ? $turno : 'Turno no definido'; ?></h2>
         
         <div class="container mt-5">
         <!--<h1>Datos generales</h1>-->
@@ -154,7 +156,7 @@ while($mostrar5=mysqli_fetch_array($result5)){
         
         <div class="row">
             
-            <form action="../../control/creaRotulo2.php" method="POST">
+            <form action="../creaRotulo.php" method="POST">
         
          <div class="mb-3">
                     <label for="refs" class="form-label">Seleccionar referencia*</label>
@@ -210,7 +212,8 @@ while($mostrar5=mysqli_fetch_array($result5)){
         
         
                 <br>
-                <input type="submit" name="Crear" >
+                <input type="submit" name="Crear"  class="btn btn-success" >
+                <br><br>
             </form>
         </div>
         
@@ -220,7 +223,7 @@ while($mostrar5=mysqli_fetch_array($result5)){
     <br>
 
     
-        <table border="1">
+        <table class="table table-striped">
             <tr>
                 <!--<td>id</td>-->
                 <td>Fecha</td>
@@ -361,7 +364,7 @@ while($mostrar5=mysqli_fetch_array($result5)){
    
                 
 
-                <button onClick='submitForm()'>Imprimir hoja de producción y etiquetas</button>
+                <button class="btn btn-primary" onClick='submitForm()'>Imprimir hoja de producción y etiquetas</button>
                 <br>
             </form>
             
@@ -377,7 +380,7 @@ while($mostrar5=mysqli_fetch_array($result5)){
     <br>
     
     <h1>Todas las prensadas del turno</h1>
-    <table border="1">
+    <table  class="table table-striped">
             <tr>
                 <!--<td>id</td>-->
                

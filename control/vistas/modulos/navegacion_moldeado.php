@@ -333,7 +333,8 @@
 
 
 					<li class="nav-item">
-                        <a class="nav-link" href="index.php?action=moldes&menu=navegacion_moldeado">Moldes</a>
+                           <!-- se quito el "menu=navegacion_moldeado" para arreglar el scroll de moldes -->
+                        <a class="nav-link" href="index.php?action=moldes&menu=">Moldes</a>  
                     </li>
 
 

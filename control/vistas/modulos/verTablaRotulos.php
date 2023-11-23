@@ -100,7 +100,8 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
                 <td><?php echo $mostrar['vuelta8'] ?></td>            
                 <td><?php echo $mostrar['total'] ?></td>
                 <td><a    href="editar_rotulo.php?id=<?php echo $mostrar['id']; ?> ">Editar</a></td>
-                <td><a href="#" data-href="eliminar_rotulo.php?id=<?php echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td>
+                <!-- <td><a href="#" data-href="eliminar_rotulo.php?id=<?php echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td> -->
+                <td><a href="#" class="eliminar-btn" data-id="<?php echo $mostrar['id']; ?>">Eliminar</a></td>
                 
             </tr>
             <?php
@@ -108,14 +109,14 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
             ?>
         </table>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
         $(document).on("click", "#delRg", function(event) {
             event.preventDefault();
 
             let ifRegistro = $(this).attr('data-rg');
 
             $.ajax({
-                url: "https://trazabilidadmasterdent.online/control/eliminar_rotulo.php",
+                url: "control/eliminar_rotulo.php",
                 data: {
                     id: ifRegistro
                 },
@@ -134,7 +135,35 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
             });
 
         });
-    </script>
+    </script> -->
+
+
+
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtén todos los elementos con la clase 'eliminar-btn'
+    var botonesEliminar = document.querySelectorAll('.eliminar-btn');
+
+    // Itera sobre los elementos y agrega un evento de clic a cada uno
+    botonesEliminar.forEach(function (boton) {
+        boton.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            // Obtiene el valor del atributo 'data-id'
+            var idRotulo = boton.getAttribute('data-id');
+
+            // Confirma si el usuario realmente desea eliminar antes de enviar la solicitud
+            var confirmacion = confirm('¿Estás seguro de que quieres eliminar este registro?');
+
+            if (confirmacion) {
+                // Envía una solicitud al script 'eliminar_rotulo.php' con el parámetro 'id'
+                window.location.href = '../modulos/eliminar_rotulo.php?id=' + idRotulo;
+            }
+        });
+    });
+});
+</script>
+
     
     <br></br>
 </body>
