@@ -69,8 +69,12 @@ session_start();
             $filtros[]= "caja = '$caja'";
     }
     
-    if($filtros[0]=='' || is_null($filtros)){
-        $filtros[0]="1 ";
+    if (empty($filtros)) {
+        $filtros[] = "1";
+    } else {
+        if (is_null($filtros[0])) {
+            $filtros[0] = "1";
+        }
     }
     
     $consultaFiltros='select listaEmpaque.*, pedidos2.`codigoP` AS pedido, clientes2.nombreCliente AS cliente FROM listaEmpaque INNER JOIN pedidos2 ON listaEmpaque.`pedidoId` = pedidos2.`idP` INNER JOIN clientes2 ON pedidos2.idCliente = clientes2.id WHERE ';
@@ -116,14 +120,16 @@ session_start();
     <script src="sweetalert2.min.js"></script>
     <link rel="stylesheet" href="sweetalert2.min.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     
     
 </head>
 <body>
     
-    
-    <button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
+    <div class="container">
+    <button class="btn btn-primary" onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
     
     <center>
         
@@ -132,54 +138,79 @@ session_start();
     <h2>Lista de empaque global</h2>
     
     
-      <div class="row">
+      
             <form action="verTablaListasGeneral.php" method="POST">
             
-            <div class="mb-3">
+            <div class="row">
+
+
+            <div class="col-md-4">
                     <label for="referencia" class="form-label">Referencia</label>
-                    
                     <input type="text" class="form-control "  id="referencia" name="referencia" size="10">
+                    </div>
+        
                     
-                    
+
+                    <div class="col-md-4">
                 <label for="antPos" class="form-label">Ant/Pos</label>
                     <select class="form-select"  id="antPos" name="antPos" aria-label="Default select example">
                         <option selected></option>
                         <option value="ANT">ANT</option>
                         <option value="POS">POS</option>
-                    
                     </select>
-                    
+                    </div>
+
+                        <div class="col-md-4">
                      <label for="uppLow" class="form-label">Sup/Inf</label>
                     <select class="form-select"  id="uppLow" name="uppLow" aria-label="Default select example">
                         <option selected></option>
                         <option value="SUP">SUP</option>
                         <option value="INF">INF</option>
-                    
                     </select>
+                    </div>
          
+
+                    <div class="row">
+
+
+                    <div class="col-md-4">
                     <label for="color" class="form-label">Color</label>
                     <input type="text" class="form-control "  id="color" name="color" size="10">
-                    
+                    </div>
+
+                    <div class="col-md-4">
                     <label for="lote" class="form-label">Lote</label>
                     <input type="text" class="form-control "  id="lote" name="lote" size="10">
-                    
+                    </div>
                     <!--<label for="caja" class="form-label">Caja</label>
                     <input type="text" class="form-control "  id="caja" name="caja" size="10">-->
                     
+
+                    <div class="col-md-4">
                    <label for="pedido" class="form-label">Pedido</label>
                     <input type="text" class="form-control "  id="pedido" name="pedido" size="10">
-                     
-
-                
-                <input type="submit" name="Empacar" >
-            </form>
-        </div>
-        
-    </div>
                     <br>
-    
-    <table border="1">
-            <tr>
+                    </div>
+                    </div>
+                    
+
+                 
+                
+                    <div class="row">
+<div class="col-md-12"> 
+                <input type="submit" name="Empacar" class="btn btn-success">
+            </form>
+            </div>
+                    </div>
+       
+
+                    <br>
+
+                    <section class="mt-4">
+                    <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                    <tr>
                 <td>id</td>
                 <td>MOLD</td>
                 <td>ANT/POS</td>
@@ -193,7 +224,9 @@ session_start();
                 <td>ACCIÓN</td>
                 
             </tr>
-            
+            </thead>
+
+            <tbody>
              <?php
              
              if ($pedido != ''){
@@ -236,13 +269,17 @@ session_start();
                 <td><?php echo $mostrar['pedido'] ?></td>
                 <td><?php echo $mostrar['cliente'] ?></td>
                 <td><?php echo $mostrar['Fecha'] ?></td>
-                <td><a href="#" data-href="https://trazabilidadmasterdent.online/control/eliminar_pedido.php?id=<?php echo $mostrar['idP']; ?>" data-rg="<?= $mostrar['idP'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td>
+                <td><a href="#" data-href="https://trazabilidadmasterdent.online/control/eliminar_pedido.php?id=<?php echo isset($mostrar['idP']) ? $mostrar['idP'] : ''; ?>" data-rg="<?= isset($mostrar['idP']) ? $mostrar['idP'] : ''; ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete"><i class="fa-solid fa-trash"></i></a></td>
+
                 
             </tr>
             <?php
             }
             ?>
-        </table>
+          </tbody>
+                </table>
+            </div>
+        </section>
         <script type="text/javascript">
         $(document).on("click", "#delRg", function(event) {
             event.preventDefault();
@@ -270,7 +307,7 @@ session_start();
 
         });
     </script>
-
+</div>
 <br></br>
 
 <p>Cuando no se filtra se listan los ultimos 1000 registros de lista de empaque.</p>

@@ -58,7 +58,7 @@ session_start();
                <button onclick="location.href='../../control/progProduccion/progProduccion2.php'">Nueva Programación</button>
                <button onclick="location.href='../../control/registroProducidos/registroProducidos1.php'">Producidos</button>
                 <button onclick="location.href='../../control/filtros_Rotulos/filtrados.php'">Filtros de búsqueda</button>
-                <button onclick="location.href='../control/progProduccion/formularioImprimirProg.php'">Imprimir</button>
+                <button onclick="location.href='formularioImprimirProg.php'">Imprimir</button>
                 <button onclick="location.href='../progProduccion/invima.php'">INVIMA</button>
                 
                 <!--<button onclick="location.href='../control/interaccion_arduino.php?pre_php=0&hum_php=1.00&temp_php=0&proceso_php=9&dist_php=&rotulo_php=&menorRotulo_php=477&mayorRotulo_php=453">interacción arduino</button>-->

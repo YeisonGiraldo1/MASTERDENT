@@ -28,23 +28,22 @@
     $prensa=$_GET ["prensa"];
     
     
-    //obtengo el dato del turno
-    
-    $turno=$_GET ["turno"];
+  // Obtengo el dato del turno si existe
+$turno = isset($_GET["turno"]) ? $_GET["turno"] : null;
     
     
     switch ($filtro){
         case 1:
             //obtengo los datos del rango de fecha y hora que deseo visualizar y procesar.
 
-    $desdeAno=$_GET ["desdeAno"];
-    $hastaAno=$_GET ["hastaAno"];
-     $desdeMes=$_GET ["desdeMes"];
-    $hastaMes=$_GET ["hastaMes"];
-     $desdeDia=$_GET ["desdeDia"];
-    $hastaDia=$_GET ["hastaDia"];
-     $desdeHora=$_GET ["desdeHora"];
-    $hastaHora=$_GET ["hastaHora"];
+            $desdeAno = isset($_GET["desdeAno"]) ? $_GET["desdeAno"] : null;
+            $hastaAno = isset($_GET["hastaAno"]) ? $_GET["hastaAno"] : null;
+            $desdeMes = isset($_GET["desdeMes"]) ? $_GET["desdeMes"] : null;
+            $hastaMes = isset($_GET["hastaMes"]) ? $_GET["hastaMes"] : null;
+            $desdeDia = isset($_GET["desdeDia"]) ? $_GET["desdeDia"] : null;
+            $hastaDia = isset($_GET["hastaDia"]) ? $_GET["hastaDia"] : null;
+            $desdeHora = isset($_GET["desdeHora"]) ? $_GET["desdeHora"] : null;
+            $hastaHora = isset($_GET["hastaHora"]) ? $_GET["hastaHora"] : null;
     
             break;
             
@@ -65,14 +64,22 @@
             case 3:
                 
                 //obtengo los datos si vienen desde un botón
-                 $desdeAno=$_GET ["desdeAno"];
-    $hastaAno=$_GET ["hastaAno"];
-     $desdeMes=$_GET ["desdeMes"];
-    $hastaMes=$_GET ["hastaMes"];
-     $desdeDia=$_GET ["desdeDia"];
-    $hastaDia=$_GET ["hastaDia"];
-     $desdeHora=$_GET ["desdeHora"];
-    $hastaHora=$_GET ["hastaHora"];
+    $desdeAno = isset($_GET["desdeAno"]) ? $_GET["desdeAno"] : null;
+
+    $hastaAno= isset($_GET ["hastaAno"]) ? $_GET["hastaAno"]: null;
+
+    $desdeMes= isset($_GET ["desdeMes"]) ? $_GET["desdeMes"]: null;
+ 
+    $hastaMes= isset($_GET ["hastaMes"]) ? $_GET["hastaMes"]: null;
+   
+    $desdeDia= isset($_GET ["desdeDia"]) ? $_GET["desdeDia"]: null;
+
+    $hastaDia= isset($_GET ["hastaDia"]) ? $_GET["hastaDia"]: null;
+
+    $desdeHora= isset($_GET ["desdeHora"]) ? $_GET["desdeHora"]: null;
+   
+    $hastaHora= isset($_GET ["hastaHora"]) ? $_GET["hastaHora"]: null;
+
     
     //en caso contrario los obtengo mediante consulta.
     
@@ -162,14 +169,15 @@ else{
                 if (is_null($turno)){
                     
    //obtengo los datos si vienen desde un botón
-                 $desdeAno=$_GET ["desdeAno"];
-    $hastaAno=$_GET ["hastaAno"];
-     $desdeMes=$_GET ["desdeMes"];
-    $hastaMes=$_GET ["hastaMes"];
+
+    $desdeAno=  isset($_GET["desdeAno"]) ? $_GET["desdeAno"] : null;
+    $desdeMes=$_GET ["desdeMes"];
+    $hastaMes=  isset($_GET["hastaMes"]) ? $_GET["hastaMes"] : null;
      $desdeDia=$_GET ["desdeDia"];
-    $hastaDia=$_GET ["hastaDia"];
-     $desdeHora=$_GET ["desdeHora"];
-    $hastaHora=$_GET ["hastaHora"]; 
+     $hastaDia=  isset($_GET["hastaDia"]) ? $_GET["hastaDia"] : null; 
+     $desdeHora=  isset($_GET["desdeHora"]) ? $_GET["desdeHora"] : null; 
+     $hastaHora=  isset($_GET["hastaHora"]) ? $_GET["hastaHora"] : null; 
+  
 }
 else{
                 
@@ -269,9 +277,13 @@ case 3:
            $sqlI="SELECT * FROM tiempoPrensas  WHERE prensa = '".$prensa."' AND fechaCreacion BETWEEN '" .$desde."' AND '".$hasta."' ORDER BY id ASC LIMIT 1";
             $resultI=mysqli_query($conexion,$sqlI);
             
+
+            $primertiempoInactiva = 0; // Inicializa la variable antes de utilizarla.
+
             while($mostrarI=mysqli_fetch_array($resultI)){
             $primertiempoInactiva=$mostrarI['tiempoInactiva'];
             $primertiempoInactiva = round($primertiempoInactiva, 2, $mode = PHP_ROUND_HALF_UP);
+
             }
             
              //a continuación consulto el total minutos tiempoInactivas de este turno.
@@ -285,6 +297,7 @@ case 3:
             
             }
             $tiempoOtros=$tiempoOtros-$primertiempoInactiva;
+            
             
             //consulto los valores mayor y menor de cada uno de los datos Sacado e tiempoInactiva.
             
@@ -330,28 +343,36 @@ case 3:
            
             
             
-            $tiempoLaborado=$tiempoSacado+$tiempoOtros;
-            
-           
-            //calculo los porcentajes de los totales de tiempo sobre el total general
-            
-            $porcentajeSacado=$tiempoSacado/$tiempoLaborado*100;
-            $porcentajeSacado = round($porcentajeSacado, 2, $mode = PHP_ROUND_HALF_UP);
-            $porcentajeOtros=$tiempoOtros/$tiempoLaborado*100;
-            $porcentajeOtros = round($porcentajeOtros, 2, $mode = PHP_ROUND_HALF_UP);
-            
-            //calculo los promedios
-            
-            $promedioSacado=$tiempoSacado/$registros;
-            $promedioSacado = round($promedioSacado, 2, $mode = PHP_ROUND_HALF_UP);
-            $promedioOtros=$tiempoOtros/($registros-1);//porque el primer registro de otros corresponde al intervalo de tiempo anterior.
-            $promedioOtros = round($promedioOtros, 2, $mode = PHP_ROUND_HALF_UP);
-            
-        //calculo rendimiento prensadas por hora.
-        
-        $rendimiento=$registros/($tiempoLaborado/60);
-        $rendimiento = round($rendimiento, 2, $mode = PHP_ROUND_HALF_UP);
-        
+          $tiempoLaborado = $tiempoSacado + $tiempoOtros;
+
+// Verifica que $tiempoLaborado no sea igual a cero antes de realizar las divisiones.
+if ($tiempoLaborado != 0) {
+    // Calcula los porcentajes de los totales de tiempo sobre el total general.
+    $porcentajeSacado = $tiempoSacado / $tiempoLaborado * 100;
+    $porcentajeSacado = round($porcentajeSacado, 2, $mode = PHP_ROUND_HALF_UP);
+    
+    $porcentajeOtros = $tiempoOtros / $tiempoLaborado * 100;
+    $porcentajeOtros = round($porcentajeOtros, 2, $mode = PHP_ROUND_HALF_UP);
+
+    // Calcula los promedios.
+    $promedioSacado = $tiempoSacado / $registros;
+    $promedioSacado = round($promedioSacado, 2, $mode = PHP_ROUND_HALF_UP);
+
+    $promedioOtros = $tiempoOtros / ($registros - 1); // porque el primer registro de otros corresponde al intervalo de tiempo anterior.
+    $promedioOtros = round($promedioOtros, 2, $mode = PHP_ROUND_HALF_UP);
+
+    // Calcula rendimiento prensadas por hora.
+    $rendimiento = $registros / ($tiempoLaborado / 60);
+    $rendimiento = round($rendimiento, 2, $mode = PHP_ROUND_HALF_UP);
+} else {
+    // Maneja la situación en la que $tiempoLaborado es igual a cero.
+    $porcentajeSacado = 0;
+    $porcentajeOtros = 0;
+    $promedioSacado = 0;
+    $promedioOtros = 0;
+    $rendimiento = 0;
+}
+
         //los siguientes calculos no son necesarios para los tiempo de uso de las prensas. 
         
         /*
@@ -374,13 +395,12 @@ case 3:
 <!DOCTYPE html>
 <html lang="en">
     
-			<button onclick="location.href='../control/'">Inicio</button>
-			<button onclick="location.href='../control/vistas/modulos/verTablaTiempoPrensas.php'">Tiempo Prensas Gerneral</button>
-			<button onclick="location.href='../control/vistas/modulos/filtraTiempoPrensas.php?desdeAno=<?php echo $desdeAno ?>&desdeMes=<?php echo $desdeMes ?>&desdeDia=<?php echo $desdeDia ?>&desdeHora=<?php echo $desdeHora ?>&filtro=<?php echo intval($filtro) ?>&prensa=1&hastaAno=<?php echo $hastaAno ?>&hastaMes=<?php echo $hastaMes ?>&hastaDia=<?php echo $hastaDia ?>&hastaHora=<?php echo $hastaHora ?>&Crear=Enviar'">Prensa 1</button>
+			<button onclick="location.href='../../../control'">Inicio</button>
+			<!-- <button onclick="location.href='verTablaTiempoPrensas.php'>Tiempo Prensas Gerneral</button>
+			<!-- <button onclick="location.href='verTablaTiempoPrensas2.php?desdeAno=<?php echo $desdeAno ?>&desdeMes=<?php echo $desdeMes ?>&desdeDia=<?php echo $desdeDia ?>&desdeHora=<?php echo $desdeHora ?>&filtro=<?php echo intval($filtro) ?>&prensa=1&hastaAno=<?php echo $hastaAno ?>&hastaMes=<?php echo $hastaMes ?>&hastaDia=<?php echo $hastaDia ?>&hastaHora=<?php echo $hastaHora ?>&Crear=Enviar'>Prensa 1</button>
 			<button onclick="location.href='../control/vistas/modulos/filtraTiempoPrensas.php?desdeAno=<?php echo $desdeAno ?>&desdeMes=<?php echo $desdeMes ?>&desdeDia=<?php echo $desdeDia ?>&desdeHora=<?php echo $desdeHora ?>&filtro=<?php echo intval($filtro) ?>&prensa=2&hastaAno=<?php echo $hastaAno ?>&hastaMes=<?php echo $hastaMes ?>&hastaDia=<?php echo $hastaDia ?>&hastaHora=<?php echo $hastaHora ?>&Crear=Enviar'">Prensa 2</button>
 			<button onclick="location.href='../control/vistas/modulos/filtraTiempoPrensas.php?desdeAno=<?php echo $desdeAno ?>&desdeMes=<?php echo $desdeMes ?>&desdeDia=<?php echo $desdeDia ?>&desdeHora=<?php echo $desdeHora ?>&filtro=<?php echo intval($filtro) ?>&prensa=3&hastaAno=<?php echo $hastaAno ?>&hastaMes=<?php echo $hastaMes ?>&hastaDia=<?php echo $hastaDia ?>&hastaHora=<?php echo $hastaHora ?>&Crear=Enviar'">Prensa 3</button>
-			
-			
+		 -->
 			
 		
 			<!--    botón de ir atrás.
@@ -532,7 +552,10 @@ case 3:
             </tr>
             <?php
             }
-
+            $mayorSacado = 0; // o cualquier otro valor predeterminado
+            $mayorOtros = 0;
+            $menorSacado = 0;
+            $menorOtros = 0;
             ?>
               </table>
     </div>

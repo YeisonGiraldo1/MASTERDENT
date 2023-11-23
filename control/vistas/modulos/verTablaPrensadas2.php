@@ -11,9 +11,10 @@ $filtro=$_GET ["filtro"];
 <head>
     <meta charset="UTF-8">
     <title>Prensadas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 </head>
 <body>
-    	<button onclick="location.href='../control/'">Inicio</button>
+    	<button class="btn btn-primary" onclick="location.href='../control/'">Inicio</button>
     	<center>
 
             <?php
@@ -25,16 +26,16 @@ $filtro=$_GET ["filtro"];
                    <div class="container mt-5">
         
     
-        <h2>Por fecha y hora</h2>
-        <div class="row">
-            <form action="filtraPrensadas.php" method="get">
+        <h2 class="text-center mb-4">Por fecha y hora</h2>
+        <div class="row justify-content-center">
+            <form  class="col-md-6" action="filtraPrensadas.php" method="get">
             
             <div class="mb-3">
     
                       <div class="mb-3">
                           
                     <label for="desdeAno" class="form-label">Desde</label>
-                    <select class="form-select" id="desdeAno" name="desdeAno" aria-label="Default select example">
+                    <select class="form-control" id="desdeAno" name="desdeAno" aria-label="Default select example">
                         <option value="">Año</option>
                         <option value="22">2022</option>
                         <option value="23">2023</option>
@@ -49,7 +50,7 @@ $filtro=$_GET ["filtro"];
                         
                     </select>
                     <label for="desdeMes" class="form-label"></label>
-                    <select class="form-select" id="desdeMes" name="desdeMes" aria-label="Default select example">
+                    <select class="form-control" id="desdeMes" name="desdeMes" aria-label="Default select example">
                         <option value="">Mes</option>
                         <option value="1">Enero</option>
                         <option value="2">Febrero</option>
@@ -68,7 +69,7 @@ $filtro=$_GET ["filtro"];
                     
                      
                     <label for="desdeDia" class="form-label"></label>
-                    <select class="form-select" id="desdeDia" name="desdeDia" aria-label="Default select example">
+                    <select class="form-control" id="desdeDia" name="desdeDia" aria-label="Default select example">
                         <option value="">Día</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -105,7 +106,7 @@ $filtro=$_GET ["filtro"];
                          </select>
                          
                          <label for="desdeHora" class="form-label"></label>
-                    <select class="form-select" id="desdeHora" name="desdeHora" aria-label="Default select example">
+                    <select class="form-control" id="desdeHora" name="desdeHora" aria-label="Default select example">
                         <option value="">Hora</option>
                         <option value="0">0:00</option>
                         <option value="1">1:00</option>
@@ -139,12 +140,14 @@ $filtro=$_GET ["filtro"];
                         echo $filtro;
                     ?>">
                          
-                       </div>
+            
+              </div>
+            </div>
 <br>
                       <div class="mb-3">
                           
                     <label for="hastaAno" class="form-label">Hasta</label>
-                    <select class="form-select" id="hastaAno" name="hastaAno" aria-label="Default select example">
+                    <select class="form-control" id="hastaAno" name="hastaAno" aria-label="Default select example">
                         <option value="">Año</option>
                         <option value="22">2022</option>
                         <option value="23">2023</option>
@@ -159,7 +162,7 @@ $filtro=$_GET ["filtro"];
                         
                     </select>
                     <label for="hastaMes" class="form-label"></label>
-                    <select class="form-select" id="hastaMes" name="hastaMes" aria-label="Default select example">
+                    <select class="form-control" id="hastaMes" name="hastaMes" aria-label="Default select example">
                         <option value="">Mes</option>
                         <option value="1">Enero</option>
                         <option value="2">Febrero</option>
@@ -178,7 +181,7 @@ $filtro=$_GET ["filtro"];
                     
                      
                     <label for="hastaDia" class="form-label"></label>
-                    <select class="form-select" id="hastaDia" name="hastaDia" aria-label="Default select example">
+                    <select class="form-control" id="hastaDia" name="hastaDia" aria-label="Default select example">
                         <option value="">Día</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -215,7 +218,7 @@ $filtro=$_GET ["filtro"];
                          </select>
                          
                          <label for="hastaHora" class="form-label"></label>
-                    <select class="form-select" id="hastaHora" name="hastaHora" aria-label="Default select example">
+                    <select class="form-control" id="hastaHora" name="hastaHora" aria-label="Default select example">
                         <option value="">Hora</option>
                         <option value="0">0:00</option>
                         <option value="1">1:00</option>
@@ -273,7 +276,7 @@ $filtro=$_GET ["filtro"];
                       <div class="mb-3">
                           
                     <label for="desdeAno" class="form-label">Seleccione Fecha: </label>
-                    <select class="form-select" id="desdeAno" name="desdeAno" aria-label="Default select example">
+                    <select class="form-control" id="desdeAno" name="desdeAno" aria-label="Default select example">
                         <option value="">Año</option>
                         <option value="22">2022</option>
                         <option value="23">2023</option>
@@ -289,7 +292,7 @@ $filtro=$_GET ["filtro"];
                     </select>
                     
                     <label for="desdeMes" class="form-label"></label>
-                    <select class="form-select" id="desdeMes" name="desdeMes" aria-label="Default select example">
+                    <select class="form-control" id="desdeMes" name="desdeMes" aria-label="Default select example">
                         <option value="">Mes</option>
                         <option value="1">Enero</option>
                         <option value="2">Febrero</option>
@@ -308,7 +311,7 @@ $filtro=$_GET ["filtro"];
                     
                      
                     <label for="desdeDia" class="form-label"></label>
-                    <select class="form-select" id="desdeDia" name="desdeDia" aria-label="Default select example">
+                    <select class="form-control" id="desdeDia" name="desdeDia" aria-label="Default select example">
                         <option value="">Día</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -408,7 +411,7 @@ $filtro=$_GET ["filtro"];
                       <div class="mb-3">
                           
                     <label for="desdeAno" class="form-label">Seleccione Fecha: </label>
-                    <select class="form-select" id="desdeAno" name="desdeAno" aria-label="Default select example">
+                    <select class="form-control" id="desdeAno" name="desdeAno" aria-label="Default select example">
                         <!--<option value="">Año</option>-->
                         <option value="22">2022</option>
                         <option value="23">2023</option>
@@ -424,7 +427,7 @@ $filtro=$_GET ["filtro"];
                     </select>
                     
                     <label for="desdeMes" class="form-label"></label>
-                    <select class="form-select" id="desdeMes" name="desdeMes" aria-label="Default select example">
+                    <select class="form-control" id="desdeMes" name="desdeMes" aria-label="Default select example">
                         <option value="">Mes</option>
                         <option value="1">Enero</option>
                         <option value="2">Febrero</option>
@@ -443,7 +446,7 @@ $filtro=$_GET ["filtro"];
                     
                      
                     <label for="desdeDia" class="form-label"></label>
-                    <select class="form-select" id="desdeDia" name="desdeDia" aria-label="Default select example">
+                    <select class="form-control" id="desdeDia" name="desdeDia" aria-label="Default select example">
                         <option value="">Día</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -489,7 +492,7 @@ $filtro=$_GET ["filtro"];
                       <div class="mb-3">
                           
                     <label for="turno" class="form-label">Seleccione Turno </label>
-                    <select class="form-select" id="turno" name="turno" aria-label="Default select example">
+                    <select class="form-control" id="turno" name="turno" aria-label="Default select example">
                         <option value="">Seleccione</option>
                         <option value="1">Mañana</option>
                         <option value="2">Tarde</option>
@@ -502,7 +505,7 @@ $filtro=$_GET ["filtro"];
                 </div>
                      
                      <br>
-                <input type="submit" name="Crear" >
+                     <input type="submit" name="Crear" class="btn btn-primary">
             </form>
                   <?php
                   
@@ -519,7 +522,7 @@ $filtro=$_GET ["filtro"];
     <br>
 
     
-        <table border="1">
+        <table border="1" class="table table-bordered table-striped">
             <tr>
                 <td>id</td>
                 <td>Tiempo Prensada</td>

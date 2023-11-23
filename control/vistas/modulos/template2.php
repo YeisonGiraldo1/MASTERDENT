@@ -15,6 +15,7 @@ $_SESSION["barraprincipal"] = "ocultar"; // Ocultar la barra principal
 
     <style>
         section {
+            overflow: visible;
             height: 100vh;
             /* Usamos la altura de la ventana del navegador para centrar verticalmente */
             margin: 0;

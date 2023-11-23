@@ -1,86 +1,39 @@
 <?php
-$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
-   
-   $moldesPrensada=null;
-   $lote=null;
-   
-//obtengo los datos del formulario anterior
-    
-    $fecha=$_POST ["fecha"];
-    $turno=$_POST ["turno"];
-    $prensada=$_POST ["prensada"];
-    $lote=$_POST ["lote"];
-    $pedido=$_POST ["pedido"];
-    $color=$_POST ["color"];
-    
-    //si la fecha obtenida por post es null los datos vienen de la herramienta por el método get
-    
-    if(is_null($fecha)){
-        $fecha=$_GET ["fecha"];
-        $turno=$_GET ["turno"];
-        $prensada=$_GET ["prensada"];
-        $lote=$_GET ["lote"];
-        $pedido=$_GET ["pedido"];
-        $color=$_GET ["color"];
-    }
-    
-    
-      
-/*var_dump($fecha);
-var_dump($turno);
-var_dump($prensada);
-var_dump($lote);
-var_dump($pedido);*/
+$conexion = mysqli_connect("localhost", "root", "", "u638142989_MasterdentDB");
 
-//limito el tamaño de los datos
+// Obtengo los datos del formulario anterior
+$fecha = isset($_POST["fecha"]) ? $_POST["fecha"] : null;
+$turno = isset($_POST["turno"]) ? $_POST["turno"] : null;
+$prensada = isset($_POST["prensada"]) ? $_POST["prensada"] : null;
+$lote = isset($_POST["lote"]) ? $_POST["lote"] : null;
+$pedido = isset($_POST["pedido"]) ? $_POST["pedido"] : null;
+$color = isset($_POST["color"]) ? $_POST["color"] : null;
 
-$fecha = substr($fecha, int -12);
-$turno = substr($turno, int -10);
-$prensada = substr($prensada, int -2);
-$lote = substr($lote, int -11);
-$pedido = substr($pedido, int -11);
-$color = substr($color, int -11);
+// Limito el tamaño de los datos
+$fecha = substr($fecha, -12);
+$turno = substr($turno, -10);
+$prensada = substr($prensada, -2);
+$lote = substr($lote, -11);
+$pedido = substr($pedido, -11);
+$color = substr($color, -11);
 
-//elimino los espacios en blanco del string turno.
+// Elimino los espacios en blanco del string turno.
+$turno = trim($turno, " ");
 
-$turno=trim($turno," ");
+// Consulto los datos del lote y del pedido a partir del id obtenido
+// Consulto el id y el nombre del lote
+$sql3 = "SELECT * FROM lotes2 WHERE `colorId2` = '" . $color . "' ORDER BY `id` DESC LIMIT 1";
+$result3 = mysqli_query($conexion, $sql3);
 
-//echo "después de limitar el tamaño de los datos";
-
-/*var_dump($fecha);
-var_dump($turno);
-var_dump($prensada);
-var_dump($lote);
-var_dump($pedido);*/
-
-      
-      
-//consulto los datos del lote y del pedido a partir del id obtenido
-
-	//consulto el id y el nombre del lote
-
-		$sql3="SELECT * FROM lotes2  WHERE `colorId2` = '". $color. "' ORDER BY `id` DESC LIMIT 1";
-
-$result3=mysqli_query($conexion,$sql3);
-
-while($mostrar3=mysqli_fetch_array($result3)){
-                    $nombreLote=$mostrar3['nombreL'];
-                    $lote=$mostrar3['id'];
-                    
-                   }
-//agrego estas líneas para cuando los colores son N,M u otros que no tengan lote
-/*
-if (is_null($lote)){
-    $lote=0;
-    $nombreLote="";
+while ($mostrar3 = mysqli_fetch_array($result3)) {
+    $nombreLote = $mostrar3['nombreL'];
+    $lote = $mostrar3['id'];
 }
-//no funcional
-*/
-//consulto el nombre del pedido
 
-		$sql4="SELECT codigoP from pedidos2 WHERE idP = '". $pedido. "'";
+// Consulto el nombre del pedido
+$sql4 = "SELECT codigoP from pedidos2 WHERE idP = '" . $pedido . "'";
+$result4 = mysqli_query($conexion, $sql4);
 
-$result4=mysqli_query($conexion,$sql4);
 
 while($mostrar4=mysqli_fetch_array($result4)){
                     $nombrePedido=$mostrar4['codigoP'];   
@@ -136,8 +89,8 @@ while($mostrar5=mysqli_fetch_array($result5)){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 
     
-    	<button onclick="location.href='../control/'">Inicio</button>
-    	<button onclick="location.href='../control/progProduccion/progProduccion2.php?fecha=<?php echo $fecha?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>'">Cambiar prensada/turno/fecha</button>
+    	<button onclick="location.href='../../control'">Inicio</button>
+    	<button onclick="location.href='progProduccion2.php?fecha=<?php echo $fecha?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>'">Cambiar prensada/turno/fecha</button>
     	<!--<button onclick="location.href='../control/progProduccion/cambiarPrensada.php?turno=<?php //echo $turno?>&fecha=<?php //echo $fecha?>">Cambiar prensada</button>
     	<button onclick="location.href='../control/progProduccion/cambiarTurno.php?prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Cambiar Turno</button>-->
     	
@@ -201,7 +154,7 @@ while($mostrar5=mysqli_fetch_array($result5)){
         
         <div class="row">
             
-            <form action="../control/creaRotulo2.php" method="POST">
+            <form action="../../control/creaRotulo2.php" method="POST">
         
          <div class="mb-3">
                     <label for="refs" class="form-label">Seleccionar referencia*</label>

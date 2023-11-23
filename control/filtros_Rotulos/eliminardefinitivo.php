@@ -21,7 +21,7 @@ $borrar=mysqli_query($conexion,"DELETE  FROm rotulos2 WHERE  id='$id' ");
 mysqli_close($conexion);
 
 echo "<script>
-alert('LOS DATOS  HAN SIDO BORRADOS PERMANENTEMENTE Y NO PODRAS  RECUPERARLOS');
+alert('LOS DATOS HAN SIDO BORRADOS PERMANENTEMENTE Y NO PODRAS  RECUPERARLOS');
 window.location= 'consultar4.php?color=$color&referencia=$referencia&lote=$lote&pedido=$pedido&fecha=$fecha';
 </script>";
 

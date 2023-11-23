@@ -13,7 +13,7 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
     echo "<script>
           
     alert('La informacion se ha guardo con exito en la base de datos.');
-    window.location='../control';
+    window.location='../';
     
     </script>";
 }

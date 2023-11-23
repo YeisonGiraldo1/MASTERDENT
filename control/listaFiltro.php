@@ -54,10 +54,10 @@ session_start();
      <div class="container mt-5">
         
             
-              <button onclick="location.href='../control'">Inicio</button>   
-               <button onclick="location.href='../control/formulario_seleccionPedido.php'">Nueva lista de empaque</button>
-                <button onclick="location.href='../control/lista_empaque/filtrados.php'">Buscar</button>
-                <button onclick="location.href='../control/formulario_seleccionPedido.php?destino=inventario&Crear=Enviar'">Inventario</button>
+              <button class="btn btn-primary"  onclick="location.href='../control'">Inicio</button>   
+               <button class="btn btn-primary"  onclick="location.href='../control/formulario_seleccionPedido.php'">Nueva lista de empaque</button>
+                <button class="btn btn-primary"  onclick="location.href='../control/lista_empaque/filtrados.php'">Buscar</button>
+                <button class="btn btn-primary"  onclick="location.href='../control/formulario_seleccionPedido.php?destino=inventario&Crear=Enviar'">Inventario</button>
           
              </body>
 </html>

@@ -17,9 +17,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </head>
-<button onclick="location.href='/control'">Inicio</button>
-<button onclick="location.href='/consolidadoAsignado.php'">Producto Terminado Consolidado</button>
-<!--<button onclick="location.href='https://trazabilidadmasterdent.online/control/consolidadoBodega.php'">Bodega Consolidado</button>-->
+<button class="btn btn-primary"  onclick="location.href='../'">Inicio</button>
+<button class="btn btn-primary"  onclick="location.href='consolidadoAsignado.php'">Producto Terminado Consolidado</button>
+<!--<button onclick="location.href='control/consolidadoBodega.php'">Bodega Consolidado</button>-->
 <body>
     
     <center><h1>Selección de  
@@ -106,7 +106,7 @@
                 </div>
 
                 
-                <input type="submit" name="Empacar" >
+                <input class="btn btn-success"  type="submit" name="Empacar" >
             </form>
         </div>
         

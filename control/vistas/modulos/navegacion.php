@@ -15,6 +15,7 @@
         box-sizing: border-box;
         text-decoration: none;
         font-family: "Open Sans", sans-serif;
+        
     }
 
     html, body {
@@ -77,7 +78,7 @@
     }
 
     .navegacion ul li a {
-        color: white;
+        color: #284886;
         text-align: center;
         text-transform: uppercase;
         font-size: 14px;
@@ -87,7 +88,7 @@
     }
 
     .navegacion ul li a:hover {
-        color: #A5D330;
+        color: #284886;
         transform: scale(1.1);
     }
 
@@ -134,19 +135,19 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-" > 
             <a class="navbar-brand" href="#">
-                <img src="../imagenes/nuevamasterdent.png" alt="Logo" height="60">
+                <img src="../Public/imagenes/nuevamasterdent.png" alt="Logo" height="60">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon" ></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
+            <div class="collapse navbar-collapse" id="navbarNav" >
+                <ul class="navbar-nav" >
+                    <!-- <li class="nav-item" >
                         <a class="nav-link" href="#">Home</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="index.php?action=estaciones" id="estacionesDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

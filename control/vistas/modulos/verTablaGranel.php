@@ -135,6 +135,8 @@ $consultaSuma = "SELECT SUM(gramos) AS totalGramos, COUNT(productoGranel.id) AS 
     <link rel="stylesheet" href="sweetalert2.min.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
     
 
 
@@ -148,10 +150,10 @@ $consultaSuma = "SELECT SUM(gramos) AS totalGramos, COUNT(productoGranel.id) AS 
 </head>
 <body>
     
-    <button onclick="location.href='../control'">Inicio</button>
-    <button onclick="location.href='../control/formulario_rotulo_granel.php'">Nuevo Rotulo</button>
-    <button onclick="location.href='../control/trazarPedido.php?id=<?php echo $pedidoIdPedido?>'">Volver al pedido</button>
-    <button onclick="location.href='../control/pedidosConsolidado.php'">Ir al consolidado</button>
+    <button  class="btn btn-primary"  onclick="location.href='../../../control'">Inicio</button>
+    <button  class="btn btn-primary"  onclick="location.href='../../../control/formulario_rotulo_granel.php'">Nuevo Rotulo</button>
+    <button  class="btn btn-primary"  onclick="location.href='../../../control/trazarPedido.php?id=<?php echo $pedidoIdPedido?>'">Volver al pedido</button>
+    <button  class="btn btn-primary" onclick="location.href='../../../control/pedidosConsolidado.php'">Ir al consolidado</button>
 
     
     <center>
@@ -159,64 +161,103 @@ $consultaSuma = "SELECT SUM(gramos) AS totalGramos, COUNT(productoGranel.id) AS 
     <h1>Producto a granel</h1>
     
     
-<div class="row">
+<div class="container">
             <form action="../modulos/verTablaGranel.php" method="POST">
-            
-            <div class="mb-3">
+     
+
+            <div class="row">
+
+
+            <div class="col-md-4">
                     <label for="rotuloId" class="form-label">ID Rotulo</label>
-                    <input type="text" class="form-control "  id="rotuloId" name="rotuloId" autofocus style="width: 100px">
-                    
+                    <input type="text" class="form-control "  id="rotuloId" name="rotuloId" autofocus >
+                    </div>
+        
+   
+
+                    <div class="col-md-4">
                     <label for="referencia" class="form-label">Referencia</label>
-                    <input type="text" class="form-control "  id="referencia" name="referencia" style="width: 100px">
+                    <input type="text" class="form-control "  id="referencia" name="referencia" >
+                    </div>
+        
                     
+                    <div class="col-md-4">
                     <label for="color" class="form-label">Color</label>
-                    <input type="text" class="form-control "  id="color" name="color" style="width: 100px">
-                    
+                    <input type="text" class="form-control "  id="color" name="color" >
+                    </div>
+                    </div>
+        
+
+
+
+                    <div class="row">
+                    <div class="col-md-4">
                     <label for="uppLow" class="form-label">Tipo</label>
                     <select class="form-select" autofocus id="tipo" name="tipo" aria-label="Default select example">
                         <option selected></option>
                         <option value="Diente">Diente</option>
                         <option value="Muela">Muela</option>
-                    
                     </select>
-                    
+                    </div>
+        
+
+                    <div class="col-md-4">
                     <label for="uppLow" class="form-label">Capas</label>
                     <select class="form-select" autofocus id="capas" name="capas" aria-label="Default select example">
                         <option selected></option>
                         <option value="2C">2C</option>
                         <option value="4C">4C</option>
-                    
                     </select>
-                    
+                    </div>
+        
+
+                    <div class="col-md-4">
                     <label for="codigoP" class="form-label">Pedido</label>
-                    <input type="text" class="form-control "  id="codigoP" name="codigoP" style="width: 100px">
-                    
-                     <br></br>
-                    <p>Fecha Producción</p>
+                    <input type="text" class="form-control "  id="codigoP" name="codigoP" }>
+                    </div>
+                    </div>
+        
+               <br>
+                    <h5>Fecha Producción</h5>
+
+
+                    <div class="row">
+                    <div class="col-md-6">
                     <label for="fechaProduccionDesde" class="form-label">Desde</label>
                     <input type="Date" class="form-control" id="fechaProduccionDesde" name="fechaProduccionDesde" placeholder="Ingresa la fecha" >
-                    
+                    </div>
+        
+
+                    <div class="col-md-6">
                     <label for="fechaProduccionHasta" class="form-label">Hasta</label>
                     <input type="Date" class="form-control" id="fechaProduccionHasta" name="fechaProduccionHasta" placeholder="Ingresa la fecha" >
-                
-                    
-                    <br></br>
-                    <p>Fecha Ingreso Granel</p>
+                    </div>
+                    </div>
+        
+                    <br>
+                    <h5>Fecha Ingreso Granel</h5>
+
+
+                    <div class="row">
+                    <div class="col-md-6">
                     <label for="fechaDesde" class="form-label">Desde</label>
                     <input type="Date" class="form-control" id="fechaDesde" name="fechaDesde" placeholder="Ingresa la fecha" >
-                    
+                    </div>
+                
+
+                    <div class="col-md-6">
                     <label for="fechaHasta" class="form-label">Hasta</label>
                     <input type="Date" class="form-control" id="fechaHasta" name="fechaHasta" placeholder="Ingresa la fecha" >
-                
-                <input type="submit" name="Empacar" >
-            </form>
-        </div>
+                    </div>
+                    </div>
         
-    </div>
-    
+                <br>
+                <input type="submit" class="btn btn-success"  name="Empacar" >
+            </form>
+       
     <br>
     
-        <table border="1"> 
+        <table class="table table-bordered table-striped"> 
             <tr>
                 <!--<td>id</td>-->
                 <td>ID Rotulo</td>
@@ -282,7 +323,20 @@ $consultaSuma = "SELECT SUM(gramos) AS totalGramos, COUNT(productoGranel.id) AS 
                 <td><?php echo $arregloColores[$mostrar['color']] ?></td>
                 <td><?php echo $tipo[$mostrar['referencia']] ?></td>
                 <td><?php echo $capas[$mostrar['referencia']] ?></td>
-                <td><?php echo $arregloPedidos[$mostrar['pedido']] ?></td>
+           
+                
+            
+                <!-- un condicional con isset que verifica que verrifica si la clave existe antes de acceder a ella -->
+                <td>
+    <?php
+    if (isset($mostrar['pedido']) && isset($arregloPedidos[$mostrar['pedido']])) {
+        echo $arregloPedidos[$mostrar['pedido']];
+    } else {
+        echo "Valor no definido";
+    }
+    ?>
+</td>
+                
                 <td><?php echo $mostrar['gramos'] ?></td>
                 
                 <td><?php echo round($mostrar['gramos']/$gramosJuego[$mostrar['referencia']],1);
@@ -310,7 +364,7 @@ $consultaSuma = "SELECT SUM(gramos) AS totalGramos, COUNT(productoGranel.id) AS 
                 <td><?php echo $mostrar['fechaHora'] ?></td>
                
                 <td>
-    <a href="asignarGranelAPedidio.php?idP=<?php echo (isset($pedidoIdPedido) && $pedidoIdPedido !== '') ? $pedidoIdPedido : '' ?>&rotuloId=<?php echo $mostrar['rotuloId']; ?>&referenciaId=<?php echo $mostrar['referencia'] ?>&colorId=<?php echo $mostrar['color'] ?>">Asignar a <?php echo (isset($pedidoIdPedido) && $pedidoIdPedido !== '') ? $arregloPedidos[$pedidoIdPedido] : ''; ?></a>
+    <a  class="btn btn-secondary" href="asignarGranelAPedidio.php?idP=<?php echo (isset($pedidoIdPedido) && $pedidoIdPedido !== '') ? $pedidoIdPedido : '' ?>&rotuloId=<?php echo $mostrar['rotuloId']; ?>&referenciaId=<?php echo $mostrar['referencia'] ?>&colorId=<?php echo $mostrar['color'] ?>">Asignar a <?php echo (isset($pedidoIdPedido) && $pedidoIdPedido !== '') ? $arregloPedidos[$pedidoIdPedido] : ''; ?></a>
 </td>
 
  <!--<td><a href="editar_lotes.php?id=<?php //echo $mostrar['id'];?>">Editar</a></td>            -->
@@ -319,7 +373,7 @@ $consultaSuma = "SELECT SUM(gramos) AS totalGramos, COUNT(productoGranel.id) AS 
 }
 ?>
 </table>
-
+</div>
 <script type="text/javascript">
 $(document).on("click", "#delRg", function(event) {
 event.preventDefault();
@@ -362,7 +416,8 @@ $.ajax({
                 
                 <br></br>
  
- <table border="1">
+
+                <table class="table table-bordered table-striped"> 
             
             
             

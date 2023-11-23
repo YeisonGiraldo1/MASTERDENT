@@ -11,7 +11,7 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 </head>
 <body>
     
-    <button onclick="location.href='../control'">Inicio</button>
+    <button onclick="location.href='../../'">Inicio</button>
 
     <h1>Tabla Moldes</h1>
     

@@ -4,18 +4,19 @@
     
     //reviso si me han llegado datos por el método get
     
-        $fecha=$_GET ["fecha"];
+        $fecha = isset($_GET ["fecha"]) ? $_GET["fecha"]: null;
         //echo $fecha;
-        $turno=$_GET ["turno"];
+        $turno= isset($_GET ["turno"]) ? $_GET["turno"]: null;
         //echo $turno;
-        $prensada=$_GET ["prensada"];
-        
+        $prensada= isset($_GET["prensada"]) ? $_GET["prensada"]: null;
+
+
+    
          //limito el tamaño de los datos
 
-$fecha = substr($fecha, int -12);
-$turno = substr($turno, int -10);
-$prensada = substr($prensada, int -2);
-        
+       $fecha = substr($fecha, intval(-12));
+$turno = substr($turno, intval(-10));
+$prensada = substr($prensada, intval(-2));
         //elimino los espacios en blanco del string turno.
         
         $turno=trim($turno," ");

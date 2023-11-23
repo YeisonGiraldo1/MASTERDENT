@@ -79,7 +79,7 @@
 
 <body>
     <div class="header">
-        <img src="imagenes/nuevamasterdent.png" class="img-fluid" alt="Trazabilidad">
+        <img src="Public/imagenes/nuevamasterdent.png" class="img-fluid" alt="Trazabilidad">
     </div>
     <main>
         <section class="formContainer">

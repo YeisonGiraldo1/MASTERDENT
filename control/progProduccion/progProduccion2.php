@@ -4,17 +4,17 @@
     
     //reviso si me han llegado datos por el método get
     
-        $fecha=$_GET ["fecha"];
-        //echo $fecha;
-        $turno=$_GET ["turno"];
-        //echo $turno;
-        $prensada=$_GET ["prensada"];
+    $fecha = isset($_GET["fecha"]) ? $_GET["fecha"] : "";
+    $turno = isset($_GET["turno"]) ? $_GET["turno"] : "";
+    $prensada = isset($_GET["prensada"]) ? $_GET["prensada"] : "";
+    
         
          //limito el tamaño de los datos
 
-$fecha = substr($fecha, int -12);
-$turno = substr($turno, int -10);
-$prensada = substr($prensada, int -2);
+         $fecha = substr($fecha, -12);
+         $turno = substr($turno, -10);
+         $prensada = substr($prensada, -2);
+         
         
         //elimino los espacios en blanco del string turno.
         
@@ -107,45 +107,48 @@ $date = explode ("-",$fecha);
                         }
                         else{
                             ?>
-                            <option value="<?php echo $date[1];  ?>"><?php switch ($date[1]) {
-   
-    case 1:
-        echo "Enero";
-        break;
-    case 2:
-        echo "Febrero";
-        break;
-        case 3:
-        echo "Marzo";
-        break;
-        case 4:
-        echo "Abril";
-        break;
-        case 5:
-        echo "Mayo";
-        break;
-        case 6:
-        echo "Junio";
-        break;
-        case 7:
-        echo "Julio";
-        break;
-        case 8:
-        echo "Agosto";
-        break;
-        case 9:
-        echo "Septiembre";
-        break;
-        case 10:
-        echo "Octubre";
-        break;
-        case 11:
-        echo "Noviembre";
-        break;
-        case 12:
-        echo "Diciembre";
-        break;
-}  ?></option>
+                         <option value="<?php echo isset($date[1]) ? $date[1] : ""; ?>"><?php
+    if (isset($date[1])) {
+        switch ($date[1]) {
+            case 1:
+                echo "Enero";
+                break;
+            case 2:
+                echo "Febrero";
+                break;
+            case 3:
+                echo "Marzo";
+                break;
+            case 4:
+                echo "Abril";
+                break;
+            case 5:
+                echo "Mayo";
+                break;
+            case 6:
+                echo "Junio";
+                break;
+            case 7:
+                echo "Julio";
+                break;
+            case 8:
+                echo "Agosto";
+                break;
+            case 9:
+                echo "Septiembre";
+                break;
+            case 10:
+                echo "Octubre";
+                break;
+            case 11:
+                echo "Noviembre";
+                break;
+            case 12:
+                echo "Diciembre";
+                break;
+        }
+    }
+?></option>
                         <option value="">Mes</option>
                         <option value="1">Enero</option>
                         <option value="2">Febrero</option>
@@ -206,7 +209,7 @@ $date = explode ("-",$fecha);
                         }
                         else{
                             ?>
-                        <option value="<?php echo $date[2];  ?>"><?php echo $date[2];  ?></option>
+                        <option value="<?php echo $diaSeleccionado = isset($date[2]) ? $date[2] : "";  ?>"></option>
                         <option value="">Día</option>
                         <option value="1">1</option>
                         <option value="2">2</option>

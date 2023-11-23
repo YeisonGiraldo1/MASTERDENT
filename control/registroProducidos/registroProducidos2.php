@@ -21,10 +21,9 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
        $fecha=$_POST ["fecha"];
        $turno=$_POST ["turno"];
        
-       
-
-$fecha = substr($fecha, int -12);
-$turno = substr($turno, int -10);
+     
+$fecha = substr($fecha, intval (-12));
+$turno = substr($turno, intval (-10));
 //$prensada = substr($prensada, int -2);
         
         //elimino los espacios en blanco del string turno.
@@ -59,7 +58,7 @@ var_dump($prensada);*/
     	<button onclick="location.href='../control/progProduccion/cambiarTurno.php?prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Cambiar Turno</button>-->
 			
 <head>
-    <button onclick="location.href='../control'">Inicio</button>
+    <button onclick="location.href='../../control'">Inicio</button>
 	<meta charset="UTF-8">
 	<title>Producidos</title>
 	

@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <title>materialPreparado</title>
 </head>
+<button onclick="location.href='../control'">Inicio</button>
 <body>
     <center>
 

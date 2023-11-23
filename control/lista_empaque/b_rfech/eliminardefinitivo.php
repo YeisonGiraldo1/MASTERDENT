@@ -20,7 +20,7 @@ $borrar=mysqli_query($conexion,"DELETE  FROM listaEmpaque WHERE  id='$id' ");
 mysqli_close($conexion);
 
 echo "<script>
-alert('LOS DATOS  HAN SIDO BORRADOS PERMANENTEMENTE Y NO PODRAS  RECUPERARLOS');
+alert('LOS DATOS HAN SIDO BORRADOS PERMANENTEMENTE Y NO PODRAS  RECUPERARLOS');
 window.location= 'consultarcolor.php?color=$color&referencia=$referencia&lote=$lote&pedido=$pedido';
 </script>";
 

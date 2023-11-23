@@ -28,7 +28,8 @@
     
     //obtengo el dato del turno
     
-    $turno=$_GET ["turno"];
+    $turno = isset($_GET["turno"]) ? $_GET["turno"] : null;
+
     
     
     switch ($filtro){
@@ -229,25 +230,27 @@ case 3:
             
             //a continuación consulto el primer registro del intervalo de tiempo para identificar el primer improductivo y no tenerlo en cuenta en la suma de improductivos.
            
-           $sqlI="SELECT * FROM cuentaPrensadas2  WHERE fechaCreacion BETWEEN '" .$desde."' AND '".$hasta."' ORDER BY id ASC LIMIT 1";
-            $resultI=mysqli_query($conexion,$sqlI);
+            $primerImproductivo = 0;  // Inicializa la variable $primerImproductivo
+
+            // Consulta el primer registro del intervalo de tiempo
+            $sqlI = "SELECT * FROM cuentaPrensadas2 WHERE fechaCreacion BETWEEN '" . $desde . "' AND '" . $hasta . "' ORDER BY id ASC LIMIT 1";
+            $resultI = mysqli_query($conexion, $sqlI);
             
-            while($mostrarI=mysqli_fetch_array($resultI)){
-            $primerImproductivo=$mostrarI['improductivo'];
-            $primerImproductivo = round($primerImproductivo, 2, $mode = PHP_ROUND_HALF_UP);
+            while ($mostrarI = mysqli_fetch_array($resultI)) {
+                $primerImproductivo = $mostrarI['improductivo'];
+                $primerImproductivo = round($primerImproductivo, 2, $mode = PHP_ROUND_HALF_UP);
             }
             
-             //a continuación consulto el total minutos improductivos de este turno.
-           
-           $sqlE="SELECT SUM(improductivo) AS improductivo FROM cuentaPrensadas2  WHERE fechaCreacion BETWEEN '" .$desde."' AND '".$hasta."'";
-            $resultE=mysqli_query($conexion,$sqlE);
+            // Consulta el total minutos improductivos de este turno.
+            $sqlE = "SELECT SUM(improductivo) AS improductivo FROM cuentaPrensadas2 WHERE fechaCreacion BETWEEN '" . $desde . "' AND '" . $hasta . "'";
+            $resultE = mysqli_query($conexion, $sqlE);
             
-            while($mostrarE=mysqli_fetch_array($resultE)){
-            $tiempoOtros=$mostrarE['improductivo'];
-            $tiempoOtros = round($tiempoOtros, 2, $mode = PHP_ROUND_HALF_UP);
-            
+            while ($mostrarE = mysqli_fetch_array($resultE)) {
+                $tiempoOtros = $mostrarE['improductivo'];
+                $tiempoOtros = round($tiempoOtros, 2, $mode = PHP_ROUND_HALF_UP);
             }
-            $tiempoOtros=$tiempoOtros-$primerImproductivo;
+            
+            $tiempoOtros = $tiempoOtros - $primerImproductivo;
             
             //consulto los valores mayor y menor de cada uno de los datos Sacado e improductivo.
             
@@ -296,45 +299,39 @@ case 3:
             $tiempoLaborado=$tiempoSacado+$tiempoOtros;
             
            
-            //calculo los porcentajes de los totales de tiempo sobre el total general
-            
-            $porcentajeSacado=$tiempoSacado/$tiempoLaborado*100;
-            $porcentajeSacado = round($porcentajeSacado, 2, $mode = PHP_ROUND_HALF_UP);
-            $porcentajeOtros=$tiempoOtros/$tiempoLaborado*100;
-            $porcentajeOtros = round($porcentajeOtros, 2, $mode = PHP_ROUND_HALF_UP);
-            
-            //calculo los promedios
-            
-            $promedioSacado=$tiempoSacado/$registros;
-            $promedioSacado = round($promedioSacado, 2, $mode = PHP_ROUND_HALF_UP);
-            $promedioOtros=$tiempoOtros/$registros;
-            $promedioOtros = round($promedioOtros, 2, $mode = PHP_ROUND_HALF_UP);
-            
-        //calculo rendimiento prensadas por hora.
-        
-        $rendimiento=$registros/($tiempoLaborado/60);
-        $rendimiento = round($rendimiento, 2, $mode = PHP_ROUND_HALF_UP);
-        
-        //calculo eficiencia del sacador con relación al estándar de 10,31 minutos por prensada.
-        
-        $estandar= 10.31;
-        
-        $eficienciaSacado=$estandar/$promedioSacado*100;
-        $eficienciaSacado = round($eficienciaSacado, 2, $mode = PHP_ROUND_HALF_UP);
-        
-        //calculo la eficiciencia general basado en el estándar, las prensadas contadoas y el tiempo total laborado.
-        
-        $eficienciaGeneral=$registros*$estandar/$tiempoLaborado*100;
-        $eficienciaGeneral = round($eficienciaGeneral, 2, $mode = PHP_ROUND_HALF_UP);
-            
+            // Cálculo de porcentajes
+$porcentajeSacado = ($tiempoLaborado != 0) ? ($tiempoSacado / $tiempoLaborado * 100) : 0;
+$porcentajeSacado = round($porcentajeSacado, 2, $mode = PHP_ROUND_HALF_UP);
+
+$porcentajeOtros = ($tiempoLaborado != 0) ? ($tiempoOtros / $tiempoLaborado * 100) : 0;
+$porcentajeOtros = round($porcentajeOtros, 2, $mode = PHP_ROUND_HALF_UP);
+
+// Cálculo de promedios
+$promedioSacado = ($registros != 0) ? ($tiempoSacado / $registros) : 0;
+$promedioSacado = round($promedioSacado, 2, $mode = PHP_ROUND_HALF_UP);
+
+$promedioOtros = ($registros != 0) ? ($tiempoOtros / $registros) : 0;
+$promedioOtros = round($promedioOtros, 2, $mode = PHP_ROUND_HALF_UP);
+
+// Cálculo de rendimiento
+$rendimiento = ($tiempoLaborado != 0) ? ($registros / ($tiempoLaborado / 60)) : 0;
+$rendimiento = round($rendimiento, 2, $mode = PHP_ROUND_HALF_UP);
+
+// Cálculo de eficiencia del sacador
+$eficienciaSacado = ($promedioSacado != 0) ? ($estandar / $promedioSacado * 100) : 0;
+$eficienciaSacado = round($eficienciaSacado, 2, $mode = PHP_ROUND_HALF_UP);
+
+// Cálculo de eficiencia general
+$eficienciaGeneral = ($tiempoLaborado != 0) ? ($registros * $estandar / $tiempoLaborado * 100) : 0;
+$eficienciaGeneral = round($eficienciaGeneral, 2, $mode = PHP_ROUND_HALF_UP);
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
     
-			<button onclick="location.href='../control/'">Inicio</button>
-			<button onclick="location.href='../control/vistas/modulos/verTablaPrensadas.php'">Prensadas Gerneral</button>
+			<button onclick="location.href='../../../control'">Inicio</button>
+			<button onclick="location.href='../modulos/verTablaPrensadas.php'">Prensadas Gerneral</button>
 			
 		
 			<!--    botón de ir atrás.
@@ -484,6 +481,12 @@ case 3:
             </tr>
             <?php
             }
+
+            $mayorSacado = isset($mayorSacado) ? $mayorSacado : '0';
+$mayorOtros = isset($mayorOtros) ? $mayorOtros : '0';
+$menorSacado = isset($menorSacado) ? $menorSacado : '0';
+$menorOtros = isset($menorOtros) ? $menorOtros : '0';
+$estandar = isset($estandar) ? $estandar : '0';
 
             ?>
               </table>

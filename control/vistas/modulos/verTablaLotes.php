@@ -63,7 +63,7 @@ $filtros = array();
 </head>
 <body>
     
-    <button onclick="location.href='../../control'">Inicio</button>
+    <button onclick="location.href='../../'">Inicio</button>
 
 <center>
     <h1>Lotes</h1>

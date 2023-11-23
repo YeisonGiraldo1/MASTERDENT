@@ -19,8 +19,8 @@
 <body>
     <div class="container mt-5">
         
-        <button onclick="location.href='/control'">Inicio</button>
-        <button onclick="location.href='/control/vistas/modulos/verTablaTemperaturaPlanchas.php'">Ver registros de temperatura</button>
+        <button class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
+        <button class="btn btn-primary" onclick="location.href='../control/vistas/modulos/verTablaTemperaturaPlanchas.php'">Ver registros de temperatura</button>
 			
         <div class="row">
             <form action="registraTemperatura.php" method="get">

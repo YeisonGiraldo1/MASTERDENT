@@ -39,7 +39,7 @@ $metaGeneral=6020;
     <link href="cssProyecto/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="cssProyecto/slide.css">
     <!--bootstrap-->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -66,16 +66,19 @@ $metaGeneral=6020;
 </head>
 <body>
     
-    <button onclick="location.href='../control'">Inicio</button>
+    <button class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
 
 <center>
+
+<div class="container">
+
     <h2>RENDIMIENTO TERMINACIÓN</h2>
     <h3><BASEFONT SIZE="20"><?php echo $fechaActual = date ( 'Y-m-d' );?></h3>
     
     
 
     
-        <table border="1">
+    <table class="table table-bordered table-striped">
             <tr>
                 
                 <td><H2>NOMBRE</H2></td>
@@ -172,7 +175,7 @@ $.ajax({
  
 
          <br>
-<table border="1">
+         <table class="table table-bordered table-striped">
             <tr>
                
                 <td>TOTAL JUEGOS</td>
@@ -205,7 +208,8 @@ $.ajax({
             ?>
         </table>
         <br></br>
-        
+        </div>
+
  </center>
  <p>Nota: La eficiencia cambia en función del tiempo transcurrido desde el inicio de la jornada (6:00am) sobre un estándar de 86 puntos/hora (1juego4C=1.2puntos, 1juego2C=1punto)</p>
 </body>

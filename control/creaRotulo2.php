@@ -19,7 +19,10 @@ $pedido=$_POST ["pedido"];
 $fecha=$_POST ["fecha"];
 $prensada=$_POST ["prensada"];
 $turno=$_POST["turno"];
-$casillaId=$_POST ["casilla"];
+$casillaId = isset($_POST["casilla"]) ? $_POST["casilla"] : null;
+
+// Ahora puedes usar $casillaId sin generar el warning
+
 $num_moldes=$_POST ["num_moldes"];
 $nota=$_POST ["nota"];
 

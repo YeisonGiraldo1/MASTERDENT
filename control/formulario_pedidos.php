@@ -42,7 +42,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <button onclick="location.href='../control'">Inicio</button>
+    <button  class="btn btn-primary"  onclick="location.href='../control'">Inicio</button>
     
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,17 +54,22 @@ session_start();
 </head>
 <body>
     <center><h1>Nuevo Pedido</h1></center>
-    <div class="container mt-5">
-        <h1>Datos generales del pedido</h1>
-        <div class="row">
+    
+<br>
+
+
+        <h1 class="text-center">Datos generales del pedido</h1>
+       <br>
             <form action="creaPedido.php" method="get">
+            <div class="row">
                 
-                <div class="mb-3">
+
+            <div class="col-md-4">
                     <label for="pedido" class="form-label">Código de Pedido</label><font color="red">*</font>
                     <input type="text" class="form-control" autofocus id="pedido" name="pedido" placeholder="Digita número de pedido">
                 </div>
                 
-                <div class="mb-3">
+                <div class="col-md-4">
                     <label for="cliente" class="form-label">Seleccionar cliente</label>
                     <select class="form-select" id="cliente" name="cliente" aria-label="Default select example">
                         <option selected value="1153">Selecciona un cliente</option>
@@ -81,14 +86,15 @@ session_start();
                         }
                     ?>
                     </select>
-                   
                 </div>
                 
                  <!--<div class="mb-3">
                     <label for="linea" class="form-label">Línea</label>
                     <input type="text" class="form-control" autofocus id="linea" name="linea" placeholder="Digita la línea">
                 </div>-->
-                <div class="mb-3">
+
+
+                <div class="col-md-4">
                 <label for="linea" class="form-label">Seleccionar línea</label>
                  <select class="form-select" id="linea" name="linea" aria-label="Default select example">
                         <option selected value=null>Línea de producto</option>
@@ -99,42 +105,53 @@ session_start();
                         <option value="UHLERPLUS">UHLERPLUS</option>
                         <option value="STARDENT">STARDENT</option>
                         <option value="ZENITH">ZENITH</option>
-                        
-                 
                     </select>
                     </div>
-                 <div class="mb-3">
+                    </div>
+<br>
+
+                    <div class="row">
+                    <div class="col-md-4">
                     <label for="vendedor" class="form-label">Vendedor</label>
                     <input type="text" class="form-control" autofocus id="vendedor" name="vendedor" placeholder="Digita nombre del vendodor">
                 </div>
-                
-                <div class="mb-3">
+                <div class="col-md-4">
                     <label for="juegosTotales" class="form-label">Juegos Totales del pedido</label>
                     <input type="text" class="form-control" id="juegosTotales" name="juegosTotales" placeholder="Digita número de juegos del pedido">
                 </div>
 
                 
-                <div class="mb-3">
+                <div class="col-md-4">
                     <label for="nota" class="form-label">Nota (Alias del pedido, como se conoce en terminación)</label>
-                    <input type="text" class="form-control" id="nota" name="nota" placeholder="NOTA aclaratoria sobre el pedido o cliente para el Emplaquetado">
-                    
+                    <input type="text" class="form-control" id="nota" name="nota" placeholder="NOTA aclaratoria sobre el pedido o cliente para el Emplaquetado">   
                 </div>
+                </div>
+<br>
+
+
+
+<div class="row">
+<div class="col-md-12">
                 <label for="prioridad" class="form-label">¿Tiene prioridad?</label>
                 <select class="form-select" id="prioridad" name="prioridad" aria-label="Default select example">
                         <option selected value="0"></option>
                         <option value="1">SÍ</option>
                         <option value="0">NO</option>
                         
-                 
+                        </div>
+                </div>
                     </select>
                     <BR>
-                
-                <input type="submit" name="Crear" >
+                    <div class="row">
+<div class="col-md-12">     
+                    
+                <input class="btn btn-success" type="submit" name="Crear" >
+                </div>
+                </div>
             </form>
             <br>
             <h6><font color="red">*</font> campo obligatorio</h6>
-        </div>
-        
+       
         <!--
         
         <h1>Tabla Pedidos</h1>

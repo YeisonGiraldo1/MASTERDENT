@@ -5,7 +5,7 @@
 
 <?php
 $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
-    $estacion=$_GET ["estaciones"];
+    $estacion = isset($_GET["estaciones"]) ? $_GET["estaciones"] : '';
       
     if(is_null($estacion)){
         $estacion=$_POST['estacion'] ;
@@ -129,10 +129,18 @@ $resultLot=mysqli_query($conexion,$sqlLot);
 <head>
 	<meta charset="UTF-8">
 	<title>MovimientosPorEstacion</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <button onclick="location.href='../control'">Inicio</button>
+
+    <button class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
     
+
+<div class="container">
+
     <?php
     //echo "movimientos de la estación" . $estacion;
     ?>
@@ -146,18 +154,20 @@ $resultLot=mysqli_query($conexion,$sqlLot);
         $result2=mysqli_query($conexion,$sql2);
         ?>
         
-        <h1>Producción que ha pasado por la estación de
+        <h1>Producción que ha pasado por la estación de</h1>
 
+       
         
                  <?php
 
+ $estacionActual = ''; // Inicializa la variable antes de usarla
                 while($mostrar2=mysqli_fetch_array($result2)){
                     $estacionActual=$mostrar2['nombre'];
             ?>
 
             
                 
-                <td><?php echo $estacionActual ?></td>
+                <h1><?php echo $estacionActual ?></h1>
                 
                 
                 
@@ -167,69 +177,94 @@ $resultLot=mysqli_query($conexion,$sqlLot);
         
             ?>
             
-            </h1>
+        
             
             <br>
         
-        <div class="row">
+  
             <form action="historialEstacion.php" method="POST">
             
-            <div class="mb-3">
-                
-                    <label for="id" class="form-label">Id</label>
-                    <input type="text" size="15" class="form-control "  id="id" name="id" style="width: 70px">
-                    
-                    <label for="referencia" class="form-label">Referencia</label>
-                    <input type="text" size="15" class="form-control "  id="referencia" name="referencia" style="width: 100px">
-         
-                    <label for="color" class="form-label">Color</label>
-                    <input type="text" size="15" class="form-control "  id="color" name="color" style="width: 100px">
-                    
-                    <label for="pedido" class="form-label">Pedido</label>
-                    <input type="text" size="15" class="form-control "  id="pedido" name="pedido" style="width: 100px">
-                    
-                    <label for="lote" class="form-label">Lote</label>
-                    <input type="text" size="15" class="form-control "  id="lote" name="lote" style="width: 100px">
-                    
-                    <label for="uppLow" class="form-label">Capas</label>
-                    <select class="form-select" autofocus id="capas" name="capas" aria-label="Default select example">
-                        <option selected></option>
-                        <option value="2C">2C</option>
-                        <option value="4C">4C</option>
-                    
-                    </select>
-                    
-                    <br></br>
-                    
-                    <label for="fechaDesde" class="form-label">Ingresado Desde</label>
-                    <input type="Date" class="form-control" id="fechaDesde" name="fechaDesde" placeholder="Ingresa la fecha" >
-                    
-                    <label for="fechaHasta" class="form-label">Hasta</label>
-                    <input type="Date" class="form-control" id="fechaHasta" name="fechaHasta" placeholder="Ingresa la fecha" >
-                    
-                    <br></br>
-                    
-                    <label for="fechaProduccionDesde" class="form-label">Programado Desde</label>
-                    <input type="Date" class="form-control" id="fechaProduccionDesde" name="fechaProduccionDesde" placeholder="Ingresa la fecha" >
-                    
-                    <label for="fechaProduccionHasta" class="form-label">Hasta</label>
-                    <input type="Date" class="form-control" id="fechaProduccionHasta" name="fechaProduccionHasta" placeholder="Ingresa la fecha" >
-                    
-                    <input name="estacion" type="hidden" value=" <?php
-                        echo $estacion;  
-                    ?>">
-                     
+            
+   
+            <div class="row">
 
-                
-                <input type="submit" name="Empacar" >
-            </form>
-        </div>
-        
+
+            <div class="col-md-4">
+        <label for="id" class="form-label">Id</label>
+        <input type="text" size="15" class="form-control" id="id" name="id">
     </div>
-                    
-<br></br>
+
+   <div class="col-md-4">
+        <label for="referencia" class="form-label">Referencia</label>
+        <input type="text" size="15" class="form-control" id="referencia" name="referencia">
+    </div>
+
+    <div class="col-md-4">
+        <label for="color" class="form-label">Color</label>
+        <input type="text" size="15" class="form-control" id="color" name="color">
+    </div>
+</div>
+
+<div class="row">
+<div class="col-md-4">
+        <label for="pedido" class="form-label">Pedido</label>
+        <input type="text" size="15" class="form-control" id="pedido" name="pedido">
+    </div>
+
+    <div class="col-md-4">
+        <label for="lote" class="form-label">Lote</label>
+        <input type="text" size="15" class="form-control" id="lote" name="lote">
+    </div>
+
+    <div class="col-md-4">
+        <label for="capas" class="form-label">Capas</label>
+        <select class="form-control" autofocus id="capas" name="capas" aria-label="Default select example">
+            <option selected></option>
+            <option value="2C">2C</option>
+            <option value="4C">4C</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+<div class="col-md-6">
+        <label for="fechaDesde" class="form-label">Ingresado Desde</label>
+        <input type="Date" class="form-control" id="fechaDesde" name="fechaDesde" placeholder="Ingresa la fecha">
+    </div>
+
+    <div class="col-md-6">
+        <label for="fechaHasta" class="form-label">Hasta</label>
+        <input type="Date" class="form-control" id="fechaHasta" name="fechaHasta" placeholder="Ingresa la fecha">
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-md-6">
+        <label for="fechaProduccionDesde" class="form-label">Programado Desde</label>
+        <input type="Date" class="form-control" id="fechaProduccionDesde" name="fechaProduccionDesde" placeholder="Ingresa la fecha">
+    </div>
+
+
+<div class="col-md-6">
+        <label for="fechaProduccionHasta" class="form-label">Hasta</label>
+        <input type="Date" class="form-control" id="fechaProduccionHasta" name="fechaProduccionHasta" placeholder="Ingresa la fecha">
+    </div>
+    </div>
+
+    <input name="estacion" type="hidden" value="<?php echo $estacion; ?>">
+
+
+  
+<br>
+<div class="row">
+<div class="col-md-12">
+<input type="submit" name="Empacar" class="btn btn-success">
+</div>
+</div>      
+<br></br><br><br>
         
-        <table border="1">
+<table class="table table-bordered table-striped">
             <tr>
                 <td>id</td>
                 <!--<td>cod_rotulo</td>-->
@@ -257,7 +292,7 @@ $resultLot=mysqli_query($conexion,$sqlLot);
             
             $result=mysqli_query($conexion,$sql);
             
- 
+
             
             echo "Movimientos de producción por la estación de $estacionActual";
             if ($fechaDesde != '' && $fechaHasta != ''){
@@ -279,9 +314,9 @@ $resultLot=mysqli_query($conexion,$sqlLot);
         
              echo "-Capas = $capasDato, ";
     }
-    if ($codigoP != ''){
-         echo "-Pedido = $pedido, ";
-    }
+    // if ($codigoP != ''){
+    //      echo "-Pedido = $pedido, ";
+    // } // comente esta linea porque estab saliendo indefinida la variable $codigoP
            
             
             while($mostrar=mysqli_fetch_array($result)){
@@ -308,7 +343,7 @@ $resultLot=mysqli_query($conexion,$sqlLot);
             ?>
         </table>
         <br>
-        <table border="1">
+        <table class="table table-bordered table-striped">
             <tr>
                
                 <td>TOTAL JUEGOS</td>
@@ -337,7 +372,7 @@ $resultLot=mysqli_query($conexion,$sqlLot);
         <br></br>
 
         
-        
+        </div>
         
     </center>
 </body>

@@ -13,7 +13,7 @@ mysqli_close($conexion);
 
 
 echo "<script>
-alert('LOS DATOS  HAN SIDO BORRADOS PERMANENTEMENTE Y NO PODRAS  RECUPERARLOS');
+alert('LOS DATOS HAN SIDO BORRADOS PERMANENTEMENTE Y NO PODRAS  RECUPERARLOS');
 window.location= '../control/vistas/modulos/verTablaPedidos.php';
 </script>";
 

@@ -4,17 +4,19 @@
     
     //reviso si me han llegado datos por el método get
     
-        $fecha=$_GET ["fecha"];
+      
+
+        $fecha = isset($_GET ["fecha"]) ? $_GET["fecha"]: null;
         //echo $fecha;
-        $turno=$_GET ["turno"];
+        $turno= isset($_GET ["turno"]) ? $_GET["turno"]: null;
         //echo $turno;
-        $prensada=$_GET ["prensada"];
+        $prensada= isset($_GET["prensada"]) ? $_GET["prensada"]: null;
         
          //limito el tamaño de los datos
 
-$fecha = substr($fecha, int -12);
-$turno = substr($turno, int -10);
-$prensada = substr($prensada, int -2);
+$fecha = substr($fecha, intval (-12));
+$turno = substr($turno, intval (-10));
+$prensada = substr($prensada, intval (-2));
         
         //elimino los espacios en blanco del string turno.
         
@@ -30,7 +32,7 @@ $date = explode ("-",$fecha);
 
 <!DOCTYPE html>
 <html lang="en">
-    <button onclick="location.href='../control'">Inicio</button>
+    <button onclick="location.href=''">Inicio</button>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -108,8 +110,16 @@ $date = explode ("-",$fecha);
                         }
                         else{
                             ?>
-                            <option value="<?php echo $date[1];  ?>"><?php switch ($date[1]) {
-   
+
+
+
+                            
+                            <option value="<?php echo $date[1];  ?>">
+                            
+                            <?php 
+                             if (isset($date[1])) {
+                            switch ($date[1]) {
+ 
     case 1:
         echo "Enero";
         break;
@@ -146,6 +156,7 @@ $date = explode ("-",$fecha);
         case 12:
         echo "Diciembre";
         break;
+                            }
 }  ?></option>
                         <option value="">Mes</option>
                         <option value="1">Enero</option>
@@ -207,7 +218,7 @@ $date = explode ("-",$fecha);
                         }
                         else{
                             ?>
-                        <option value="<?php echo $date[2];  ?>"><?php echo $date[2];  ?></option>
+                        <option value="<?php if (isset($date[1])) {  echo $date[2];  ?>"><?php echo $date[2];  }?></option>
                         <option value="">Día</option>
                         <option value="1">1</option>
                         <option value="2">2</option>

@@ -54,9 +54,9 @@ session_start();
      <div class="container mt-5">
         
             
-              <button onclick="location.href='../'">Inicio</button>   
-               <button onclick="location.href='../inventario_laboratorio/seleccion_inventario.php'">Nuevo Inventario</button>
-                <button onclick="location.href='../PDL/Filtra_inventario.php'">Buscar</button>
+              <button class="btn btn-primary" onclick="location.href='../'">Inicio</button>   
+               <button class="btn btn-primary" onclick="location.href='../inventario_laboratorio/seleccion_inventario.php'">Nuevo Inventario</button>
+                <button class="btn btn-primary" onclick="location.href='../PDL/Filtra_inventario.php'">Buscar</button>
           
              </body>
 </html>

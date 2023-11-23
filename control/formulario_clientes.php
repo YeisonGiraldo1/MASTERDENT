@@ -71,7 +71,7 @@ session_start();
                 </div>
 
                 
-                <input type="submit" name="Crear" >
+                <input class="btn btn-success"  type="submit" name="Crear" >
             </form>
             <br>
             <h6>* campo obligatorio</h6>

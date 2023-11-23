@@ -8,6 +8,11 @@ $cod_rotulo=$_GET["rotulo"];
 $cajas=$_GET ["cajas"];
 $juegos=0;
 
+$linea = ''; // Asigna un valor predeterminado vacío
+$pedidoId = ''; // Asigna un valor predeterminado vacío
+$referenciaId = ''; // Asigna un valor predeterminado vacío
+$colorId = ''; // Asigna un valor predeterminado vacío
+
 $sqlR="SELECT referenciaId, colorId, pedido,total, referencias2.gramosJuego AS gramosJuego, referencias2.tipo AS tipo, pedidos2.linea AS linea FROM rotulos2 INNER JOIN referencias2 ON rotulos2.referenciaId = referencias2.id INNER JOIN pedidos2 ON rotulos2.pedido = pedidos2.idP WHERE rotulos2.id = '".$cod_rotulo. "';";
 
 $resultR=mysqli_query($conexion,$sqlR);
@@ -26,7 +31,6 @@ while($mostrarR=mysqli_fetch_array($resultR)){
                     //$juegosGranel=round($juegosGranel);
                     
 }
-
 
 
   if ($linea=='RESISTAL' || $linea=='ZENITH'){
@@ -68,10 +72,20 @@ else{
 //echo $cajas ."/" ;
 //echo $juegos ."/" ;
 
-$sqlCalidad="INSERT INTO `pedidoDetalles` (`id`, `pedidoId`, `referenciaId`, `colorId`, `rotuloId`, `juegos`, `granel`, `programados`, `producidos`, `pulidos`, `enSeparacion`, `separado`, `enEmplaquetado`, `emplaquetados`, `revision1`, `revision2`, `empacados`, `calidad`, `colaborador`, `fechaCreacion`) VALUES (NULL, '$pedidoId', '$referenciaId', '$colorId', '$cod_rotulo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$juegos', NULL, NULL, NULL, NULL, '$emplaquetador', (select DATE_SUB(NOW(),INTERVAL 5 HOUR)));";
-    
-    $resultCalidad=mysqli_query($conexion,$sqlCalidad);
+// Verificar si $pedidoId es válido y existe en pedidos2
+$sqlValidarPedido = "SELECT COUNT(*) AS count FROM pedidos2 WHERE idP = '$pedidoId'";
+$resultValidarPedido = mysqli_query($conexion, $sqlValidarPedido);
+$count = mysqli_fetch_assoc($resultValidarPedido)['count'];
 
+if ($count > 0) {
+    // El pedidoId es válido y existe en la tabla pedidos2, procedemos con la inserción
+    $sqlCalidad = "INSERT INTO `pedidoDetalles` (`id`, `pedidoId`, `referenciaId`, `colorId`, `rotuloId`, `juegos`, `granel`, `programados`, `producidos`, `pulidos`, `enSeparacion`, `separado`, `enEmplaquetado`, `emplaquetados`, `revision1`, `revision2`, `empacados`, `calidad`, `colaborador`, `fechaCreacion`) VALUES (NULL, '$pedidoId', '$referenciaId', '$colorId', '$cod_rotulo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$juegos', NULL, NULL, NULL, NULL, '$emplaquetador', (select DATE_SUB(NOW(), INTERVAL 5 HOUR)));";
+
+    $resultCalidad = mysqli_query($conexion, $sqlCalidad);
+} else {
+    // El pedidoId no es válido o no existe en la tabla pedidos2
+    echo "Error: El pedidoId no es válido o no existe en la tabla pedidos2.";
+}
 
 $herramientaEmplaquetado = new Herramienta();
 $ingresar_dato_tabla_SeguimientoEmplaquetado = $herramientaEmplaquetado->ingresar_datos_seguimientoEmplaquetado($emplaquetador, $linea, $tipo,$juegos, $puntos);

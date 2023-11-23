@@ -5,15 +5,19 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
     //obtengo los datos del formulario anterior
     
-    $ano=$_POST ["Ano"];
+    $ano= isset($_POST ["Ano"]) ? $_POST["Ano"]: null;
+    $mes= isset($_POST ["Mes"]) ? $_POST["Mes"]: null;
+    $dia= isset($_POST ["Dia"]) ? $_POST["Dia"]: null;
     
-    $mes=$_POST ["Mes"];
-    $dia=$_POST ["Dia"];
    
     
+
+ 
+
     if (is_null($ano)){
         
-       $fecha=$_POST ["fecha"];
+       $fecha= isset($_POST["fecha"]) ? $_POST["fecha"]: null;
+
        
         if(is_null($fecha)){
             //echo "la fecha post es nula";
@@ -26,9 +30,9 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
         
         //limito el tamaño de los datos
 
-$fecha = substr($fecha, int -12);
-$turno = substr($turno, int -10);
-$prensada = substr($prensada, int -2);
+$fecha = substr($fecha, (int) -12);
+$turno = substr($turno, (int) -10);
+$prensada = substr($prensada, (int) -2);
         
         //elimino los espacios en blanco del string turno.
         
@@ -55,9 +59,10 @@ var_dump($prensada);*/
 
 //limito el tamaño de los datos
 
-$fecha = substr($fecha, int -12);
-$turno = substr($turno, int -10);
-$prensada = substr($prensada, int -2);
+$fecha = substr($fecha, -12);
+$turno = substr($turno, -10);
+$prensada = substr($prensada, -2);
+
 
 //elimino los espacios en blanco del string
 
@@ -83,7 +88,7 @@ var_dump($prensada);*/
 <!DOCTYPE html>
 <html lang="en">
     <button onclick="location.href='../control'">Inicio</button>
-    <button onclick="location.href='../control/progProduccion/progProduccion2.php?fecha=<?php echo $fecha?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>'">Cambiar Prensada/Turno/Fecha</button>
+    <button onclick="location.href='progProduccion2.php?fecha=<?php echo $fecha?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>'">Cambiar Prensada/Turno/Fecha</button>
     <!--<button onclick="location.href='../control/progProduccion/cambiarPrensada.php?turno=<?php //echo $turno?>&fecha=<?php //echo $fecha?>">Cambiar prensada</button>
     	<button onclick="location.href='../control/progProduccion/cambiarTurno.php?prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Cambiar Turno</button>-->
 			
@@ -120,9 +125,11 @@ var_dump($prensada);*/
     <?php
         //presento detalles del pedido a empacar
         //1. presento el nombre del pedido
+        $turno = trim($turno, " ");
 
-        $sql2= "SELECT codigoP from pedidos2 WHERE idP ='". $pedido. "'";
-        $result2=mysqli_query($conexion,$sql2);
+        $sqlC = "SELECT SUM(cantidadMoldes) AS total FROM rotulos2 WHERE rotulos2.`fecha` = '" . $fecha . "' AND rotulos2.`turno` LIKE '%" . $turno . "%' AND rotulos2.`prensada` = '" . $prensada . "' ";
+        $resultC = mysqli_query($conexion, $sqlC);
+
 
             ?>
 

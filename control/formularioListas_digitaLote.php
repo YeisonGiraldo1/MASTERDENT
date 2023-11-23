@@ -1,5 +1,10 @@
 <?php
-$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");$pedido=$_GET ["pedido"];
+
+
+$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
+
+
+$pedido=$_GET ["pedido"];
 $caja=$_GET ["caja"];
 $metodo=$_GET ["metodo"];
 
@@ -42,11 +47,25 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
 
 <!DOCTYPE html>
 <html lang="en">
-    
-    	<button onclick="location.href='../control/'">Inicio</button>
-    	<button onclick="location.href='../control/formulario_seleccionPedido.php'">Seleccionar otro pedido</button>
-    	<button onclick="location.href='../control/formulario_seleccionPedido.php?destino=inventario&Crear=Enviar'">Inventarios</button>
-    	<button onclick="location.href='../control/formulario_seleccionPedido.php?destino=asignacion&Crear=Enviar'">Asignaciones</button>
+<div class="container mt-3">
+        <div class="row">
+            <div class="col-6">
+                <button class="btn btn-primary" onclick="location.href='../control/'">Inicio</button>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-primary"  onclick="location.href='../control/formulario_seleccionPedido.php'">Seleccionar otro pedido</button>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-primary" onclick="location.href='../control/formulario_seleccionPedido.php?destino=inventario&Crear=Enviar'">Inventarios</button>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-primary" onclick="location.href='../control/formulario_seleccionPedido.php?destino=asignacion&Crear=Enviar'">Asignaciones</button>
+            </div>
+            
+              
+        </div>
+
+    	
 			
 			
 			<html lang="en">
@@ -69,21 +88,24 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
                     <input name="metodo" type="hidden" value=" <?php
                         echo $metodo; 
                     ?>">
-                </div>        
+                        
                 <br>
 
-   
-                
-
-                <button onClick='submitForm()'>Volver al pedido</button>
+            
+             <button class="btn btn-primary" onClick='submitForm()'>Volver al pedido</button>
                 <br>
+                </div>
+            
+               
+             
+
             </form>
             
             <script>
-    function submitForm() {
-        document.getElementById('empaquePedido').submit();
-    }
-</script>
+             function submitForm() {
+                document.getElementById('empaquePedido').submit();
+                }
+                </script>
 
 
 
@@ -103,28 +125,26 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
                     <input name="metodo" type="hidden" value=" <?php
                         echo $metodo; 
                     ?>">
-                </div>        
+                     
                 <br>
-
-   
-                
-                
-                <button onClick='submitForm()'>Inventario General</button>
-                
-                <br>
-            </form>
-            
+                <button class="btn btn-primary" onClick='submitForm()'>Inventario General</button>
+                </div>  
+            </form> 
             <script>
-    function submitForm() {
-        document.getElementById('generalInventario').submit();
-    }
-</script>
+                     function submitForm() {
+                    document.getElementById('generalInventario').submit();
+                      }
+                    </script>
+                
+                
+                
 
 
 
 
 <head>
     <meta charset="UTF-8">
+    
     <title>listaEmpaque</title>
     
     
@@ -135,10 +155,9 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
     <link href="cssProyecto/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="cssProyecto/slide.css">
     <!--bootstrap-->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!--CSS-->
     <link rel="stylesheet" href="../resources/estilos.css">
     <!--Fin-->
@@ -166,8 +185,8 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
                     
                     ?>
                     
-    
-        <table border="2">
+    <div class="table-responsive">
+        <table border="2" class="table table-striped table-bordered">
             <tr>
                 <!--<td>id</td>-->
                
@@ -272,14 +291,17 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
             }
             ?>
         </table>
+    </div>
         <br></br>
                     
                     <?php
                 }
                 else{
                 ?>
+                <div class="table-responsive">
         <center><h3>Registros</h3></center>
-        <table ALIGN="center" border="1">
+        
+        <table ALIGN="center" border="1" class="table table-striped table-bordered">
             <tr>
                 <td>ID</td>
                 <td>QR</td>
@@ -320,7 +342,8 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
             ?>
             
               </table>
-              
+        </div>
+    
               <!--<BR CLEAR="all">
                    <br></br>-->
     <br></br>
@@ -355,6 +378,7 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
     
     </center>
     
+    
    
    
         
@@ -362,7 +386,7 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
                 }
         
         function presentar_formulario_segun_metodo($metodo,$caja,$pedido, $cajaMayor){
-                $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+            $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
                 
         //////////////////////////////////////////////////////////////////////////////////////////////
         
@@ -410,7 +434,7 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
    
                 
 
-                <input type="submit" name="Crear" >
+                <input type="submit" name="Crear" class="btn btn-">
                 
             </form>
             
@@ -884,7 +908,7 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
         <h1>Asignación</h1>
         <h2>Pedido:
         <?php
-        $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+       $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
        $sql2= "SELECT codigoP from pedidos2 WHERE idP ='". $pedido. "'";
         $result2=mysqli_query($conexion,$sql2);
                 while($mostrar2=mysqli_fetch_array($result2)){
@@ -963,7 +987,7 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
         <h1>Asignación</h1>
         <h2>Pedido:
         <?php
-        $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+        $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
        $sql2= "SELECT codigoP from pedidos2 WHERE idP ='". $pedido. "'";
         $result2=mysqli_query($conexion,$sql2);
                 while($mostrar2=mysqli_fetch_array($result2)){
@@ -1037,7 +1061,7 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
         }
             
             function presentar_tabla_segun_caja($numCaja, $numPedido, $metodo){
-                $conexion = mysqli_connect("localhost","u638142989_master2022","Master2022*","u638142989_MasterdentDB");
+                $conexion = mysqli_connect("localhost", "root", "", "u638142989_MasterdentDB");
                 ?>
                  <center>
                  
@@ -1217,13 +1241,19 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
            $sqlP="SELECT juegosTotales AS total FROM pedidos2 WHERE idP ='". $numPedido. "'";
             $resultP=mysqli_query($conexion,$sqlP);
             
+
+            $juegosPedido = ''; // Asigna un valor predeterminado o define $juegosPedido como corresponda
+
             while($mostrarP=mysqli_fetch_array($resultP)){
             $juegosPedido=$mostrarP['total'];
             }
             //calculo los juegos que faltan por empacar de este pedido.
             
-            $juegosFaltan=$juegosPedido-$juegosTotEmpacados;
-            
+
+
+            if (isset($juegosPedido) && isset($juegosTotEmpacados)) {
+                $juegosFaltan = $juegosPedido - $juegosTotEmpacados;
+            }
             //actualizo el estado del pedido si los juegos empacados >=  a los pedidos. 
             
             if ($juegosTotEmpacados >= $juegosPedido){
@@ -1255,8 +1285,9 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
                 <td><?php echo $juegosCaja ?></td>
                 <td><?php echo $cajas ?></td>
                 <td><?php echo $juegosTotEmpacados ?></td>
-                <td><?php echo $juegosPedido ?></td>
-                <td><?php echo $juegosFaltan ?></td>
+                <td><?php echo isset($juegosPedido) ? $juegosPedido : '' ?></td>
+                <td><?php echo isset($juegosFaltan) ? $juegosFaltan : '' ?></td>
+
                 
                 
             </tr>
@@ -1265,6 +1296,7 @@ $resultCaja=mysqli_query($conexion,$sqlCaja);
         </center>
         
    <br>
+</div>
 </body>
 </html>
         <?php

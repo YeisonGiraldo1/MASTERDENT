@@ -35,13 +35,12 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
   $sumaItem=array();
   $juegosItem=array(array());
   $nombreItem='';
-  
-  $pedidoId=$_GET ['id'];
-    if(is_null($pedidoId)){
-        $pedidoId=$_POST['id'] ;
-        
-            }
-            
+ 
+  //esta validacion verifica si la clave id esta definida con el metodo isset
+  $pedidoId = isset($_GET['id']) ? $_GET['id'] : null;
+  if (is_null($pedidoId)) {
+      $pedidoId = isset($_POST['id']) ? $_POST['id'] : null;
+  }
             //consulto el nombre o código del pedido a partir del id
                  //echo "se encontró pedido en POST";
                  
@@ -74,13 +73,16 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
     
     //variable para determinar las columnas a mostrar según área de la empresa
     
-    $origenBusqueda=$_GET['origenBusqueda'];
-    
-    if ($origenBusqueda==NULL || $origenBusqueda==''){
-    
-    $origenBusqueda=$_POST['origenBusqueda'];
-    
-    }
+    $origenBusqueda = '';
+
+if (isset($_GET['origenBusqueda'])) {
+    $origenBusqueda = $_GET['origenBusqueda'];
+} elseif (isset($_POST['origenBusqueda'])) {
+    $origenBusqueda = $_POST['origenBusqueda'];
+}
+
+$origenBusqueda = trim($origenBusqueda, " ");
+
      $origenBusqueda=trim($origenBusqueda," ");
     
     $granel=0;
@@ -163,8 +165,8 @@ $resultCol=mysqli_query($conexion,$sqlCol);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <button onclick="location.href='../control'">Inicio</button>
-     <button onclick="location.href='../control/vistas/modulos/verTablaPedidos.php?origenBusqueda=<?php echo $origenBusqueda ?>'">Atrás</button>
+    <button   class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
+     <button  class="btn btn-primary" onclick="location.href='../control/vistas/modulos/verTablaPedidos.php?origenBusqueda=<?php echo $origenBusqueda ?>'">Atrás</button>
     
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -173,6 +175,7 @@ $resultCol=mysqli_query($conexion,$sqlCol);
     <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
 <head>
@@ -186,7 +189,8 @@ $resultCol=mysqli_query($conexion,$sqlCol);
 
 
 
-        <h1>Seguimiento del pedido <?php echo $pedido  ?>  </h1>
+    <h1>Seguimiento del pedido <?php echo isset($pedido) ? $pedido : 'No definido' ?></h1>
+
         
         <?php
         
@@ -260,19 +264,33 @@ $resultCol=mysqli_query($conexion,$sqlCol);
   
     
     
-<div class="row">
+
             <form action="trazarPedido.php" method="POST">
             
-            <div class="mb-3">
+          
                 
                    
-                    
+            <div class="row">
+
+            <div class="col-md-6">
                     <label for="referencia" class="form-label">Referencia</label>
                     <input type="text" size="15" class="form-control " autofocus  id="referencia" name="referencia">
-         
+                    </div>
+              
+
+                    
+            <div class="col-md-6">
                     <label for="color" class="form-label">Color</label>
                     <input type="text" size="15" class="form-control "  id="color" name="color">
-                    
+                    </div>
+                    </div>
+              
+
+
+                    <div class="row">   
+
+
+                    <div class="col-md-6">
                     <label for="tipo" class="form-label">Muela/Diente</label>
                     <select class="form-select"  id="tipo" name="tipo" aria-label="Default select example">
                         <option selected></option>
@@ -280,7 +298,10 @@ $resultCol=mysqli_query($conexion,$sqlCol);
                         <option value="Diente">DIENTE</option>
                     
                     </select>
-                    
+                    </div>
+              
+
+                    <div class="col-md-6">
                      <label for="uppLow" class="form-label">Sup/Inf</label>
                     <select class="form-select"  id="uppLow" name="uppLow" aria-label="Default select example">
                         <option selected></option>
@@ -288,7 +309,11 @@ $resultCol=mysqli_query($conexion,$sqlCol);
                         <option value="-I">INF</option>
                     
                     </select>
-                    
+
+                    <br>
+                    </div>
+                    </div>
+              
                     
                     
                     <input name="id" type="hidden" value=" <?php
@@ -301,11 +326,9 @@ $resultCol=mysqli_query($conexion,$sqlCol);
                      
 
                 
-                <input type="submit" name="Empacar" >
+                <input class="btn btn-success"  type="submit" name="Empacar" >
             </form>
-        </div>
-        
-    </div>
+      
                     
 <br></br>
 
@@ -318,7 +341,7 @@ if($origenBusqueda=='terminacion'){
     
     <!--espacio para poner la tabla útil para terminación-->
     
-    <table border="2">
+    <table class="table table-bordered table-striped"> 
             <tr>
                 <!--<td>id</td>-->
                
@@ -520,7 +543,8 @@ if($origenBusqueda=='terminacion'){
         });
     </script>
     
-    <table border="1">
+    
+    <table class="table table-bordered table-striped"> 
         <tr>
                
                 <td COLSPAN= "13"><CENTER>TOTALES</CENTER></td>
@@ -574,8 +598,8 @@ else if($origenBusqueda=='almacen'){
     ?>
     
     <!--espacio para poner la tabla útil para almacén-->
-    
-    <table border="2">
+     
+<table class="table table-bordered table-striped"> 
             <tr>
                 <!--<td>id</td>-->
                
@@ -776,7 +800,8 @@ else if($origenBusqueda=='almacen'){
         });
     </script>
     
-        <table border="1">
+          
+<table class="table table-bordered table-striped"> 
         <tr>
                
                 <td COLSPAN= "13"><CENTER>TOTALES</CENTER></td>
@@ -828,7 +853,7 @@ else if($origenBusqueda=='moldeado'){
     
     <!--espacio para poner la tabla útil para moldeado-->
     
-    <table border="2">
+    <table class="table table-bordered table-striped"> 
             <tr>
                 <!--<td>id</td>-->
                
@@ -1032,7 +1057,8 @@ else{
     
     <!--espacio para poner la tabla útil para todos-->
     
-    <table border="2">
+    
+    <table class="table table-bordered table-striped"> 
             <tr>
                 <!--<td>id</td>-->
                
@@ -1065,7 +1091,7 @@ else{
             
             <?php
             //$sql="SELECT pedidoDetalles.*, referencias2.`nombre` AS 'referencia', colores2.`nombre` AS 'Color' FROM pedidoDetalles INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id` WHERE pedidoDetalles.`pedidoId` = '".$pedidoId."' ORDER BY pedidoDetalles.`id` DESC";
-            $sql= $consultaFiltros." ". implode(" AND ",$filtros) ." GROUP BY pedidoId, colorId, referenciaId ";
+            $sql = $consultaFiltros . " " . implode(" AND ", $filtros) . " GROUP BY pedidoId, colorId, referenciaId";
             //echo $sql;
             $result=mysqli_query($conexion,$sql);
             
@@ -1102,69 +1128,65 @@ else{
                 <td><?php echo $mostrar["totalGranel"]?></td>
                 <td><?php echo ($mostrar["totalPedidos"]*1.25)-($mostrar["totalRevision2"]+$mostrar["totalProgramados"])?></td>
                 
-                <td bgcolor= "<?php if(($mostrar["totalRevision2"]+$mostrar["totalProgramados"])>$mostrar["totalPedidos"]*1.25){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalProgramados"] ?></td>
-                
-                <td bgcolor= "<?php if($mostrar["totalProducidos"]>$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalProducidos"] ?></td>
-                
-                <td bgcolor= "<?php if($mostrar["totalPulidos"]>$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalPulidos"] ?></td>
-                
-                <!--<td bgcolor= "<?php //if($mostrar["totalEnSeparacion"]>$mostrar["totalPedidos"]){
-                //echo "B6FF8A";
-                //}?>"><?php //echo $mostrar["totalEnSeparacion"] ?></td>-->
-                
-                <td bgcolor= "<?php if($mostrar["totalSeparados"]>$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalSeparados"] ?></td>
-                
-                <td bgcolor= "<?php if($mostrar["totalEnEmplaquetado"]>$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalEnEmplaquetado"] ?></td>
-                
-                <td bgcolor= "<?php if($mostrar["totalEmplaquetados"]>=$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalEmplaquetados"] ?></td>
-                
-                <td bgcolor= "<?php if($mostrar["totalRevision1"]>=$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalRevision1"] ?></td>
-                
-                <td bgcolor= "<?php if($mostrar["totalRevision2"]>=$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalRevision2"] ?></td>
-                
-                <td bgcolor= "<?php 
-                
-                if($mostrar["totalEmpacados"]==$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }
-                else if(($mostrar["totalEmpacados"]>$mostrar["totalPedidos"]) || ($mostrar["totalEmpacados"]-$mostrar["totalPedidos"]==$mostrar["totalEmpacados"])){
-                    echo  "FB413B";
-                }
-                ?>"><?php echo $mostrar["totalEmpacados"] ?></td>
-                
-                <td bgcolor= "<?php if($mostrar["totalPedidos"]-$mostrar["totalEmpacados"]==0){
-                echo "B6FF8A";
-                }
-                else if($mostrar["totalPedidos"]-$mostrar["totalEmpacados"]<0){
-                    echo  "FB413B";
-                }
-                ?>"><?php echo ($mostrar["totalPedidos"])-($mostrar["totalEmpacados"])?></td>
-                
-                <td><?php echo $sumaItem[$nombreItem] ?></td>
-                
-                <td><a href="../control/trazarItem.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&origenBusqueda=<?php echo $origenBusqueda ?>&Crear=Enviar'" >Historial</a></td>
-                
-                <td><a href="../control/vistas/modulos/verTablaGranel.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&Crear=Enviar'" >verGranel</a></td>
-                
-                <!--<td><a    href="editar_detellePedido.php?id=<?php //echo $mostrar['id'] ?>&turno=<?php //echo $turno?>&prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Editar</a></td>
-                <td><a href="#" data-href="eliminar_detallePedido.php?id=<?php //echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td>-->
-            </tr>
+                <td bgcolor="<?php if ((isset($mostrar["totalRevision2"]) ? $mostrar["totalRevision2"] : 0) + (isset($mostrar["totalProgramados"]) ? $mostrar["totalProgramados"] : 0) > (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) * 1.25) {
+        echo "B6FF8A";
+    } ?>"><?php echo isset($mostrar["totalProgramados"]) ? $mostrar["totalProgramados"] : '' ?></td>
+    
+    <td bgcolor="<?php if (isset($mostrar["totalProducidos"]) ? $mostrar["totalProducidos"] : 0 > (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+        echo "B6FF8A";
+    } ?>"><?php echo isset($mostrar["totalProducidos"]) ? $mostrar["totalProducidos"] : '' ?></td>
+    
+    <td bgcolor="<?php if (isset($mostrar["totalPulidos"]) ? $mostrar["totalPulidos"] : 0 > (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+        echo "B6FF8A";
+    } ?>"><?php echo isset($mostrar["totalPulidos"]) ? $mostrar["totalPulidos"] : '' ?></td>
+    
+    <!--<td bgcolor="<?php //if(isset($mostrar["totalEnSeparacion"]) ? $mostrar["totalEnSeparacion"] : 0 > (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)){
+    //echo "B6FF8A";
+    //} ?>"><?php //echo isset($mostrar["totalEnSeparacion"]) ? $mostrar["totalEnSeparacion"] : '' ?></td>-->
+    
+    <td bgcolor="<?php if (isset($mostrar["totalSeparados"]) ? $mostrar["totalSeparados"] : 0 > (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+        echo "B6FF8A";
+    } ?>"><?php echo isset($mostrar["totalSeparados"]) ? $mostrar["totalSeparados"] : '' ?></td>
+    
+    <td bgcolor="<?php if (isset($mostrar["totalEnEmplaquetado"]) ? $mostrar["totalEnEmplaquetado"] : 0 > (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+        echo "B6FF8A";
+    } ?>"><?php echo isset($mostrar["totalEnEmplaquetado"]) ? $mostrar["totalEnEmplaquetado"] : '' ?></td>
+    
+    <td bgcolor="<?php if (isset($mostrar["totalEmplaquetados"]) ? $mostrar["totalEmplaquetados"] : 0 >= (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+        echo "B6FF8A";
+    } ?>"><?php echo isset($mostrar["totalEmplaquetados"]) ? $mostrar["totalEmplaquetados"] : '' ?></td>
+    
+    <td bgcolor="<?php if (isset($mostrar["totalRevision1"]) ? $mostrar["totalRevision1"] : 0 >= (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+        echo "B6FF8A";
+    } ?>"><?php echo isset($mostrar["totalRevision1"]) ? $mostrar["totalRevision1"] : '' ?></td>
+    
+    <td bgcolor="<?php if (isset($mostrar["totalRevision2"]) ? $mostrar["totalRevision2"] : 0 >= (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+        echo "B6FF8A";
+    } ?>"><?php echo isset($mostrar["totalRevision2"]) ? $mostrar["totalRevision2"] : '' ?></td>
+    
+    <td bgcolor="<?php
+        if (isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0 == (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+            echo "B6FF8A";
+        } else if ((isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0) > (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) || ((isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0) - (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) == (isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0))) {
+            echo "FB413B";
+        }
+        ?>"><?php echo isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : '' ?></td>
+    
+    <td bgcolor="<?php if ((isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) - (isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0) == 0) {
+        echo "B6FF8A";
+    } else if ((isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) - (isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0) < 0) {
+        echo "FB413B";
+    } ?>"><?php echo (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) - (isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0) ?></td>
+    
+    <td><?php echo isset($sumaItem[$nombreItem]) ? $sumaItem[$nombreItem] : '' ?></td>
+    
+    <td><a href="../control/trazarItem.php?idP=<?php echo isset($mostrar['pedidoId']) ? $mostrar['pedidoId'] : '' ?>&referenciaId=<?php echo isset($mostrar['referenciaId']) ? $mostrar['referenciaId'] : '' ?>&colorId=<?php echo isset($mostrar['colorId']) ? $mostrar['colorId'] : '' ?>&origenBusqueda=<?php echo isset($origenBusqueda) ? $origenBusqueda : '' ?>&Crear=Enviar" >Historial</a></td>
+    
+    <td><a href="../control/vistas/modulos/verTablaGranel.php?idP=<?php echo isset($mostrar['pedidoId']) ? $mostrar['pedidoId'] : '' ?>&referenciaId=<?php echo isset($mostrar['referenciaId']) ? $mostrar['referenciaId'] : '' ?>&colorId=<?php echo isset($mostrar['colorId']) ? $mostrar['colorId'] : '' ?>&Crear=Enviar" >verGranel</a></td>
+    
+    <!--<td><a    href="editar_detellePedido.php?id=<?php //echo $mostrar['id'] ?>&turno=<?php //echo $turno?>&prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Editar</a></td>
+    <td><a href="#" data-href="eliminar_detallePedido.php?id=<?php //echo $mostrar['id']; ?>" data-rg="<?= isset($mostrar['id']) ? $mostrar['id'] : '' ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td> -->
+</tr>
             <?php
             }
             ?>
@@ -1229,7 +1251,8 @@ else{
         });
     </script>
     
-    <table border="1">
+        
+<table class="table table-bordered table-striped"> 
         <tr>
                
                 <td COLSPAN= "13"><CENTER>TOTALES</CENTER></td>

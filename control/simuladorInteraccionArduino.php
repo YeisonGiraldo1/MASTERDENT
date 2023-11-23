@@ -1,10 +1,13 @@
 <?php
 $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
-    $estacion=$_GET ["estaciones"];
-      
-    if(is_null($estacion)){
-        $estacion=$_POST['estacion'] ;
-    }
+    
+
+$estacion = isset($_GET["estaciones"]) ? $_GET["estaciones"] : '';
+
+if (is_null($estacion)) {
+    $estacion = isset($_POST["estacion"]) ? $_POST["estacion"] : '';
+}
+
     
     $id = isset( $_POST['id'] ) ? $_POST['id'] : '';
     $referencia = isset( $_POST['referencia'] ) ? $_POST['referencia'] : '';
@@ -107,9 +110,10 @@ $resultLot=mysqli_query($conexion,$sqlLot);
 <head>
 	<meta charset="UTF-8">
 	<title>Simulador</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-    <button onclick="location.href='../control'">Inicio</button>
+    <button  class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
     
     
     <center>
@@ -120,44 +124,69 @@ $resultLot=mysqli_query($conexion,$sqlLot);
             <br>
             
 <!--<button onclick="location.href='../control/'">Ver Historial</button>-->
-<div class="row">
+
             <form action="interaccion_arduino.php" method="get">
             
-            <div class="mb-3">
-                
+            
+            <div class="row">
+
+            <div class="col-md-3">
                     <label for="proceso_php" class="form-label">proceso_php</label>
                     <input type="text" size="15" class="form-control "  id="proceso_php" name="proceso_php">
-                    <br></br>
+                    </div>
+        
+
+                    <div class="col-md-3">
                     <label for="cuentaLecturas_php" class="form-label">cuentaLecturas_php</label>
                     <input type="text" size="15" class="form-control "  id="cuentaLecturas_php" name="cuentaLecturas_php">
-                    <br></br>
+                    </div>
+        
+
+                    <div class="col-md-3">
                     <label for="hum_php" class="form-label">estación/hum_php</label>
                     <input type="text" size="15" class="form-control "  id="hum_php" name="hum_php">
-                    <br></br>
+                    </div>
+        
+
+
+                    <div class="col-md-3">
                     <label for="temp_php" class="form-label">juegos/gramos/temp_php</label>
                     <input type="text" size="15" class="form-control "  id="temp_php" name="temp_php">
-                    <br></br>
+                    </div>
+        
+                    </div>
+        
+
+                    <div class="row">
+                    <div class="col-md-4">
                     <label for="pre_php" class="form-label">id_molde/juegosMalos_pre_php</label>
                     <input type="text" size="15" class="form-control "  id="pre_php" name="pre_php">
-                    <br></br>
+                    </div>
+        
+
+                    <div class="col-md-4">
                     <label for="dist_php" class="form-label">cod_molde/idEmplaquetador/dist_php</label>
                     <input type="text" size="15" class="form-control "  id="dist_php" name="dist_php">
-                    <br></br>
+                    </div>
+        
+
+                    <div class="col-md-4">
                     <label for="rotulo_php" class="form-label">rotulo_php</label>
                     <input type="text" size="15" class="form-control "  id="rotulo_php" name="rotulo_php">
-                    <br></br>
+                    
+                    </div>
+                    </div>
+        <br>
+
                     
                    
                     
                      
 
                 
-                <input type="submit" name="Empacar" >
+                <input  class="btn btn-success" type="submit" name="Empacar" >
             </form>
-        </div>
-        
-    </div>
-                    
+              
 <br></br>
     
    

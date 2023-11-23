@@ -35,8 +35,8 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
         
         //limito el tamaño de los datos
 
-$fecha = substr($fecha, int -12);
-$turno = substr($turno, int -10);
+$fecha = substr($fecha, intval (-12));
+$turno = substr($turno, intval (-10));
 //$prensada = substr($prensada, int -2);
         
         //elimino los espacios en blanco del string turno.
@@ -65,8 +65,8 @@ var_dump($prensada);*/
 
 //limito el tamaño de los datos
 
-$fecha = substr($fecha, int -12);
-$turno = substr($turno, int -10);
+$fecha = substr($fecha, intval (-12));
+$turno = substr($turno, intval (-10));
 //$prensada = substr($prensada, int -2);
 
 //elimino los espacios en blanco del string

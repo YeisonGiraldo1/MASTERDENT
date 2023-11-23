@@ -96,7 +96,7 @@ if ($rol == 1 || $rol == 3) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <button onclick="location.href='../control'">Inicio</button>
+    <button class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
      <!--<button onclick="location.href='../control/vistas/modulos/verTablaPedidos.php'">Atrás</button>-->
     
     <meta charset="UTF-8">
@@ -106,6 +106,11 @@ if ($rol == 1 || $rol == 3) {
     <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    
+
+
 </head>
 
 <head>
@@ -116,57 +121,77 @@ if ($rol == 1 || $rol == 3) {
     <center>
 
    
-
+<div class="container">
 
 
         <h1>Consolidado de pedidos </h1>
     
     
-<div class="row">
+
             <form action="pedidosConsolidado.php" method="POST">
             
-            <div class="mb-3">
-                
+            
+            <div class="row">
                    
+            <div class="col-md-4">
                     <label for="pedido" class="form-label">Pedido</label>
-                    <input type="text" size="15" class="form-control " id="pedido" name="pedido">
-                    
+                    <input type="text" size="15" class="form-control " id="pedido" name="pedido">            
+ </div>
+
+
+                    <div class="col-md-4">
                     <label for="cliente" class="form-label">Cliente</label>
                     <input type="text" size="15" class="form-control " id="cliente" name="cliente">
-                    
+                    </div>
                    
+
+                    <div class="col-md-4">
                     <label for="referencia" class="form-label">Referencia</label>
                     <input type="text" size="15" class="form-control " autofocus  id="referencia" name="referencia">
-         
+                    </div>
+
+
+                    <div class="row">
+
+                    <div class="col-md-4">
                     <label for="color" class="form-label">Color</label>
                     <input type="text" size="15" class="form-control "  id="color" name="color">
-                    
+                    </div>
+
+                    <div class="col-md-4">
                     <label for="tipo" class="form-label">Muela/Diente</label>
                     <select class="form-select"  id="tipo" name="tipo" aria-label="Default select example">
                         <option selected></option>
                         <option value="Muela">MUELA</option>
                         <option value="Diente">DIENTE</option>
-                    
                     </select>
-                    
+                    </div>
+
+
+                    <div class="col-md-4">
                      <label for="uppLow" class="form-label">Sup/Inf</label>
                     <select class="form-select"  id="uppLow" name="uppLow" aria-label="Default select example">
                         <option selected></option>
                         <option value="-S">SUP</option>
                         <option value="-I">INF</option>
-                    
                     </select>
-    
+                    <br><br>
+                    </div> </div>
                 
-                <input type="submit" name="Empacar" >
-            </form>
-        </div>
-        
-    </div>
+
+                   
                     
-<br></br>
+                    <div class="row">
+
+                    <div class="col-md-12">
+                <input type="submit" name="Empacar" class="btn btn-success" >
+                </div> </div>
+            </form>
+     
+                    
+<br></br><br><br>
     
-        <table border="2">
+<table class="table table-bordered table-striped"> 
             <tr>
                 <!--<td>id</td>-->
                
@@ -307,9 +332,9 @@ if ($rol == 1 || $rol == 3) {
                 }
                 ?>"><?php echo ($mostrar["totalPedidos"])-($mostrar["totalEmpacados"])?></td>
                 
-                <td><a href="../control/trazarItem.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&Crear=Enviar'" >Historial</a></td>
+                <td><a class="btn btn-secondary" href="../control/trazarItem.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&Crear=Enviar'" >Historial</a></td>
                 
-                <td><a href="../control/vistas/modulos/verTablaGranel.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&Crear=Enviar'" >verGranel</a></td>
+                <td><a class="btn btn-secondary" href="../control/vistas/modulos/verTablaGranel.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&Crear=Enviar'" >verGranel</a></td>
                 
                 <!--<td><a    href="editar_detellePedido.php?id=<?php //echo $mostrar['id'] ?>&turno=<?php //echo $turno?>&prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Editar</a></td>
                 <td><a href="#" data-href="eliminar_detallePedido.php?id=<?php //echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td>-->
@@ -318,6 +343,7 @@ if ($rol == 1 || $rol == 3) {
             }
             ?>
         </table>
+        
         <br></br>
         
          <script type="text/javascript">
@@ -378,7 +404,7 @@ if ($rol == 1 || $rol == 3) {
         });
     </script>
     
-   <table border="1">
+    <table class="table table-bordered table-striped"> 
         <tr>
                
                 <td COLSPAN= "13"><CENTER>TOTALES</CENTER></td>
@@ -434,7 +460,7 @@ if ($rol == 1 || $rol == 3) {
             ?>
         </table>
         <br></br>
-            
+        </div>
           
             
 

@@ -15,8 +15,12 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
     if ($fechaDesde != '' && $fechaHasta != ''){
             $filtros[]= "pedidoDetalles.fechaCreacion BETWEEN '$fechaDesde%' AND '$fechaHasta%'";
     }
-    if (is_null($filtros[0])){
-        $filtros[]="1";
+    if (empty($filtros)) {
+        $filtros[] = "1";
+    } else {
+        if (is_null($filtros[0])) {
+            $filtros[0] = "1";
+        }
     }
     
     $consultaFiltros='select sum(revision2) as total, pedidos2.linea as linea FROM pedidoDetalles INNER JOIN pedidos2 ON pedidoDetalles.pedidoId = pedidos2.idP WHERE ';
@@ -121,11 +125,14 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 <head>
     <meta charset="UTF-8">
     <title>TerminadoConsolidado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
 </head>
 <body>
     
-    <button onclick="location.href='../control'">Inicio</button>
+    <button class="btn btn-primary"  onclick="location.href='../control'">Inicio</button>
 
+    <div class="container">
 <center>
     <!--<h3><BASEFONT SIZE="20"><?php //echo $fechaActual = date ( 'Y-m-d' );?></h3>-->
     <h1>Producto Terminado Consolidado</h1>
@@ -135,34 +142,38 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 <div class="row">
             <form action="consolidadoAsignado.php" method="POST">
             
-            <div class="mb-3">
-           
+          
+            <div class="row">
                     
+
+            <div class="col-md-6">
                     <label for="fechaDesde" class="form-label">Desde</label>
                     <input type="Date" class="form-control" id="fechaDesde" name="fechaDesde" placeholder="Ingresa la fecha" >
-                    
+                    </div>
+
+                    <div class="col-md-6">
                     <label for="fechaHasta" class="form-label">Hasta</label>
                     <input type="Date" class="form-control" id="fechaHasta" name="fechaHasta" placeholder="Ingresa la fecha" >
-                    
+                    </div>
+                    </div>
                     <input name="pedido" type="hidden" value=" <?php
                         echo $pedido;  
                     ?>">
                      
-
+<br><br>
                 
-                <input type="submit" name="Empacar" >
+                <input type="submit" name="Empacar" class="btn btn-success"  >
+                
             </form>
-        </div>
-        
-    </div>
-    <br></br>
+       
+    
     <?php
     if($fechaDesde != ''){
     echo "Entregado a bodega desde $fechaDesde hasta $fechaHasta";
     }
     ?>
-    
-        <table border="1">
+   
+   <table style="margin-top: 30px;" class="table table-bordered table-striped">
             <tr>
                 
                 <td><H2>LÍNEA</H2></td>
@@ -230,6 +241,7 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
             </tr>
 
 </table>
+</div>
 
 <script type="text/javascript">
 $(document).on("click", "#delRg", function(event) {
@@ -258,11 +270,11 @@ $.ajax({
 });
 </script>
 
- </table>
+ </table >
  
 
          <br>
-<table border="1">
+<table  class="table table-bordered table-striped">
             <tr>
                
               

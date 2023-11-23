@@ -103,6 +103,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!--CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="../resources/estilos.css">
     <!--Fin-->
 
@@ -113,33 +114,56 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     
+
+
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
     
 </head>
 <body>
     
-    <button onclick="location.href='../control'">Inicio</button>
+    <button class="btn btn-primary"  onclick="location.href='../control'">Inicio</button>
 <center>
+
+
+<div class="container">
+
+
     <h1>Pedidos</h1>
     
     <br>
     
-    <div class="row">
+    
             <form action="../modulos/verTablaPedidos.php" method="POST">
             
-            <div class="mb-3">
+
+            <div class="row">
+            <div class="col-md-3">
                     <label for="idP" class="form-label">id</label>
-                    <input type="text" class="form-control "  id="idP" name="idP" style="width: 50px">
+                    <input type="text" class="form-control "  id="idP" name="idP">
+                    </div>
                     
+
+                    <div class="col-md-3">
                     <label for="codigoP" class="form-label">CódigoP</label>
-                    <input type="text" class="form-control "  id="codigoP" name="codigoP" style="width: 100px" autofocus>
+                    <input type="text" class="form-control "  id="codigoP" name="codigoP"  autofocus>
+                    </div>
                     
+                    <div class="col-md-3">
                     <label for="nota" class="form-label">Alias</label>
-                    <input type="text" class="form-control "  id="nota" name="nota" style="width: 100px">
+                    <input type="text" class="form-control "  id="nota" name="nota">
+                    </div>
                     
+                    <div class="col-md-3">
                     <label for="cliente" class="form-label">Cliente</label>
-                    <input type="text" class="form-control "  id="cliente" name="cliente" style="width: 100px">
-                    
-                    
+                    <input type="text" class="form-control "  id="cliente" name="cliente" >
+                    </div>
+                    </div>
+
+
+
+                    <div class="row">
+                    <div class="col-md-4">
                 <label for="linea" class="form-label">Línea</label>
                  <select class="form-select" id="linea" name="linea" aria-label="Default select example">
                         <option selected value="NULL"></option>
@@ -150,42 +174,53 @@
                         <option value="UHLERPLUS">UHLERPLUS</option>
                         <option value="STARDENT">STARDENT</option>
                         <option value="ZENITH">ZENITH</option>
-                        
-                 
                     </select>
-                   
+                    </div>
+
                     
                     
+
+                    <div class="col-md-4">
                 <label for="categoria" class="form-label">NAL/INT</label>
                     <select class="form-select"  id="categoria" name="categoria" aria-label="Default select example">
                         <option selected></option>
                         <option value="NAL">NACIONAL</option>
                         <option value="INT">INTERNACIONAL</option>
-                    
                     </select>
-                    
+                    </div>
+
+
+                        <div class="col-md-4">
                     <label for="estado" class="form-label">Estado</label>
                     <select class="form-select"  id="estado" name="estado" aria-label="Default select example">
                         <option selected></option>
                         <option value="terminado">Terminado</option>
                         <option value="enProceso">En Proceso</option>
-                    
                     </select>
-                    
-                    <br></br>
-                    
+                    </div>
+                    </div>
+
+                 
+
+                    <div class="row">
+                    <div class="col-md-6">
                     <label for="fechaDesde" class="form-label">Desde</label>
                     <input type="Date" class="form-control" id="fechaDesde" name="fechaDesde" placeholder="Ingresa la fecha" >
-                    
+                    </div>
+
+
+                    <div class="col-md-6">
                     <label for="fechaHasta" class="form-label">Hasta</label>
                     <input type="Date" class="form-control" id="fechaHasta" name="fechaHasta" placeholder="Ingresa la fecha" >
-                    
+                    </div>
+                    </div>
+
                     <input name="origenBusqueda" type="hidden" value=" <?php
                         echo $origenBusqueda;  
                     ?>">
                     
-                
-                <input type="submit" name="Empacar" >
+                <br><br>
+                <input class="btn btn-success" type="submit" name="Empacar" >
             </form>
         </div>
         
@@ -193,7 +228,7 @@
                     <br>
 
     
-        <table border="1">
+                    <table class="table table-bordered table-striped">
             <tr>
                 <td>id</td>
                 <td>Código Pedido</td>
@@ -291,16 +326,16 @@
                 <td><?php echo $mostrar['fechaCreacion'] ?></td>
                 <!--<td><?php //echo $mostrar['fechaActualizacion'] ?></td>-->
                 
-                <td><a href="../../editar_pedido.php?id=<?php echo $mostrar['idP']; ?> ">Editar</a></td>
-                <td><a href="../../eliminar_pedido.php?id=<?php echo $mostrar['idP']; ?> ">Eliminar</a></td>
-                <td><a href="../../trazarPedido.php?id=<?php echo $mostrar['idP']; ?>&origenBusqueda=<?php echo $origenBusqueda?> "  >Ver Ítems</a></td>
+                <td><a class="btn btn-primary" href="../../editar_pedido.php?id=<?php echo $mostrar['idP']; ?> "><i class="fa-regular fa-pen-to-square"></i></a></td>
+                <td><a class="btn btn-danger" href="../../eliminar_pedido.php?id=<?php echo $mostrar['idP']; ?> "><i class="fa-solid fa-trash"></i></a></td>
+                <td><a class="btn btn-secondary" href="../../trazarPedido.php?id=<?php echo $mostrar['idP']; ?>&origenBusqueda=<?php echo $origenBusqueda?> "  >Ver Ítems</a></td>
             </tr>
             <?php
             }
             ?>
         </table>
         <br></br>
-        <table border="1">
+        <table class="table table-bordered table-striped">
             
             <tr>
             <td colspan = "3"><center>JUEGOS TOTALES</center></td>
@@ -430,7 +465,7 @@
     </center>
 </body>
 </html>
-
+</div>
 <?php
 
 ?>

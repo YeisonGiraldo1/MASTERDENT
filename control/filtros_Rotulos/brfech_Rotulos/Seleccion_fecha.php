@@ -62,10 +62,15 @@ $hasta=$_GET["hasta"];
             $filtros[]= "referencias2.`capas` = '$capas'";
     }
     
-    if (is_null($filtros[0])){
+    if (!empty($filtros) && isset($filtros[0])) {
         $filtros[0]=1;
     }
-    $Fecha=trim($Fecha);
+
+
+    if (isset($Fecha)) {
+    $Fecha = trim($Fecha);
+  
+}
     
     $consultaFiltros="SELECT rotulos2.*,referencias2.`nombre` AS referencia, referencias2.`gramosJuego` AS gramosJuego, colores2.`nombre` AS 'Color', pedidos2.`codigoP` AS Pedido, pedidos2.`nota` AS alias, lotes2.`nombreL` AS Lote, estaciones2.`nombre` AS 'estacionActual' FROM rotulos2 INNER JOIN referencias2 ON rotulos2.`referenciaId`= referencias2.`id` INNER JOIN colores2 ON rotulos2.`colorId` = colores2.`id` INNER JOIN pedidos2 ON rotulos2.`pedido` = pedidos2.`idP` INNER JOIN lotes2 ON rotulos2.`loteId`= lotes2.`id` INNER JOIN estaciones2 ON rotulos2.`estacionId2` = estaciones2.`id` WHERE Fecha BETWEEN '$desde' AND '$hasta' AND ";
     
@@ -86,6 +91,27 @@ $hasta=$_GET["hasta"];
                     $rotulosId[$mostrarSeparados['rotuloId']]=$mostrarSeparados['separado'];
                    
             }
+            
+
+        //     $consulta = $consultaFiltros;
+
+        //     if (!empty($filtros)) {
+        //         $consulta .= " WHERE " . implode(" AND ", $filtros);
+        //     }
+            
+        //     $consulta .= " ORDER BY id ASC";
+            
+        // //     // Imprime la consulta para depuración
+        // //     echo "Consulta: $consulta";
+            
+        //     $query = mysqli_query($conexion, $consulta);
+            
+        //     if (!$query) {
+        //         die("Error en la consulta: " . mysqli_error($conexion));
+        //     }
+            
+            
+            // Resto de tu código...
             
 
     // var_dump($fecha);

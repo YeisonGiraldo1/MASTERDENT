@@ -7,9 +7,10 @@ require_once("herramienta_introducir_datos.php");
 
 //obtengo variables enviadas desde el arduino.
 
-$proceso=$_GET["proceso_php"];
-$menorRotulo=$GET["menorRotulo_php"];
-$mayorRotulo=$GET["mayorRotulo_php"];
+
+$proceso= isset($GET["proceso_php"]) ? $_GET["proceso_php"] : '';
+$menorRotulo= isset($GET["menorRotulo_php"]) ? $_GET["menorRotulo.php"] : '';
+$mayorRotulo =  isset($GET["mayorRotulo_php"]) ? $_GET["mayorRotulo_php"] : '';
 $cuentaLecturas=$_GET["cuentaLecturas_php"];
 $estacion=$_GET["hum_php"];
 $juegos=$_GET["temp_php"];
