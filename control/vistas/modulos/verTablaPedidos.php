@@ -90,6 +90,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Pedidos</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../../../Public/imagenes/terminacion4.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+        
+    </style>
     
     <!---->
     <!--<link rel="stylesheet" href="cssProyecto/estilosTablas.css"> -->
@@ -228,7 +249,7 @@
                     <br>
 
     
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-dark table-striped">
             <tr>
                 <td>id</td>
                 <td>Código Pedido</td>
@@ -335,7 +356,7 @@
             ?>
         </table>
         <br></br>
-        <table class="table table-bordered table-striped">
+        <table class="table table-dark table-striped">
             
             <tr>
             <td colspan = "3"><center>JUEGOS TOTALES</center></td>

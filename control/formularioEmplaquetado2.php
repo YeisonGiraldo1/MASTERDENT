@@ -12,6 +12,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
 <div style="text-align: center;">
     <button  class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
     <button class="btn btn-primary" onclick="location.href='../control/tableroTerminacion2.php'">Tablero</button>
@@ -29,7 +30,26 @@
          
        
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../Public/imagenes/terminacion4.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
 
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+        
+    </style>
 </head>
 <body>
     <center><h2>Registro de Emplaquetado</h2>
@@ -87,7 +107,7 @@
     <br>
 
     
-        <table class="table table-bordered table-striped">
+        <table class="table table-dark table-striped">
         
             <tr>
                 <td>id</td>

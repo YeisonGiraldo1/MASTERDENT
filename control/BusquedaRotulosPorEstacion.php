@@ -119,6 +119,26 @@ $resultLot=mysqli_query($conexion,$sqlLot);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../Public/imagenes/terminacion4.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+        
+    </style>
 	<meta charset="UTF-8">
 	<title>PorEstacion</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -127,6 +147,7 @@ $resultLot=mysqli_query($conexion,$sqlLot);
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 
         <div class="text-center">
             <button class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
@@ -269,7 +290,7 @@ $resultLot=mysqli_query($conexion,$sqlLot);
 
     <br></br>
         
-    <table class="table table-bordered table-striped">
+    <table class="table table-dark table-striped">
         <tr>
             <td>id</td>
             <!--<td>cod_rotulo</td>-->
@@ -315,7 +336,7 @@ $resultLot=mysqli_query($conexion,$sqlLot);
 
     <br>
         
-    <table class="table table-bordered table-striped">
+    <table class="table table-dark table-striped">
         <tr>
             <td>TOTAL JUEGOS</td>
         </tr>

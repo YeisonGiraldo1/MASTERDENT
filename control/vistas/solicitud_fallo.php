@@ -38,7 +38,7 @@
 <label for="problema"></label>
 <textarea name="problema" class="form-control" id="problema" placeholder="Ingresa aqui el problema." cols="60" rows=5"></textarea>
 <br>
-<input type="submit"/>
+<input class="btn btn-success" type="submit"/>
     </div>
     <div class="col">
         <!-- Aqui puedes poner mas codigo :) -->

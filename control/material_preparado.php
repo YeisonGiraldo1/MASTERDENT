@@ -10,17 +10,18 @@
 <head>
     <meta charset="UTF-8">
     <title>materialPreparado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
-<button onclick="location.href='../control'">Inicio</button>
+<button class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
 <body>
     <center>
-
+<div class="container">
     <h1>Material Preparado</h1>
     <br>
     <h2>Disponible por color</h2>
     <br>
     
-    <table border="1">
+    <table  class="table table-striped">
             <tr>
                 
                 <td>Color</td>
@@ -57,7 +58,7 @@
 
 
 ?>
-<table border="1">
+<table e  class="table table-striped">
             <tr>
                 <td>id</td>
                 <td>color</td>
@@ -97,6 +98,8 @@
             }
             ?>
         </table>
+
+    </div>
 </center>
 </body>
 </html>

@@ -39,7 +39,7 @@ if($rol==3 ){
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body style="overflow-y: scroll;">
 <div class="container">
   <div class="row">
     <div class="col">
@@ -106,7 +106,7 @@ if($rol==3 ){
     
   </div>
 
-  <button type="submit" class="btn btn-primary">Registrar</button>
+  <button type="submit" class="btn btn-success">Registrar</button>
 </form>
 
     </div>

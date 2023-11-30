@@ -9,8 +9,15 @@ require_once("herramienta_introducir_datos.php");
 //     </script>";
 // }
 
+
 $lote = $_GET["lote"];
 $colorId = $_GET["color"];
 
 $herramienta9 = new Herramienta();
-$ingresar_dato_tabla_lotes2 = $herramienta9->ingresar_datos_tabla_lotes2($lote, $colorId);
+
+if ($herramienta9->conexion->conexion) {
+    $herramienta9->ingresar_datos_tabla_lotes2($lote, $colorId);
+} else {
+    echo "Error: No se pudo establecer la conexión a la base de datos.";
+}
+?>

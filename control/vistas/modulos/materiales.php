@@ -79,7 +79,7 @@ if ($rol == 1 or $rol == 3) {
     }
   </style>
 
-  <body>
+  <body style="overflow-y: scroll;"> <!--hace que funcione el scroll correctamente  -->
     <main>
       <nav class="viewContainer">
         <section class="view1">

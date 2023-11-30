@@ -9,7 +9,7 @@ $fecha = ""; // Asigna un valor a la variable $fecha
 <body>
 <br>
 <!--<button type="button"  style="margin-left:80%;"><a  href="../progProduccion/progProduccion1.php">REGRESAR</a></button>-->
-<button type="button"  style="margin-left:80%;"><a  href="../">REGRESAR</a></button>
+<a class="btn btn-primary" href="../">Regresar</a>
 <br>
 
 <div class="forma"  style="width:600px; margin-left:400px;border-style:solid;border-width:1px;border-color:black;">
@@ -31,7 +31,7 @@ $fecha = ""; // Asigna un valor a la variable $fecha
   <option value="1">Intervalo Fecha </option>
   <option value="2">Dia Especifico</option>
 </select> <br>
-<input type="submit"value='Enviar'>
+<input class="btn btn-success" type="submit"value='Enviar'>
 </form>
     </div>
     

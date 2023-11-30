@@ -2,7 +2,7 @@
 
 class Herramienta
 {
-	private $conexion;
+	public $conexion;
 
 
 
@@ -837,38 +837,25 @@ AND rotulos2.`turno` LIKE '%." . $turno1 . "%' AND rotulos2.`prensada` = '" . $p
 												}
 
 												//////////////////////////////////////////////////////////
-
 												public function ingresar_datos_tabla_lotes2($lote, $colorId)
 												{
-													$sql_9 = " INSERT INTO lotes2 values (null, ?, ?, (select DATE_SUB(NOW(),INTERVAL 5 HOUR)),(select DATE_SUB(NOW(),INTERVAL 5 HOUR)), 'enProceso') ";
-													$stmt_9 = $this->conexion->conexion->prepare($sql_9);
-													$hasError = false;
-
-
+													$sql_9 = "INSERT INTO lotes2 VALUES (null, ?, ?, NOW() - INTERVAL 5 HOUR, NOW() - INTERVAL 5 HOUR, 'enProceso')";
+													
 													try {
+														
+														$stmt_9 = $this->conexion->prepararConsulta($sql_9);
 														$stmt_9->bindValue(1, $lote);
 														$stmt_9->bindValue(2, $colorId);
+														$stmt_9->execute();
+														
+														echo "Ingreso Exitoso en tabla lotes2";
+														
+														// No es necesario el redireccionamiento aquí, puedes manejar eso en el código que llama a esta función
 													} catch (PDOException $e) {
-														$hasError = true;
-													}
-
-													if (!$hasError || $stmt_9->execute()) {
-
-														echo "Ingreso Exitoso en tabla lotes2,";
-														?>
-															<html lang="en">
-
-															<head>
-																<meta http-equiv="refresh" content="0.3; url= ../control/formulario_lotes.php">
-															</head>
-
-														<?php
-
-													} else {
-														echo "no se pudo registrar datos en tabla lotes2,";
+														echo "Error al registrar datos en tabla lotes2: " . $e->getMessage();
 													}
 												}
-
+												
 												///////////////////////////////////////////////////////////
 
 												//se insertan los datos de rótulo y molde a la tabla asignaciones y se inicia el proceso.

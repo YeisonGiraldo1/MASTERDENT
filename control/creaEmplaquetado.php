@@ -4,7 +4,15 @@ require_once("herramienta_introducir_datos.php");
 $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
 $emplaquetador=$_GET ["emplaquetador"];
-$cod_rotulo=$_GET["rotulo"];
+$cod_rotulo = isset($_GET["rotulo"]) ? $_GET["rotulo"] : null;
+
+if ($cod_rotulo === null) {
+    // Manejo del error o mensaje de advertencia
+    echo "Error: El parámetro 'rotulo' no está definido.";
+    // Puedes detener la ejecución del script si es necesario
+    die();
+}
+
 $cajas=$_GET ["cajas"];
 $juegos=0;
 
@@ -24,7 +32,16 @@ while($mostrarR=mysqli_fetch_array($resultR)){
                     $colorId=$mostrarR['colorId']; 
                     $juegosIngresan=$mostrarR['total'];
                     $gramosJuego=$mostrarR['gramosJuego'];
-                    $tipo=$mostrarR['tipo'];
+                    $tipo = ''; // Asigna un valor predeterminado vacío
+                    if (isset($mostrarR['tipo'])) {
+                        $tipo = $mostrarR['tipo'];
+                    } else {
+                        // Manejo del error o mensaje de advertencia
+                        echo "Error: El índice 'tipo' no está definido en el resultado de la consulta.";
+                        // Puedes detener la ejecución del script si es necesario
+                        die();
+                    }
+                    
                     $linea=$mostrarR['linea'];
                     //$gramosGranel=$mostrarR['gramosGranel'];
                     //$juegosGranel=$gramosGranel/$gramosJuego;

@@ -1,5 +1,6 @@
 <?php
 $dataBase="(\"localhost\",\"root\",\"\",\"u638142989_MasterdentDB\")";
+
 class conexion
 {
 	private $servidor;
@@ -15,12 +16,25 @@ class conexion
 		$this->basedatos  = "u638142989_MasterdentDB";
 	}
 
-	function conectar(){
-		$this->conexion = new PDO("mysql:host=$this->servidor;dbname=$this->basedatos","$this->usuario","$this->contrasena");
+	function conectar()
+    {
+        try {
+            $this->conexion = new PDO("mysql:host=$this->servidor;dbname=$this->basedatos", $this->usuario, $this->contrasena);
+            $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            // echo "Conexión exitosa a la base de datos";
+        } catch (PDOException $e) {
+            die("Error de conexión: " . $e->getMessage());
+        }
+    }
+	function cerrar(){
+		
 	}
 
-	function cerrar(){
-		$this->conexion->close();
-	}
+
+	   // Nuevo método para preparar consultas
+	   function prepararConsulta($sql)
+	   {
+		   return $this->conexion->prepare($sql);
+	   }
 }
 ?>
