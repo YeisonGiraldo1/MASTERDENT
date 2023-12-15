@@ -115,129 +115,90 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 <html lang="en">
 <head>
     <button class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
-     <button class="btn btn-primary" onclick="location.href='../control/trazarPedido.php?id=<?php echo $pedidoId; ?>&referenciaId=<?php echo $referenciaId; ?>&colorId=<?php echo $colorId; ?>&origenBusqueda=<?php echo $origenBusqueda?>&Crear=Enviar'">Atrás</button>
+    <button class="btn btn-primary" onclick="location.href='../control/trazarPedido.php?id=<?php echo $pedidoId; ?>&referenciaId=<?php echo $referenciaId; ?>&colorId=<?php echo $colorId; ?>&origenBusqueda=<?php echo $origenBusqueda?>&Crear=Enviar'">Atrás</button>
     
+    <!-- Agrega estos enlaces en la sección head de tu HTML -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha384-oS3QGVnm6MOBqch3geQcV3kxr83r4pR9Nyp+RTtDz3cM7CYC/SpWQROQjbzm+JCE" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    
+<div style="text-align: center;">
+    <button  class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
+    <button class="btn btn-primary" onclick="location.href='../control/tableroTerminacion2.php'">Tablero</button>
+     <button class="btn btn-primary" onclick="location.href='../control/consolidadoEmplaquetado.php'">Consolidado Emplaquetado</button>
+     <button class="btn btn-primary" onclick="location.href='../control/consolidadoPorEmplaquetar.php'">Consolidado Entregado A Emplaquetar</button>
+     </div>
+    <br></br>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SeguimientoPedidos</title>
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <title>Emplaquetado Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+         
+       
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 
 <head>
-	<meta charset="UTF-8">
-	<title>ItemPedido</title>
+    <meta charset="UTF-8">
+    <title>ItemPedido</title>
 </head>
 <body>
     <center>
 
-   
+        <h1>Historial movimientos del pedido <?php echo $pedido ?>  </h1>
 
-
-
-        <h1>Historial movimientos del pedido <?php echo $pedido  ?>  </h1>
-        
         <?php
-        
-   
-        
-         // busco el nombre de la referencia según su id en la tabla referencias2
-                
-                
-$sqlRef= "SELECT `nombre` FROM `referencias2` WHERE id = '$referenciaId'";
-$resultRef=mysqli_query($conexion,$sqlRef);       
+        // Busco el nombre de la referencia según su id en la tabla referencias2
+        $sqlRef = "SELECT `nombre` FROM `referencias2` WHERE id = '$referenciaId'";
+        $resultRef = mysqli_query($conexion, $sqlRef);
 
-     
-                while($mostrarRef=mysqli_fetch_array($resultRef)){
-                    $referencia=$mostrarRef['nombre'];
-                   
-            }
-            ?>
-
-
+        while ($mostrarRef = mysqli_fetch_array($resultRef)) {
+            $referencia = $mostrarRef['nombre'];
+        }
+        ?>
 
         <h3>Referencia: 
+            <td><?php echo max($referencia, "") ?></td>
+        </h3>
 
-        
-               
-            
-                
-                <td><?php //echo $mostrar3['cliente'] 
-                echo $referencia;
-                ?></td>
-                
-                
-                
-           
-            </h3>
-            
-            <?php
-            
-          // busco el id del color según su nombre 
-                
-                
-$sqlCol= "SELECT `nombre` FROM `colores2` WHERE id = '$colorId'";
-$resultCol=mysqli_query($conexion,$sqlCol);       
+        <?php
+        // Busco el id del color según su nombre 
+        $sqlCol = "SELECT `nombre` FROM `colores2` WHERE id = '$colorId'";
+        $resultCol = mysqli_query($conexion, $sqlCol);
 
-     
-                while($mostrarCol=mysqli_fetch_array($resultCol)){
-                    $color=$mostrarCol['nombre'];
-                   
-            }
-
-            ?>
-
-
+        while ($mostrarCol = mysqli_fetch_array($resultCol)) {
+            $color = $mostrarCol['nombre'];
+        }
+        ?>
 
         <h3>Color: 
+            <td><?php echo max($color, "") ?></td>
+        </h3>
 
-                
-                <td><?php echo $color; ?></td>
-                
-                
-                
-            
-          
-            </h3>
-  
-
-  
-    <!--
-    
-<div class="row">
+        <!--
+        <div class="row">
             <form action="trazarPedido.php" method="POST">
-            
-            <div class="mb-3">
-                
-                   
-                    
+                <div class="mb-3">
                     <label for="referencia" class="form-label">Referencia</label>
-                    <input type="text" size="15" class="form-control "  id="referencia" name="referencia">
-         
+                    <input type="text" size="15" class="form-control " id="referencia" name="referencia">
                     <label for="color" class="form-label">Color</label>
-                    <input type="text" size="15" class="form-control "  id="color" name="color">
-                    
-                    <input name="id" type="hidden" value=" <?php
-                        echo $pedidoId;  
-                    ?>">
-                     
-
-                
-                <input type="submit" name="Empacar" >
+                    <input type="text" size="15" class="form-control " id="color" name="color">
+                    <input name="id" type="hidden" value="<?php echo $pedidoId; ?>">
+                    <input type="submit" name="Empacar">
+                </div>
             </form>
         </div>
-        
-    </div>
-                    
-<br></br>
--->
-    
+        <br></br>
+        -->
+
         <table border="2" class="table table-striped table-bordered table-hover">
             <tr>
                 <!--<td>id</td>-->
-               
-                
                 <td>RotuloId</td>
                 <td>Pedidos</td>
                 <td>Granel</td>
@@ -255,143 +216,99 @@ $resultCol=mysqli_query($conexion,$sqlCol);
                 <td>Colaborador</td>
                 <td>Fecha</td>
                 <td>Acción</td>
-                
-               
-                <!--<td>acción</td>
-                <td>acción</td>-->
-                
-                
             </tr>
-            
+
             <?php
-            
-            $iniciales=array();
-            //consulto las iniciales de los emplaquetadores
-             $sqlEmplaquetadores= "SELECT iniciales FROM emplaquetadores WHERE 1";
-            //echo $sqlEmplaquetadores;
-            $resultEmplaquetadores=mysqli_query($conexion,$sqlEmplaquetadores);
-            
-            while($mostrarEmplaquetadores=mysqli_fetch_array($resultEmplaquetadores)){
-                $iniciales[]=$mostrarEmplaquetadores["iniciales"];
+            $iniciales = array();
+            // Consulto las iniciales de los emplaquetadores
+            $sqlEmplaquetadores = "SELECT iniciales FROM emplaquetadores WHERE 1";
+            $resultEmplaquetadores = mysqli_query($conexion, $sqlEmplaquetadores);
+
+            while ($mostrarEmplaquetadores = mysqli_fetch_array($resultEmplaquetadores)) {
+                $iniciales[] = $mostrarEmplaquetadores["iniciales"];
             }
-            //$sql="SELECT pedidoDetalles.*, referencias2.`nombre` AS 'referencia', colores2.`nombre` AS 'Color' FROM pedidoDetalles INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id` WHERE pedidoDetalles.`pedidoId` = '".$pedidoId."' ORDER BY pedidoDetalles.`id` DESC";
-            $sql= $consultaFiltros." ". implode(" AND ",$filtros) ."  ";
-            //echo $sql;
-            $result=mysqli_query($conexion,$sql);
-            
-            while($mostrar=mysqli_fetch_array($result)){
+
+            $sql = $consultaFiltros . " " . implode(" AND ", $filtros) . "  ";
+            $result = mysqli_query($conexion, $sql);
+
+            while ($mostrar = mysqli_fetch_array($result)) {
             ?>
-            <tr>
-                <!--<td><?php //echo $mostrar['id'] ?></td>-->
-                
-                
-                
-                
-                <td><?php echo $mostrar["rotuloId"] ?></td>
-                <td><?php echo $mostrar["juegos"] ?></td>
-                <td><?php echo $mostrar["granel"]?></td>
-                <td><?php echo $mostrar["programados"]?></td>
-                <td><?php echo $mostrar["producidos"]?></td>
-                <td><?php echo $mostrar["pulidos"]?></td>
-                <td><?php echo $mostrar["enSeparacion"]?></td>
-                <td><?php echo $mostrar["separado"]?></td>
-                <td><?php echo $mostrar["enEmplaquetado"]?></td>
-                <td><?php echo $mostrar["emplaquetados"]?></td>
-                <td><?php echo $mostrar["revision1"]?></td>
-                <td><?php echo $mostrar["revision2"]?></td>
-                <td><?php echo $mostrar["empacados"]?></td>
-                <td><?php echo $mostrar["calidad"]?></td>
-                <td><?php 
-                
-                if(!(is_null($mostrar["colaborador"]))){
-                
-                echo $iniciales[$mostrar["colaborador"]-1];
-                }
-                else {
-                    echo "";
-                }
-                ?></td>
-                <td><?php echo $mostrar["fechaCreacion"]?></td>
-                <td><a href="#" data-href="eliminaDetalle.php?id=<?php echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td>
-                
-                
-                
-            </tr>
+                <tr>
+                    <!--<td><?php //echo $mostrar['id'] ?></td>-->
+                    <td><?php echo max($mostrar["rotuloId"], "") ?></td>
+                    <td><?php echo max($mostrar["juegos"], 0) ?></td>
+                    <td><?php echo max($mostrar["granel"], 0) ?></td>
+                    <td><?php echo max($mostrar["programados"], 0) ?></td>
+                    <td><?php echo max($mostrar["producidos"], 0) ?></td>
+                    <td><?php echo max($mostrar["pulidos"], 0) ?></td>
+                    <td><?php echo max($mostrar["enSeparacion"], 0) ?></td>
+                    <td><?php echo max($mostrar["separado"], 0) ?></td>
+                    <td><?php echo max($mostrar["enEmplaquetado"], 0) ?></td>
+                    <td><?php echo max($mostrar["emplaquetados"], 0) ?></td>
+                    <td><?php echo max($mostrar["revision1"], 0) ?></td>
+                    <td><?php echo max($mostrar["revision2"], 0) ?></td>
+                    <td><?php echo max($mostrar["empacados"], 0) ?></td>
+                    <td><?php echo max($mostrar["calidad"], 0) ?></td>
+                    <td><?php echo max(isset($mostrar["colaborador"]) ? $iniciales[$mostrar["colaborador"] - 1] : "", "") ?></td>
+                    <td><?php echo max($mostrar["fechaCreacion"], "") ?></td>
+                    <td><a href="#" class="eliminar-btn" data-id="<?php echo $mostrar['id']; ?>"><i class="fas fa-trash" style="color: red;"></i></a></td>                </tr>
             <?php
             }
             ?>
         </table>
         <br></br>
-        
-        <script type="text/javascript">
-        $(document).on("click", "#delRg", function(event) {
+
+        <script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtén todos los elementos con la clase 'eliminar-btn'
+    var botonesEliminar = document.querySelectorAll('.eliminar-btn');
+
+    // Itera sobre los elementos y agrega un evento de clic a cada uno
+    botonesEliminar.forEach(function (boton) {
+        boton.addEventListener('click', function (event) {
             event.preventDefault();
 
-            let ifRegistro = $(this).attr('data-rg');
+            // Obtiene el valor del atributo 'data-id'
+            var id = boton.getAttribute('data-id');
 
-            $.ajax({
-                url: "../control/eliminaDetalle.php",
-                data: {
-                    id: ifRegistro
-                },
-                success: function(result) {
+            // Confirma si el usuario realmente desea eliminar antes de enviar la solicitud
+            var confirmacion = confirm('¿Estás seguro de que quieres eliminar este registro?');
 
-                    console.log(result);
-                    location.reload();
-                  
-
-
-                },
-                error: function(request, status, error) {
-                    console(request.responseText);
-                    console(error);
-                }
-            });
-
+            if (confirmacion) {
+                // Envía una solicitud al script 'eliminar_rotulo.php' con el parámetro 'id'
+                window.location.href = 'eliminaDetalle.php?id=' + id;
+            }
         });
-    </script>
-        
-         
-    
-   <table border="1">
+    });
+});
+</script>
+
+
+        <table border="1">
             <tr>
-               
                 <td>TOTAL JUEGOS PEDIDOS</td>
-                
             </tr>
-            
+
             <?php
-            //$sql="select * , COUNT(id), sum(juegos) as total FROM listaEmpaque WHERE pedidoId ='". $pedido. "' AND mold = '". $referencia. "' AND shade = '".$color."' GROUP BY mold, shade, lote, uppLow, caja ORDER BY mold;";
-            $sqlSuma=$consultaSuma." ". implode(" AND ",$filtros)." ";
-            $resultSuma=mysqli_query($conexion,$sqlSuma);
-            
-            //echo $sqlSuma;
-            //echo var_dump($filtros);
-            
-            while($mostrarSuma=mysqli_fetch_array($resultSuma)){
+            $sqlSuma = $consultaSuma . " " . implode(" AND ", $filtros) . " ";
+            $resultSuma = mysqli_query($conexion, $sqlSuma);
+
+            while ($mostrarSuma = mysqli_fetch_array($resultSuma)) {
             ?>
-            <tr>
-                
-                <td><?php echo $mostrarSuma['totales'] ?></td>
-                
-            </tr>
+                <tr>
+                    <td><?php echo max($mostrarSuma['totales'], 0) ?></td>
+                </tr>
             <?php
             }
             ?>
         </table>
         <br></br>
-            
-          
-            
 
-<?php
+        <?php
+        // Condenado por session start malo
+        // ...
+        ?>
 
-
-
-
-//condenado por session start malo   }
-//condenado por session start malo   
-//condenado por session start malo   else {
-//condenado por session start malo     echo"<h1>No estoy autorizado para ingresar a esta pagina.</h1>";
-//condenado por session start malo   }
-?>
+    </center>
+</body>
+</html>

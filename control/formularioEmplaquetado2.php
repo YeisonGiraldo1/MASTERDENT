@@ -12,6 +12,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<!-- Agrega estos enlaces en la sección head de tu HTML -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha384-oS3QGVnm6MOBqch3geQcV3kxr83r4pR9Nyp+RTtDz3cM7CYC/SpWQROQjbzm+JCE" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     
 <div style="text-align: center;">
     <button  class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
@@ -135,40 +142,66 @@
                 <td><?php echo $mostrar['juegos'] ?></td>
                 <td><?php echo $mostrar['fechaHora'] ?></td>
                
- <td><a class="btn btn-danger" href="eliminarEmplaquetado.php?id=<?php echo $mostrar['id'];?>"> <i class="fa fa-trash"></i></a></td>
+                <td>
+                <td><a href="#" class="eliminar-btn" data-id="<?php echo $mostrar['id']; ?>"><i class="fas fa-trash" style="color: red;"></i></a></td>
 
 </tr>
 <?php
 }
+
+//
+/* <td>
+    <a class="btn btn-danger" href="eliminarEmplaquetado.php?id=<?php echo $mostrar['id'];?>" onclick="confirmarEliminar(<?php echo $mostrar['id'];?>)">
+        <i class="fa fa-trash"></i>
+    </a>
+</td> */
+
+
+
+
+
+
 ?>
 </table>
 
-<script type="text/javascript">
-$(document).on("click", "#delRg", function(event) {
-event.preventDefault();
+<!-- ... Otros elementos del encabezado ... -->
 
-let ifRegistro = $(this).attr('data-rg');
+<!-- ... Tu código anterior ... -->
 
-$.ajax({
-    url: "../control/eliminarEmplaquetado.php",
-    data: {
-        id: ifRegistro
-    },
-    success: function(result) {
 
-        console.log(result);
-        location.reload();
-       
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtén todos los elementos con la clase 'eliminar-btn'
+    var botonesEliminar = document.querySelectorAll('.eliminar-btn');
 
-    },
-    error: function(request, status, error) {
-        console(request.responseText);
-        console(error);
-    }
-});
+    // Itera sobre los elementos y agrega un evento de clic a cada uno
+    botonesEliminar.forEach(function (boton) {
+        boton.addEventListener('click', function (event) {
+            event.preventDefault();
 
+            // Obtiene el valor del atributo 'data-id'
+            var id = boton.getAttribute('data-id');
+
+            // Confirma si el usuario realmente desea eliminar antes de enviar la solicitud
+            var confirmacion = confirm('¿Estás seguro de que quieres eliminar este registro?');
+
+            if (confirmacion) {
+                // Envía una solicitud al script 'eliminar_rotulo.php' con el parámetro 'id'
+                window.location.href = 'eliminarEmplaquetado.php?id=' + id;
+            }
+        });
+    });
 });
 </script>
+
+
+
+
+<!-- ... Tu código posterior ... -->
+
+
+<!-- ... Otros elementos del cuerpo ... -->
+
 
  </table>
  </center>

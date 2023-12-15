@@ -1030,7 +1030,7 @@ AND rotulos2.`turno` LIKE '%." . $turno1 . "%' AND rotulos2.`prensada` = '" . $p
 
 																<!--<button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_pedidos.php'">Nuevo Registro</button>
 			<button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>-->
-																<meta http-equiv="refresh" content="0.3; url= https://trazabilidadmasterdent.online/control/pedidoDetalles.php?pedido=<?php echo $pedido ?>&Empacar=Enviar">
+																<meta http-equiv="refresh" content="0.3; url= ../control/pedidoDetalles.php?pedido=<?php echo $pedido ?>&Empacar=Enviar">
 
 															</body>
 
@@ -1108,8 +1108,8 @@ AND rotulos2.`turno` LIKE '%." . $turno1 . "%' AND rotulos2.`prensada` = '" . $p
 															<html lang="en">
 
 															<body>
-																<button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_clientes.php'">Nuevo Registro</button>
-																<button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
+																<button onclick="location.href='../control/formulario_clientes.php'">Nuevo Registro</button>
+																<button onclick="location.href='../control'">Inicio</button>
 															</body>
 
 															</html>

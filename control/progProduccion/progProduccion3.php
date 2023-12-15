@@ -124,7 +124,32 @@ var_dump($prensada);*/
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	
+	<style>
+        body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../../Public/imagenes/moldeado2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+
+        .gray-table {
+            background-color: #ccc; /* Color gris de fondo */
+        }
+
+       
+        
+    </style>
 </head>
 <body>
     <center>
@@ -230,7 +255,7 @@ var_dump($prensada);*/
     <br>
 
     
-        <table class="table table-striped" >
+        <table class="table table-striped gray-table" >
             <tr>
                 <!--<td>id</td>-->
                
@@ -282,9 +307,10 @@ var_dump($prensada);*/
                 <td></td>
                 <td><?php echo $mostrar['Lote'] ?></td>
                 <td><?php echo $mostrar['nota'] ?></td>
-                <td><a   href="editar_rotulo.php?id=<?php echo $mostrar['id'] ?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>&fecha=<?php echo $fecha?> ">Editar</a></td>
+                <td><a href="editar_rotulo.php?id=<?php echo $mostrar['id'] ?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>&fecha=<?php echo $fecha?> "><i class="fas fa-edit" style="color: blue;"></i></a></td>
                 <!-- <td><a href="#" data-href="eliminar_rotulo.php?id=<?php echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td> -->
-                <td><a href="#" class="eliminar-btn" data-id="<?php echo $mostrar['id']; ?>">Eliminar</a></td>
+                <td><a href="#" class="eliminar-btn" data-id="<?php echo $mostrar['id']; ?>"><i class="fas fa-trash" style="color: red;"></i></a></td>
+            </tr>
              
 
             </tr>
@@ -417,7 +443,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <br>
     
     <h1>Todas las prensadas del turno</h1>
-    <table class="table table-striped">
+    <table class="table table-striped gray-table">
             <tr>
                 <!--<td>id</td>-->
                
@@ -469,8 +495,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td></td>
                 <td><?php echo $mostrar['Lote'] ?></td>
                 <td><?php echo $mostrar['nota'] ?></td>
-                <td><a href="editar_rotulo.php?id=<?php echo $mostrar['id'] ?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>&fecha=<?php echo $fecha?> ">Editar</a></td>
-                <td><a href="#" data-href="eliminar_rotulo.php?id=<?php echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td>
+                <td><a href="editar_rotulo.php?id=<?php echo $mostrar['id'] ?>&turno=<?php echo $turno?>&prensada=<?php echo $prensada?>&fecha=<?php echo $fecha?> "><i class="fas fa-edit" style="color: blue;"></i></a></td>
+
+                <!-- <td><a href="#" data-href="eliminar_rotulo.php?id=<?php echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td> -->
+                <td><a href="#" class="eliminar-btn" data-id="<?php echo $mostrar['id']; ?>"><i class="fas fa-trash" style="color: red;"></i></a></td>
             </tr>
             <?php
             }

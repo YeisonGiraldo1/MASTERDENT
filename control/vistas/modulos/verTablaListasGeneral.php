@@ -129,7 +129,7 @@ session_start();
 <body>
     
     <div class="container">
-    <button class="btn btn-primary" onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>
+    <button class="btn btn-primary" onclick="location.href='../../../control'">Inicio</button>
     
     <center>
         
@@ -269,7 +269,7 @@ session_start();
                 <td><?php echo $mostrar['pedido'] ?></td>
                 <td><?php echo $mostrar['cliente'] ?></td>
                 <td><?php echo $mostrar['Fecha'] ?></td>
-                <td><a href="#" data-href="https://trazabilidadmasterdent.online/control/eliminar_pedido.php?id=<?php echo isset($mostrar['idP']) ? $mostrar['idP'] : ''; ?>" data-rg="<?= isset($mostrar['idP']) ? $mostrar['idP'] : ''; ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete"><i class="fa-solid fa-trash"></i></a></td>
+                <td><a href="#" class="eliminar-btn" data-id="<?php echo isset($mostrar['id']) ? $mostrar['id'] : ''; ?>"><i class="fas fa-trash" style="color: red;"></i></a></td>
 
                 
             </tr>
@@ -280,33 +280,32 @@ session_start();
                 </table>
             </div>
         </section>
-        <script type="text/javascript">
-        $(document).on("click", "#delRg", function(event) {
+        <script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtén todos los elementos con la clase 'eliminar-btn'
+    var botonesEliminar = document.querySelectorAll('.eliminar-btn');
+
+    // Itera sobre los elementos y agrega un evento de clic a cada uno
+    botonesEliminar.forEach(function (boton) {
+        boton.addEventListener('click', function (event) {
             event.preventDefault();
 
-            let ifRegistro = $(this).attr('data-rg');
+            // Obtiene el valor del atributo 'data-id'
+            var id = boton.getAttribute('data-id');
 
-            $.ajax({
-                url: "https://trazabilidadmasterdent.online/control/eliminar_pedido.php",
-                data: {
-                    id: ifRegistro
-                },
-                success: function(result) {
+            // Confirma si el usuario realmente desea eliminar antes de enviar la solicitud
+            var confirmacion = confirm('¿Estás seguro de que quieres eliminar este registro?');
 
-                    console.log(result);
-                    location.reload();
-                   
+            if (confirmacion) {
+                // Envía una solicitud al script 'eliminar_rotulo.php' con el parámetro 'id'
+                window.location.href = '../../eliminar_pedidoG.php?id=' + id;
 
-
-                },
-                error: function(request, status, error) {
-                    console(request.responseText);
-                    console(error);
-                }
-            });
-
+            }
         });
-    </script>
+    });
+});
+</script>
+
 </div>
 <br></br>
 

@@ -58,7 +58,6 @@ $conexion = mysqli_connect("localhost", "root", "", "u638142989_MasterdentDB");
 </body>
 
 </html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,27 +68,87 @@ $conexion = mysqli_connect("localhost", "root", "", "u638142989_MasterdentDB");
 </head>
 
 <style>
+    body {
+        width: 100%;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    hr {
+        border: 1px solid #000;
+        /* Línea negra horizontal */
+        margin: 0;
+        /* Eliminar el margen predeterminado del hr */
+    }
+
     .titleContainer {
         width: 60%;
         height: 40%;
-        box-shadow: #284886 0px 7px 29px 0px;
         margin: auto;
         background-color: #FFF;
         display: flex;
         align-items: center;
         margin-top: 10%;
         border-radius: 15px;
+
+        justify-content: space-between;
+        /* Espacio uniforme entre los elementos */
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
     }
+
     .titleContainer h2 {
         width: 100%;
         text-align: center;
     }
+
+    .images {
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .images .imageContainer {
+        margin-top: 5%;
+        display: flex;
+        width: inherit;
+        height: inherit;
+        filter: blur(2px);
+    }
+
+    .images .imageContainer img {
+        --image-w: 40%;
+        width: auto !important;
+        min-width: var(--image-w);
+        max-width: var(--image-w);
+        min-height: 95%;
+        max-height: 95%;
+        object-fit: cover;
+    }
 </style>
 
 <body>
+    <hr>
+    <section class="images">
+        <div class="imageContainer">
+            <img src="../Public/imagenes/moldeado1.jpeg" alt="img1">
+            <img src="../Public/imagenes/moldeado2.jpeg" alt="img2">
+            <img src="../Public/imagenes/moldeado3.jpeg" alt="img3">
+        </div>
+    </section>
     <div class="titleContainer">
         <h2>BIENVENIDO AL SISTEMA MASTERDENT</h2>
+        <div class="smile">
+        </div>
     </div>
+
 </body>
 
 </html>

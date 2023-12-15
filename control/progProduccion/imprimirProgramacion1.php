@@ -122,7 +122,8 @@ var_dump($prensada);*/
     <link rel="stylesheet" href="sweetalert2.min.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
-	
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 <body>
     <center>
@@ -150,7 +151,7 @@ var_dump($prensada);*/
     -->
 
     
-        <table border="1">
+        <table border="1" class="table table-bordered">
             
             <tr>
             <!--Encabezado general de la tabla-->
@@ -429,16 +430,9 @@ var_dump($prensada);*/
             <tr>
                 <td COLSPAN="22">_<?php //echo $turno ?></td>
             </tr>
-        </table>
-        
-        
-    
-    
-        
-        
-    </div>
-    
-    <div class="row">
+
+
+            <div class="row">
             <form action="exportExcel.php" method="GET" name="exportExcel">
 
                 <div class="mb-3">
@@ -459,7 +453,7 @@ var_dump($prensada);*/
 
                 <!--<button onClick='submitForm()'>Exportar a Excel</button>-->
                 <br>
-            </form>
+            
             
             <script>
     function submitForm() {
@@ -469,6 +463,16 @@ var_dump($prensada);*/
         <br></br>
 
     <br>
+    </form>
+        </table>
+        
+        
+    
+    
+        
+        
+    </div>
+    
     
     
     
@@ -529,7 +533,7 @@ for($i=1;$i<=$cuantosRotulos;$i++){
             }
 }
 ?>
-            <table border="1"><font face="arial,verdana,tahoma">
+            <table border="1" class="table table-bordered"><font face="arial,verdana,tahoma">
                 
 <?php
             for($i=0;$i<$cuantosRotulos;$i=$i+3){
@@ -647,11 +651,12 @@ for($i=1;$i<=$cuantosRotulos;$i++){
                 
                 
                 </tr>
-                <tr> <td COLSPAN="11"> </td></tr>
+                <tr> <td COLSPAN="11"> </td>
                 
                 
+             
             
-            
+            </tr>
             <!--datos generales al final de cada prensada-->
             <?php
             
@@ -673,5 +678,7 @@ for($i=1;$i<=$cuantosRotulos;$i++){
     }
             ?>
             
+
+
             </body>
 </html>

@@ -129,6 +129,9 @@ $consultaSuma = "SELECT SUM(gramos) AS totalGramos, COUNT(productoGranel.id) AS 
             width: 50%;
             margin: 0 10px;
         }
+        .gray-table {
+            background-color: #ccc; /* Color gris de fondo */
+        }
         
     </style>
     <meta charset="UTF-8">
@@ -149,8 +152,7 @@ $consultaSuma = "SELECT SUM(gramos) AS totalGramos, COUNT(productoGranel.id) AS 
     <link rel="stylesheet" href="../resources/estilos.css">
     <!--Fin-->
 
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="sweetalert2.all.min.js"></script>
+  
     <script src="sweetalert2.min.js"></script>
     <link rel="stylesheet" href="sweetalert2.min.css">
 
@@ -172,7 +174,8 @@ $consultaSuma = "SELECT SUM(gramos) AS totalGramos, COUNT(productoGranel.id) AS 
     
     
 <div class="container">
-            <form action="../modulos/verTablaGranel.php" method="POST">
+<form action="../modulos/verTablaGranel.php" method="POST">
+
      
 
             <div class="row">
@@ -267,7 +270,7 @@ $consultaSuma = "SELECT SUM(gramos) AS totalGramos, COUNT(productoGranel.id) AS 
        
     <br>
     
-        <table class="table table-bordered table-striped"> 
+        <table class="table table-bordered table-striped gray-table"> 
             <tr>
                 <!--<td>id</td>-->
                 <td>ID Rotulo</td>
@@ -375,6 +378,7 @@ $consultaSuma = "SELECT SUM(gramos) AS totalGramos, COUNT(productoGranel.id) AS 
                
                 <td>
     <a  class="btn btn-secondary" href="asignarGranelAPedidio.php?idP=<?php echo (isset($pedidoIdPedido) && $pedidoIdPedido !== '') ? $pedidoIdPedido : '' ?>&rotuloId=<?php echo $mostrar['rotuloId']; ?>&referenciaId=<?php echo $mostrar['referencia'] ?>&colorId=<?php echo $mostrar['color'] ?>">Asignar a <?php echo (isset($pedidoIdPedido) && $pedidoIdPedido !== '') ? $arregloPedidos[$pedidoIdPedido] : ''; ?></a>
+
 </td>
 
  <!--<td><a href="editar_lotes.php?id=<?php //echo $mostrar['id'];?>">Editar</a></td>            -->
@@ -427,7 +431,7 @@ $.ajax({
                 <br></br>
  
 
-                <table class="table table-bordered table-striped"> 
+                <table class="table table-bordered table-striped gray-table"> 
             
             
             

@@ -15,9 +15,28 @@
     <title>Formulario Lotes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <style>
+          body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../Public/imagenes/almacen2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </head>
-<button class="btn btn-primary"  onclick="location.href='../'">Inicio</button>
+<button class="btn btn-primary"  onclick="location.href='../control'">Inicio</button>
 <button class="btn btn-primary"  onclick="location.href='consolidadoAsignado.php'">Producto Terminado Consolidado</button>
 <!--<button onclick="location.href='control/consolidadoBodega.php'">Bodega Consolidado</button>-->
 <body>

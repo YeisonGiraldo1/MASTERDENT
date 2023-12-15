@@ -27,91 +27,56 @@ $col=$mostrar4['nombre'];
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>RotulosPorReferenciaColor</title>
+    <meta charset="UTF-8">
+    <title>RotulosPorReferenciaColor</title>
+    <!-- Agrega las referencias a Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
-<body>  
-    
-    <?php
-            //comento la consulta porque es mejor mostrar las condiciones de la búsqueda que la lista de los resultados, para eso está la tabla.
+<body class="container mt-5">
 
-        //$sql2= "SELECT cod_rotulo from rotulos2 WHERE referenciaId = '". $referencia. "'"." AND `colorId` = '" . $color. "'";
-        //$result2=mysqli_query($conexion,$sql2);
+    <h1 class="text-center mb-4">Detalles de los rótulos de la referencia <?php echo $ref ?> y el color <?php echo $col ?></h1>
 
-            ?>
-
-
-
-        <h1>Detalles de los rótulos de la referencia <?php echo $ref ?> y el color <?php echo $col ?>
-
-        
-                 <?php
-
-                //while($mostrar2=mysqli_fetch_array($result2)){
-            ?>
-
-            
-                
-             <!--   <td><?php //echo $mostrar2['cod_rotulo']." - " ?></td>-->
-                
-                
-                
-            
-            <?php
-            //}
-            ?>
-            </h1>
-    
-        <table border="1">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
             <tr>
-                <td>id</td>
-                
-                <td>referencia</td>
-                <td>lote</td>
-                <td>color</td>
-                <td>pedido</td> 
-                <td>#Moldes</td> 
-                <!--<td>casillaId</td> -->              
-                <td>juegos</td>
-                <td>Estacion Actual</td>
-                <td>fecha Producción</td>   
-               
-                <td>vuelta1</td>
-                <td>vuelta2</td>
-                <td>vuelta3</td>
-                <td>vuelta4</td>
-                <td>vuelta5</td>
-                <td>vuelta6</td>
-                <td>vuelta7</td>
-                <td>vuelta8</td>                
-                <td>total</td>
-                
-                
+                <th>id</th>
+                <th>referencia</th>
+                <th>lote</th>
+                <th>color</th>
+                <th>pedido</th> 
+                <th>#Moldes</th> 
+                <th>juegos</th>
+                <th>Estacion Actual</th>
+                <th>fecha Producción</th>   
+                <th>vuelta1</th>
+                <th>vuelta2</th>
+                <th>vuelta3</th>
+                <th>vuelta4</th>
+                <th>vuelta5</th>
+                <th>vuelta6</th>
+                <th>vuelta7</th>
+                <th>vuelta8</th>                
+                <th>total</th>
             </tr>
-            
+        </thead>
+        <tbody>
             <?php
-            //$sql="SELECT * from Rotulo";
-            //$sql= "SELECT * from rotulos2 WHERE referenciaId = '". $referencia. "'"." AND `colorId` = '" . $color. "'";
-            $sql= "SELECT rotulos2.*, referencias2.`nombre` AS ref, lotes2.`nombreL` AS lote, colores2.`nombre` AS color, pedidos2.`codigoP` AS pedido, estaciones2.nombre AS estacion FROM rotulos2 INNER JOIN referencias2 ON rotulos2.`referenciaId`= referencias2.`id` INNER JOIN lotes2 ON rotulos2.`loteId`= lotes2.`id` INNER JOIN colores2 ON rotulos2.`colorId`= colores2.`id` INNER JOIN pedidos2 ON rotulos2.`pedido` = pedidos2.`idP` INNER JOIN estaciones2 ON rotulos2.`estacionId2` = estaciones2.`id`  WHERE referenciaId = '". $referencia. "'"." AND `colorId` = '" . $color. "' ORDER BY rotulos2.`id` DESC";
+            $sql = "SELECT rotulos2.*, referencias2.`nombre` AS ref, lotes2.`nombreL` AS lote, colores2.`nombre` AS color, pedidos2.`codigoP` AS pedido, estaciones2.nombre AS estacion FROM rotulos2 INNER JOIN referencias2 ON rotulos2.`referenciaId`= referencias2.`id` INNER JOIN lotes2 ON rotulos2.`loteId`= lotes2.`id` INNER JOIN colores2 ON rotulos2.`colorId`= colores2.`id` INNER JOIN pedidos2 ON rotulos2.`pedido` = pedidos2.`idP` INNER JOIN estaciones2 ON rotulos2.`estacionId2` = estaciones2.`id`  WHERE referenciaId = '". $referencia. "'"." AND `colorId` = '" . $color. "' ORDER BY rotulos2.`id` DESC";
 
-            $result=mysqli_query($conexion,$sql);
+            $result = mysqli_query($conexion, $sql);
             
-            while($mostrar=mysqli_fetch_array($result)){
+            while($mostrar = mysqli_fetch_array($result)){
             ?>
-
             <tr>
                 <td><?php echo $mostrar['id'] ?></td>
-                
                 <td><?php echo $mostrar['ref'] ?></td>
                 <td><?php echo $mostrar['lote'] ?></td>
                 <td><?php echo $mostrar['color'] ?></td>
                 <td><?php echo $mostrar['pedido'] ?></td>
                 <td><?php echo $mostrar['cantidadMoldes'] ?></td>
-                <!--<td><?php //echo $mostrar['casillaId'] ?></td>-->
                 <td><?php echo $mostrar['juegos'] ?></td>
                 <td><?php echo $mostrar['estacion'] ?></td>
                 <td><?php echo $mostrar['fecha'] ?></td>
-               
                 <td><?php echo $mostrar['vuelta1'] ?></td>
                 <td><?php echo $mostrar['vuelta2'] ?></td>
                 <td><?php echo $mostrar['vuelta3'] ?></td>
@@ -121,13 +86,12 @@ $col=$mostrar4['nombre'];
                 <td><?php echo $mostrar['vuelta7'] ?></td>
                 <td><?php echo $mostrar['vuelta8'] ?></td>            
                 <td><?php echo $mostrar['total'] ?></td>
-                
-                
             </tr>
             <?php
             }
             ?>
-        </table>
+        </tbody>
+    </table>
 
         <br>
 
@@ -137,9 +101,12 @@ $col=$mostrar4['nombre'];
 
     </br>
 
-    <button onclick="location.href='../control/vistas/modulos/verTablaReferencias.php'">Ver tabla Referencias</button>
-    <button onclick="location.href='../control/vistas/modulos/verTablaColores.php'">Ver tabla Colores</button>
-    <button onclick="location.href='../control/vistas/modulos/verTablaEstaciones.php'">Ver tabla Estaciones</button>
-    
+    <div class="mt-3">
+        <button class="btn btn-primary" onclick="location.href='../control/vistas/modulos/verTablaReferencias.php'">Ver tabla Referencias</button>
+        <button class="btn btn-primary" onclick="location.href='../control/vistas/modulos/verTablaColores.php'">Ver tabla Colores</button>
+        <button class="btn btn-primary" onclick="location.href='../control/vistas/modulos/verTablaEstaciones.php'">Ver tabla Estaciones</button>
+    </div>
+
+
 </body>
 </html>

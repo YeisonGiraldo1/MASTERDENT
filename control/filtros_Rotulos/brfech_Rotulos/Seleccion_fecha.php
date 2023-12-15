@@ -118,6 +118,9 @@ $hasta=$_GET["hasta"];
      $consulta= $consultaFiltros." ". implode(" AND ",$filtros) ." ORDER BY  id ASC";
      $query=mysqli_query($conexion,$consulta); 
      
+     echo "Consulta SQL: $consulta";
+$query=mysqli_query($conexion,$consulta);
+
      //echo $consulta;
 //mysqli_close($conexion);
 $resultado = mysqli_num_rows($query);

@@ -73,7 +73,8 @@ while($mostrarR=mysqli_fetch_array($resultR)){
                     $juegosCaja=20;//pendiente de verificar. 
                 }
                 
-$juegos=$cajas*$juegosCaja;
+                $puntos=$juegos*1.2;
+
 
 if ($linea=='UHLERPLUS' || $linea=='STARPLUS'){
     $puntos=$juegos*1.2;

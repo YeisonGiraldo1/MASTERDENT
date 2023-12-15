@@ -59,6 +59,29 @@ $juegosEmpacados = "";
 <html lang="en">
 
 <head>
+<style>
+          body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../Public/imagenes/almacen2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+
+        .gray-table {
+            background-color: #ccc; /* Color gris de fondo */
+        }
+    </style>
     <meta charset="UTF-8">
     <title>Inventario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -192,7 +215,7 @@ $juegosEmpacados = "";
 
     <div class="container mt-5">
         <h2 class="text-center">Lista General del inventario</h2>
-        <table class="table table-bordered">
+        <table class="table table-bordered gray-table">
             <thead>
                 <tr>
                     <th>QR</th>
@@ -230,7 +253,7 @@ $juegosEmpacados = "";
 
     <div class="container mt-5">
         <h2 class="text-center">Total de Juegos</h2>
-        <table class="table table-bordered">
+        <table class="table table-bordered gray-table">
             <thead>
                 <tr>
                     <th>TOTAL JUEGOS</th>

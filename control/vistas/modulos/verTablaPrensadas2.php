@@ -9,12 +9,36 @@ $filtro=$_GET ["filtro"];
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style>
+body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../../../Public/imagenes/moldeado2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+        
+ 
+        .gray-table {
+            background-color: #ccc; /* Color gris de fondo */
+        }
+  </style>
     <meta charset="UTF-8">
     <title>Prensadas</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 </head>
 <body>
-    	<button class="btn btn-primary" onclick="location.href='../control/'">Inicio</button>
+    	<button class="btn btn-primary" onclick="location.href='../../../control'">Inicio</button>
     	<center>
 
             <?php
@@ -522,7 +546,7 @@ $filtro=$_GET ["filtro"];
     <br>
 
     
-        <table border="1" class="table table-bordered table-striped">
+        <table border="1" class="table table-bordered table-striped gray-table">
             <tr>
                 <td>id</td>
                 <td>Tiempo Prensada</td>

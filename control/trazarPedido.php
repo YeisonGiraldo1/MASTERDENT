@@ -150,9 +150,42 @@ $resultCol=mysqli_query($conexion,$sqlCol);
     }
     
     
-    $consultaFiltros= 'SELECT pedidoDetalles.*, sum(pedidoDetalles.`juegos`) as totalPedidos,sum(pedidoDetalles.`programados`) as totalProgramados, sum(pedidoDetalles.`granel`) as totalGranel, sum(pedidoDetalles.`pulidos`) as totalPulidos, sum(pedidoDetalles.`producidos`) as totalProducidos, sum(pedidoDetalles.`enSeparacion`) as totalEnSeparacion, sum(pedidoDetalles.`separado`) as totalSeparados, sum(pedidoDetalles.`enEmplaquetado`) as totalEnEmplaquetado, sum(pedidoDetalles.`emplaquetados`) as totalEmplaquetados, sum(pedidoDetalles.`revision1`) as totalRevision1, sum(pedidoDetalles.`revision2`) as totalRevision2, sum(pedidoDetalles.`empacados`) as totalEmpacados, referencias2.`nombre` AS referencia, referencias2.`tipo` AS tipo, colores2.`nombre` AS Color FROM pedidoDetalles INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id` WHERE ';
-    
-    $consultaSuma = 'select referencias2.`nombre` AS referencia, referencias2.`tipo` AS tipo, sum(pedidoDetalles.`juegos`) as totalPedidos,sum(pedidoDetalles.`programados`) as totalProgramados, sum(pedidoDetalles.`granel`) as totalGranel, sum(pedidoDetalles.`pulidos`) as totalPulidos, sum(pedidoDetalles.`producidos`) as totalProducidos, sum(pedidoDetalles.`enSeparacion`) as totalEnSeparacion, sum(pedidoDetalles.`separado`) as totalSeparados, sum(pedidoDetalles.`enEmplaquetado`) as totalEnEmplaquetado, sum(pedidoDetalles.`emplaquetados`) as totalEmplaquetados, sum(pedidoDetalles.`revision1`) as totalRevision1, sum(pedidoDetalles.`revision2`) as totalRevision2, sum(pedidoDetalles.`empacados`) as totalEmpacados FROM pedidoDetalles INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` WHERE ';
+    $consultaFiltros = 'SELECT pedidoDetalles.*, 
+    GREATEST(0, sum(pedidoDetalles.`juegos`)) as totalPedidos,
+    GREATEST(0, sum(pedidoDetalles.`programados`)) as totalProgramados,
+    GREATEST(0, sum(pedidoDetalles.`granel`)) as totalGranel,
+    GREATEST(0, sum(pedidoDetalles.`pulidos`)) as totalPulidos,
+    GREATEST(0, sum(pedidoDetalles.`producidos`)) as totalProducidos,
+    GREATEST(0, sum(pedidoDetalles.`enSeparacion`)) as totalEnSeparacion,
+    GREATEST(0, sum(pedidoDetalles.`separado`)) as totalSeparados,
+    GREATEST(0, sum(pedidoDetalles.`enEmplaquetado`)) as totalEnEmplaquetado,
+    GREATEST(0, sum(pedidoDetalles.`emplaquetados`)) as totalEmplaquetados,
+    GREATEST(0, sum(pedidoDetalles.`revision1`)) as totalRevision1,
+    GREATEST(0, sum(pedidoDetalles.`revision2`)) as totalRevision2,
+    GREATEST(0, sum(pedidoDetalles.`empacados`)) as totalEmpacados,
+    referencias2.`nombre` AS referencia, referencias2.`tipo` AS tipo, colores2.`nombre` AS Color 
+FROM pedidoDetalles 
+INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` 
+INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id` 
+WHERE ';
+
+$consultaSuma = 'SELECT referencias2.`nombre` AS referencia, referencias2.`tipo` AS tipo,
+    GREATEST(0, sum(pedidoDetalles.`juegos`)) as totalPedidos,
+    GREATEST(0, sum(pedidoDetalles.`programados`)) as totalProgramados,
+    GREATEST(0, sum(pedidoDetalles.`granel`)) as totalGranel,
+    GREATEST(0, sum(pedidoDetalles.`pulidos`)) as totalPulidos,
+    GREATEST(0, sum(pedidoDetalles.`producidos`)) as totalProducidos,
+    GREATEST(0, sum(pedidoDetalles.`enSeparacion`)) as totalEnSeparacion,
+    GREATEST(0, sum(pedidoDetalles.`separado`)) as totalSeparados,
+    GREATEST(0, sum(pedidoDetalles.`enEmplaquetado`)) as totalEnEmplaquetado,
+    GREATEST(0, sum(pedidoDetalles.`emplaquetados`)) as totalEmplaquetados,
+    GREATEST(0, sum(pedidoDetalles.`revision1`)) as totalRevision1,
+    GREATEST(0, sum(pedidoDetalles.`revision2`)) as totalRevision2,
+    GREATEST(0, sum(pedidoDetalles.`empacados`)) as totalEmpacados
+FROM pedidoDetalles 
+INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` 
+WHERE ';
+
     
  //condenado por session start malo }
   
@@ -342,147 +375,139 @@ if($origenBusqueda=='terminacion'){
     <!--espacio para poner la tabla útil para terminación-->
     
     <table class="table table-bordered table-striped"> 
-            <tr>
-                <!--<td>id</td>-->
-               
-                
-                <td>Referencia</td>
-                <td>Color</td>
-                <td>Pedidos</td>
-                <!--<td>Granel</td>-->
-                <!--<td>PorProgramar</td>-->
-                <!--<td>Programados</td>-->
-                <!--<td>Producidos</td>-->
-                <!--<td>Pulidos</td>-->
-                <!--<td>EnSeparación</td>-->
-                <!--<td>Separados</td>-->
-                <!--<td>EnEmplaquetado</td>-->
-                <!--<td>Emplaquetados</td>-->
-                <!--<td>Revisión 1</td>-->
-                <td>Asignados</td>
-                <td>Faltan</td>
-                <td>Empacados</td>
-                
-                <!--<td>EnProceso</td>-->
-                <td>Historial</td>
-                <td>VerGranel</td>
-               
-                <!--<td>acción</td>
-                <td>acción</td>-->
-                
-                
-            </tr>
-            
-            <?php
-            //$sql="SELECT pedidoDetalles.*, referencias2.`nombre` AS 'referencia', colores2.`nombre` AS 'Color' FROM pedidoDetalles INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id` WHERE pedidoDetalles.`pedidoId` = '".$pedidoId."' ORDER BY pedidoDetalles.`id` DESC";
-            $sql= $consultaFiltros." ". implode(" AND ",$filtros) ." GROUP BY pedidoId, colorId, referenciaId ";
-            //echo $sql;
-            ?>
-            <p>*Faltante calculado como  la diferencia entre el asignado y el pedido</p>
-            <?php
-            $result=mysqli_query($conexion,$sql);
-            
-            while($mostrar=mysqli_fetch_array($result)){
-                
-                /*
-                $nombreItem=$mostrar['referencia'].$mostrar['Color'];
-                $sumaItem[$nombreItem]=0;
-                
-                $sqlSumaJuegosEnProceso="SELECT pedidoDetalles.*, rotulos2.estacionId2 as estacionId, rotulos2.total as juegos FROM pedidoDetalles INNER JOIN rotulos2 ON pedidoDetalles.rotuloId = rotulos2.id WHERE pedidoDetalles.`pedidoId` = '".$pedidoId."' AND pedidoDetalles.`referenciaId` = '".$mostrar['referencia']."' AND pedidoDetalles.`colorId` = '".$mostrar['Color']."' AND rotuloId is not null GROUP BY rotuloId";
-                
-            $sqlSumaJuegosEnProceso= $this->conexion->conexion->prepare($sqlSumaJuegosEnProceso);
-            $sqlSumaJuegosEnProceso->execute();
-		    $datos = $sqlSumaJuegosEnProceso->fetch();
-		    
-		    
-		            $juegosItem[$nombreItem][] = $datos['juegos'];
-		            
-		            foreach($juegosItem[$nombreItem][] as $juegItem){
-		            $sumaItem[$nombreItem]=$sumaItem[$nombreItem]+$juegItem;
-		            }
-		            */
-                
-            ?>
-            <tr>
-                <!--<td><?php //echo $mostrar['id'] ?></td>-->
-                
-                
-                
-                
-                <td><?php echo $mostrar['referencia'] ?></td>
-                <td><?php echo $mostrar['Color'] ?></td>
-                <td><?php echo $mostrar["totalPedidos"] ?></td>
-                
-                <!--<td><?php //echo $mostrar["totalGranel"]?></td>-->
-                <!--<td><?php //echo ($mostrar["totalPedidos"]*1.25)-($mostrar["totalRevision2"]+$mostrar["totalProgramados"])?></td>-->
-                <!--<td bgcolor= "<?php if(($mostrar["totalRevision2"]+$mostrar["totalProgramados"])>$mostrar["totalPedidos"]*1.25){
-                //echo "B6FF8A";
-                }?>"><?php //echo $mostrar["totalProgramados"] ?></td>-->
-                <!--<td bgcolor= "<?php if($mostrar["totalProducidos"]>$mostrar["totalPedidos"]){
-                //echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalProducidos"] ?></td>-->
-                <!--<td bgcolor= "<?php if($mostrar["totalPulidos"]>$mostrar["totalPedidos"]){
-                //echo "B6FF8A";
-                }?>"><?php //echo $mostrar["totalPulidos"] ?></td>-->
-                
-                <!--<td bgcolor= "<?php //if($mostrar["totalEnSeparacion"]>$mostrar["totalPedidos"]){
-                //echo "B6FF8A";
-                //}?>"><?php //echo $mostrar["totalEnSeparacion"] ?></td>-->
-                
-                <!--<td bgcolor= "<?php if($mostrar["totalSeparados"]>$mostrar["totalPedidos"]){
-                //echo "B6FF8A";
-                }?>"><?php //echo $mostrar["totalSeparados"] ?></td>-->
-                
-                <!--<td bgcolor= "<?php if($mostrar["totalEnEmplaquetado"]>$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php //echo $mostrar["totalEnEmplaquetado"] ?></td>-->
-                
-                <!--<td bgcolor= "<?php if($mostrar["totalEmplaquetados"]>=$mostrar["totalPedidos"]){
-                //echo "B6FF8A";
-                }?>"><?php //echo $mostrar["totalEmplaquetados"] ?></td>-->
-                
-                <!--<td bgcolor= "<?php if($mostrar["totalRevision1"]>=$mostrar["totalPedidos"]){
-                //echo "B6FF8A";
-                }?>"><?php //echo $mostrar["totalRevision1"] ?></td>-->
-                
-                <td bgcolor= "<?php if($mostrar["totalRevision2"]>=$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalRevision2"] ?></td>
-                
-                <td bgcolor= "<?php if($mostrar["totalPedidos"]-$mostrar["totalRevision2"]==0){
-                echo "B6FF8A";
-                }
-                else if($mostrar["totalPedidos"]-$mostrar["totalRevision2"]<0){
-                    echo  "FB413B";
-                }
-                ?>"><?php echo ($mostrar["totalPedidos"])-($mostrar["totalRevision2"])?></td>
-                
-                <td bgcolor= "<?php 
-                
-                if($mostrar["totalEmpacados"]==$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }
-                else if(($mostrar["totalEmpacados"]>$mostrar["totalPedidos"]) || ($mostrar["totalEmpacados"]-$mostrar["totalPedidos"]==$mostrar["totalEmpacados"])){
-                    echo  "FB413B";
-                }
-                ?>"><?php echo $mostrar["totalEmpacados"] ?></td>
-                
-                
-                
-                <!--<td><?php echo $sumaItem[$nombreItem] ?></td>-->
-                
-                <td><a href="../control/trazarItem.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&origenBusqueda=<?php echo $origenBusqueda ?>&Crear=Enviar'" >Historial</a></td>
-                
-                <td><a href="../control/vistas/modulos/verTablaGranel.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&Crear=Enviar'" >verGranel</a></td>
-                
-                <!--<td><a    href="editar_detellePedido.php?id=<?php //echo $mostrar['id'] ?>&turno=<?php //echo $turno?>&prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Editar</a></td>
-                <td><a href="#" data-href="eliminar_detallePedido.php?id=<?php //echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td>-->
-            </tr>
-            <?php
-            //$faltante=$faltante+($mostrar["totalPedidos"]-$mostrar["totalRevision2"]);
-            }
-            ?>
-        </table>
+    <tr>
+        <!--<td>id</td>-->
+       
+        <td>Referencia</td>
+        <td>Color</td>
+        <td>Pedidos</td>
+        <!--<td>Granel</td>-->
+        <!--<td>PorProgramar</td>-->
+        <!--<td>Programados</td>-->
+        <!--<td>Producidos</td>-->
+        <!--<td>Pulidos</td>-->
+        <!--<td>EnSeparación</td>-->
+        <!--<td>Separados</td>-->
+        <!--<td>EnEmplaquetado</td>-->
+        <!--<td>Emplaquetados</td>-->
+        <!--<td>Revisión 1</td>-->
+        <td>Asignados</td>
+        <td>Faltan</td>
+        <td>Empacados</td>
+        <!--<td>EnProceso</td>-->
+        <td>Historial</td>
+        <td>VerGranel</td>
+       
+        <!--<td>acción</td>
+        <td>acción</td>-->
+        
+    </tr>
+    
+    <?php
+    //$sql="SELECT pedidoDetalles.*, referencias2.`nombre` AS 'referencia', colores2.`nombre` AS 'Color' FROM pedidoDetalles INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id` WHERE pedidoDetalles.`pedidoId` = '".$pedidoId."' ORDER BY pedidoDetalles.`id` DESC";
+    $sql= $consultaFiltros." ". implode(" AND ",$filtros) ." GROUP BY pedidoId, colorId, referenciaId ";
+    //echo $sql;
+    ?>
+    <p>*Faltante calculado como la diferencia entre el asignado y el pedido</p>
+    <?php
+    $result=mysqli_query($conexion,$sql);
+    
+    while($mostrar=mysqli_fetch_array($result)){
+        
+        /*
+        $nombreItem=$mostrar['referencia'].$mostrar['Color'];
+        $sumaItem[$nombreItem]=0;
+        
+        $sqlSumaJuegosEnProceso="SELECT pedidoDetalles.*, rotulos2.estacionId2 as estacionId, rotulos2.total as juegos FROM pedidoDetalles INNER JOIN rotulos2 ON pedidoDetalles.rotuloId = rotulos2.id WHERE pedidoDetalles.`pedidoId` = '".$pedidoId."' AND pedidoDetalles.`referenciaId` = '".$mostrar['referencia']."' AND pedidoDetalles.`colorId` = '".$mostrar['Color']."' AND rotuloId is not null GROUP BY rotuloId";
+        
+        $sqlSumaJuegosEnProceso= $this->conexion->conexion->prepare($sqlSumaJuegosEnProceso);
+        $sqlSumaJuegosEnProceso->execute();
+        $datos = $sqlSumaJuegosEnProceso->fetch();
+        
+        
+        $juegosItem[$nombreItem][] = $datos['juegos'];
+        
+        foreach($juegosItem[$nombreItem][] as $juegItem){
+            $sumaItem[$nombreItem]=$sumaItem[$nombreItem]+$juegItem;
+        }
+        */
+        
+    ?>
+    <tr>
+        <!--<td><?php //echo $mostrar['id'] ?></td>-->
+        
+        <td><?php echo $mostrar['referencia'] ?></td>
+        <td><?php echo $mostrar['Color'] ?></td>
+        <td><?php echo max(0, $mostrar["totalPedidos"]) ?></td>
+        
+        <!--<td><?php //echo max(0, $mostrar["totalGranel"]) ?></td>-->
+        <!--<td><?php //echo max(0, ($mostrar["totalPedidos"]*1.25)-($mostrar["totalRevision2"]+$mostrar["totalProgramados"]))?></td>-->
+        <!--<td bgcolor= "<?php if(($mostrar["totalRevision2"]+$mostrar["totalProgramados"])>$mostrar["totalPedidos"]*1.25){
+        //echo "B6FF8A";
+        }?>"><?php //echo $mostrar["totalProgramados"] ?></td>-->
+        <!--<td bgcolor= "<?php if($mostrar["totalProducidos"]>$mostrar["totalPedidos"]){
+        //echo "B6FF8A";
+        }?>"><?php echo max(0, $mostrar["totalProducidos"]) ?></td>-->
+        <!--<td bgcolor= "<?php if($mostrar["totalPulidos"]>$mostrar["totalPedidos"]){
+        //echo "B6FF8A";
+        }?>"><?php //echo $mostrar["totalPulidos"] ?></td>-->
+        
+        <!--<td bgcolor= "<?php //if($mostrar["totalEnSeparacion"]>$mostrar["totalPedidos"]){
+        //echo "B6FF8A";
+        //}?>"><?php //echo $mostrar["totalEnSeparacion"] ?></td>-->
+        
+        <!--<td bgcolor= "<?php if($mostrar["totalSeparados"]>$mostrar["totalPedidos"]){
+        //echo "B6FF8A";
+        }?>"><?php //echo $mostrar["totalSeparados"] ?></td>-->
+        
+        <!--<td bgcolor= "<?php if($mostrar["totalEnEmplaquetado"]>$mostrar["totalPedidos"]){
+        echo "B6FF8A";
+        }?>"><?php //echo $mostrar["totalEnEmplaquetado"] ?></td>-->
+        
+        <!--<td bgcolor= "<?php if($mostrar["totalEmplaquetados"]>=$mostrar["totalPedidos"]){
+        //echo "B6FF8A";
+        }?>"><?php //echo $mostrar["totalEmplaquetados"] ?></td>-->
+        
+        <!--<td bgcolor= "<?php if($mostrar["totalRevision1"]>=$mostrar["totalPedidos"]){
+        //echo "B6FF8A";
+        }?>"><?php //echo $mostrar["totalRevision1"] ?></td>-->
+        
+        <td bgcolor= "<?php if($mostrar["totalRevision2"]>=$mostrar["totalPedidos"]){
+        echo "B6FF8A";
+        }?>"><?php echo max(0, $mostrar["totalRevision2"]) ?></td>
+        
+        <td bgcolor= "<?php if($mostrar["totalPedidos"]-$mostrar["totalRevision2"]==0){
+        echo "B6FF8A";
+        }
+        else if($mostrar["totalPedidos"]-$mostrar["totalRevision2"]<0){
+            echo  "FB413B";
+        }
+        ?>"><?php echo max(0, ($mostrar["totalPedidos"]-$mostrar["totalRevision2"]))?></td>
+        
+        <td bgcolor= "<?php 
+        if($mostrar["totalEmpacados"]==$mostrar["totalPedidos"]){
+        echo "B6FF8A";
+        }
+        else if(($mostrar["totalEmpacados"]>$mostrar["totalPedidos"]) || ($mostrar["totalEmpacados"]-$mostrar["totalPedidos"]==$mostrar["totalEmpacados"])){
+            echo  "FB413B";
+        }
+        ?>"><?php echo max(0, $mostrar["totalEmpacados"]) ?></td>
+        
+        <!--<td><?php //echo $sumaItem[$nombreItem] ?></td>-->
+        
+        <td><a href="../control/trazarItem.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&origenBusqueda=<?php echo $origenBusqueda ?>&Crear=Enviar'" >Historial</a></td>
+        
+        <td><a href="../control/vistas/modulos/verTablaGranel.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&Crear=Enviar'" >verGranel</a></td>
+        
+        <!--<td><a    href="editar_detellePedido.php?id=<?php //echo $mostrar['id'] ?>&turno=<?php //echo $turno?>&prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Editar</a></td>
+        <td><a href="#" data-href="eliminar_detallePedido.php?id=<?php //echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td>-->
+    </tr>
+    <?php
+    //$faltante=$faltante+($mostrar["totalPedidos"]-$mostrar["totalRevision2"]);
+    }
+    ?>
+</table>
+
         <br></br>
         
          <script type="text/javascript">
@@ -545,50 +570,38 @@ if($origenBusqueda=='terminacion'){
     
     
     <table class="table table-bordered table-striped"> 
+    <tr>
+        <td COLSPAN="13"><CENTER>TOTALES</CENTER></td>
+    </tr>
+    <tr>
+        <td>Pedidos</td>
+        <td>Asignados</td>
+        <td>Faltan</td>
+        <td>Empacados</td>
+    </tr>
+    
+    <?php
+    //$sql="select * , COUNT(id), sum(juegos) as total FROM listaEmpaque WHERE pedidoId ='". $pedido. "' AND mold = '". $referencia. "' AND shade = '".$color."' GROUP BY mold, shade, lote, uppLow, caja ORDER BY mold;";
+    $sqlSuma=$consultaSuma." ". implode(" AND ",$filtros)." ";
+    $resultSuma=mysqli_query($conexion,$sqlSuma);
+    
+    //echo $sqlSuma;
+    //echo var_dump($filtros);
+    
+    while($mostrarSuma=mysqli_fetch_array($resultSuma)){
+        $faltante=max(0, ($mostrarSuma["totalPedidos"]-$mostrarSuma["totalRevision2"]));
+        ?>
         <tr>
-               
-                <td COLSPAN= "13"><CENTER>TOTALES</CENTER></td>
-                
-            </tr>
-            <tr>
-               
-                <td>Pedidos</td>
-                <td>Asignados</td>
-                <td>Faltan</td>
-                <td>Empacados</td>
-                
-                
-                
-            </tr>
-            
-            <?php
-            //$sql="select * , COUNT(id), sum(juegos) as total FROM listaEmpaque WHERE pedidoId ='". $pedido. "' AND mold = '". $referencia. "' AND shade = '".$color."' GROUP BY mold, shade, lote, uppLow, caja ORDER BY mold;";
-            $sqlSuma=$consultaSuma." ". implode(" AND ",$filtros)." ";
-            $resultSuma=mysqli_query($conexion,$sqlSuma);
-            
-            //echo $sqlSuma;
-            //echo var_dump($filtros);
-            
-            while($mostrarSuma=mysqli_fetch_array($resultSuma)){
-                
-                $faltante=($mostrarSuma["totalPedidos"]-$mostrarSuma["totalRevision2"]);
-            ?>
-            <tr>
-                
-                
-                <td><?php echo $mostrarSuma['totalPedidos'] ?></td>
-                <td><?php echo $mostrarSuma['totalRevision2'] ?></td>
-                <td><?php echo $faltante ?></td>
-                <td><?php echo $mostrarSuma['totalEmpacados'] ?></td>
-                
-                
-                
-            </tr>
-            <?php
-            
-            }
-            ?>
-        </table>
+            <td><?php echo max(0, $mostrarSuma['totalPedidos']) ?></td>
+            <td><?php echo max(0, $mostrarSuma['totalRevision2']) ?></td>
+            <td><?php echo $faltante ?></td>
+            <td><?php echo max(0, $mostrarSuma['totalEmpacados']) ?></td>
+        </tr>
+        <?php
+    }
+    ?>
+</table>
+
         <br></br>
     
     <?php
@@ -599,145 +612,132 @@ else if($origenBusqueda=='almacen'){
     
     <!--espacio para poner la tabla útil para almacén-->
      
-<table class="table table-bordered table-striped"> 
-            <tr>
-                <!--<td>id</td>-->
-               
-                
-                <td>Referencia</td>
-                <td>Color</td>
-                <td>Pedidos</td>
-                
-                <!--<td>Granel</td>-->
-                <!--<td>PorProgramar</td>-->
-                <!--<td>Programados</td>-->
-                <!--<td>Producidos</td>-->
-                <!--<td>Pulidos</td>-->
-                <!--<td>EnSeparación</td>-->
-                <!--<td>Separados</td>-->
-                <!--<td>EnEmplaquetado</td>-->
-                <!--<td>Emplaquetados</td>-->
-                <!--<td>Revisión 1</td>-->
-                <!--<td>Asignados</td>-->
-                <td>Empacados</td>
-                <td>Faltan</td>
-                <!--<td>EnProceso</td>-->
-                <td>Historial</td>
-                <td>VerGranel</td>
-               
-                <!--<td>acción</td>
-                <td>acción</td>-->
-                
-                
-            </tr>
+    <table class="table table-bordered table-striped"> 
+    <tr>
+        <!--<td>id</td>-->
+        <td>Referencia</td>
+        <td>Color</td>
+        <td>Pedidos</td>
+        <!--<td>Granel</td>-->
+        <!--<td>PorProgramar</td>-->
+        <!--<td>Programados</td>-->
+        <!--<td>Producidos</td>-->
+        <!--<td>Pulidos</td>-->
+        <!--<td>EnSeparación</td>-->
+        <!--<td>Separados</td>-->
+        <!--<td>EnEmplaquetado</td>-->
+        <!--<td>Emplaquetados</td>-->
+        <!--<td>Revisión 1</td>-->
+        <!--<td>Asignados</td>-->
+        <td>Empacados</td>
+        <td>Faltan</td>
+        <!--<td>EnProceso</td>-->
+        <td>Historial</td>
+        <td>VerGranel</td>
+        <!--<td>acción</td>-->
+        <!--<td>acción</td>-->
+    </tr>
+    
+    <?php
+    //$sql="SELECT pedidoDetalles.*, referencias2.`nombre` AS 'referencia', colores2.`nombre` AS 'Color' FROM pedidoDetalles INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id` WHERE pedidoDetalles.`pedidoId` = '".$pedidoId."' ORDER BY pedidoDetalles.`id` DESC";
+    $sql= $consultaFiltros." ". implode(" AND ",$filtros) ." GROUP BY pedidoId, colorId, referenciaId ";
+    //echo $sql;
+    $result=mysqli_query($conexion,$sql);
+    
+    while($mostrar=mysqli_fetch_array($result)){
+        /*
+        $nombreItem=$mostrar['referencia'].$mostrar['Color'];
+        $sumaItem[$nombreItem]=0;
+        
+        $sqlSumaJuegosEnProceso="SELECT pedidoDetalles.*, rotulos2.estacionId2 as estacionId, rotulos2.total as juegos FROM pedidoDetalles INNER JOIN rotulos2 ON pedidoDetalles.rotuloId = rotulos2.id WHERE pedidoDetalles.`pedidoId` = '".$pedidoId."' AND pedidoDetalles.`referenciaId` = '".$mostrar['referencia']."' AND pedidoDetalles.`colorId` = '".$mostrar['Color']."' AND rotuloId is not null GROUP BY rotuloId";
+        
+        $sqlSumaJuegosEnProceso= $this->conexion->conexion->prepare($sqlSumaJuegosEnProceso);
+        $sqlSumaJuegosEnProceso->execute();
+        $datos = $sqlSumaJuegosEnProceso->fetch();
+        */
+        
+        ?>
+        <tr>
+            <!--<td><?php //echo $mostrar['id'] ?></td>-->
             
-            <?php
-            //$sql="SELECT pedidoDetalles.*, referencias2.`nombre` AS 'referencia', colores2.`nombre` AS 'Color' FROM pedidoDetalles INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id` WHERE pedidoDetalles.`pedidoId` = '".$pedidoId."' ORDER BY pedidoDetalles.`id` DESC";
-            $sql= $consultaFiltros." ". implode(" AND ",$filtros) ." GROUP BY pedidoId, colorId, referenciaId ";
-            //echo $sql;
-            $result=mysqli_query($conexion,$sql);
             
-            while($mostrar=mysqli_fetch_array($result)){
-                
-                /*
-                $nombreItem=$mostrar['referencia'].$mostrar['Color'];
-                $sumaItem[$nombreItem]=0;
-                
-                $sqlSumaJuegosEnProceso="SELECT pedidoDetalles.*, rotulos2.estacionId2 as estacionId, rotulos2.total as juegos FROM pedidoDetalles INNER JOIN rotulos2 ON pedidoDetalles.rotuloId = rotulos2.id WHERE pedidoDetalles.`pedidoId` = '".$pedidoId."' AND pedidoDetalles.`referenciaId` = '".$mostrar['referencia']."' AND pedidoDetalles.`colorId` = '".$mostrar['Color']."' AND rotuloId is not null GROUP BY rotuloId";
-                
-            $sqlSumaJuegosEnProceso= $this->conexion->conexion->prepare($sqlSumaJuegosEnProceso);
-            $sqlSumaJuegosEnProceso->execute();
-		    $datos = $sqlSumaJuegosEnProceso->fetch();
-		    
-		    
-		            $juegosItem[$nombreItem][] = $datos['juegos'];
-		            
-		            foreach($juegosItem[$nombreItem][] as $juegItem){
-		            $sumaItem[$nombreItem]=$sumaItem[$nombreItem]+$juegItem;
-		            }
-		            */
-                
-            ?>
-            <tr>
-                <!--<td><?php //echo $mostrar['id'] ?></td>-->
-                
-                
-                
-                
-                <td><?php echo $mostrar['referencia'] ?></td>
-                <td><?php echo $mostrar['Color'] ?></td>
-                <td><?php echo $mostrar["totalPedidos"] ?></td>
-                
-                <!--<td><?php echo $mostrar["totalGranel"]?></td>-->
-                <!--<td><?php echo ($mostrar["totalPedidos"]*1.25)-($mostrar["totalRevision2"]+$mostrar["totalProgramados"])?></td>-->
-                
-                <!--<td bgcolor= "<?php if(($mostrar["totalRevision2"]+$mostrar["totalProgramados"])>$mostrar["totalPedidos"]*1.25){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalProgramados"] ?></td>-->
-                
-                <!--<td bgcolor= "<?php if($mostrar["totalProducidos"]>$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalProducidos"] ?></td>-->
-                
-                <!--<td bgcolor= "<?php if($mostrar["totalPulidos"]>$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalPulidos"] ?></td>-->
-                
-                <!--<td bgcolor= "<?php //if($mostrar["totalEnSeparacion"]>$mostrar["totalPedidos"]){
-                //echo "B6FF8A";
-                //}?>"><?php //echo $mostrar["totalEnSeparacion"] ?></td>-->
-                
-                <!--<td bgcolor= "<?php if($mostrar["totalSeparados"]>$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalSeparados"] ?></td>-->
-                
-                <!--<td bgcolor= "<?php if($mostrar["totalEnEmplaquetado"]>$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalEnEmplaquetado"] ?></td>-->
-                
-                <!--<td bgcolor= "<?php if($mostrar["totalEmplaquetados"]>=$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalEmplaquetados"] ?></td>-->
-                
-                <!--<td bgcolor= "<?php if($mostrar["totalRevision1"]>=$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalRevision1"] ?></td>-->
-                
-                <!--<td bgcolor= "<?php if($mostrar["totalRevision2"]>=$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }?>"><?php echo $mostrar["totalRevision2"] ?></td>-->
-                
-                <td bgcolor= "<?php 
-                
-                if($mostrar["totalEmpacados"]==$mostrar["totalPedidos"]){
-                echo "B6FF8A";
-                }
-                else if(($mostrar["totalEmpacados"]>$mostrar["totalPedidos"]) || ($mostrar["totalEmpacados"]-$mostrar["totalPedidos"]==$mostrar["totalEmpacados"])){
-                    echo  "FB413B";
-                }
-                ?>"><?php echo $mostrar["totalEmpacados"] ?></td>
-                
-                <td bgcolor= "<?php if($mostrar["totalPedidos"]-$mostrar["totalEmpacados"]==0){
-                echo "B6FF8A";
-                }
-                else if($mostrar["totalPedidos"]-$mostrar["totalEmpacados"]<0){
-                    echo  "FB413B";
-                }
-                ?>"><?php echo ($mostrar["totalPedidos"])-($mostrar["totalEmpacados"])?></td>
-                
-                <!--<td><?php echo $sumaItem[$nombreItem] ?></td>-->
-                
-                <td><a href="../control/trazarItem.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&origenBusqueda=<?php echo $origenBusqueda ?>&Crear=Enviar'" >Historial</a></td>
-                
-                <td><a href="../control/vistas/modulos/verTablaGranel.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&Crear=Enviar'" >verGranel</a></td>
-                
-                <!--<td><a    href="editar_detellePedido.php?id=<?php //echo $mostrar['id'] ?>&turno=<?php //echo $turno?>&prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Editar</a></td>
-                <td><a href="#" data-href="eliminar_detallePedido.php?id=<?php //echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td>-->
-            </tr>
-            <?php
+            
+            
+            <td><?php echo $mostrar['referencia'] ?></td>
+            <td><?php echo $mostrar['Color'] ?></td>
+            <td><?php echo max(0, $mostrar["totalPedidos"]) ?></td>
+            
+            <!--<td><?php echo max(0, $mostrar["totalGranel"]) ?></td>-->
+            <!--<td><?php echo max(0, ($mostrar["totalPedidos"]*1.25)-($mostrar["totalRevision2"]+$mostrar["totalProgramados"]))?></td>-->
+            
+            <!--<td bgcolor= "<?php if(($mostrar["totalRevision2"]+$mostrar["totalProgramados"])>$mostrar["totalPedidos"]*1.25){
+            echo "B6FF8A";
+            }?>"><?php echo $mostrar["totalProgramados"] ?></td>-->
+            
+            <!--<td bgcolor= "<?php if($mostrar["totalProducidos"]>$mostrar["totalPedidos"]){
+            echo "B6FF8A";
+            }?>"><?php echo $mostrar["totalProducidos"] ?></td>-->
+            
+            <!--<td bgcolor= "<?php if($mostrar["totalPulidos"]>$mostrar["totalPedidos"]){
+            echo "B6FF8A";
+            }?>"><?php echo $mostrar["totalPulidos"] ?></td>-->
+            
+            <!--<td bgcolor= "<?php //if($mostrar["totalEnSeparacion"]>$mostrar["totalPedidos"]){
+            //echo "B6FF8A";
+            //}?>"><?php //echo $mostrar["totalEnSeparacion"] ?></td>-->
+            
+            <!--<td bgcolor= "<?php if($mostrar["totalSeparados"]>$mostrar["totalPedidos"]){
+            echo "B6FF8A";
+            }?>"><?php echo $mostrar["totalSeparados"] ?></td>-->
+            
+            <!--<td bgcolor= "<?php if($mostrar["totalEnEmplaquetado"]>$mostrar["totalPedidos"]){
+            echo "B6FF8A";
+            }?>"><?php echo $mostrar["totalEnEmplaquetado"] ?></td>-->
+            
+            <!--<td bgcolor= "<?php if($mostrar["totalEmplaquetados"]>=$mostrar["totalPedidos"]){
+            echo "B6FF8A";
+            }?>"><?php echo $mostrar["totalEmplaquetados"] ?></td>-->
+            
+            <!--<td bgcolor= "<?php if($mostrar["totalRevision1"]>=$mostrar["totalPedidos"]){
+            echo "B6FF8A";
+            }?>"><?php echo $mostrar["totalRevision1"] ?></td>-->
+            
+            <!--<td bgcolor= "<?php if($mostrar["totalRevision2"]>=$mostrar["totalPedidos"]){
+            echo "B6FF8A";
+            }?>"><?php echo $mostrar["totalRevision2"] ?></td>-->
+            
+            <td bgcolor= "<?php 
+            
+            if($mostrar["totalEmpacados"]==$mostrar["totalPedidos"]){
+            echo "B6FF8A";
             }
-            ?>
-        </table>
+            else if(($mostrar["totalEmpacados"]>$mostrar["totalPedidos"]) || ($mostrar["totalEmpacados"]-$mostrar["totalPedidos"]==$mostrar["totalEmpacados"])){
+                echo  "FB413B";
+            }
+            ?>"><?php echo max(0, $mostrar["totalEmpacados"]) ?></td>
+            
+            <td bgcolor= "<?php if($mostrar["totalPedidos"]-$mostrar["totalEmpacados"]==0){
+            echo "B6FF8A";
+            }
+            else if($mostrar["totalPedidos"]-$mostrar["totalEmpacados"]<0){
+                echo  "FB413B";
+            }
+            ?>"><?php echo max(0, ($mostrar["totalPedidos"])-($mostrar["totalEmpacados"]))?></td>
+            
+            <!--<td><?php echo $sumaItem[$nombreItem] ?></td>-->
+            
+            <td><a href="../control/trazarItem.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&origenBusqueda=<?php echo $origenBusqueda ?>&Crear=Enviar'" >Historial</a></td>
+            
+            <td><a href="../control/vistas/modulos/verTablaGranel.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&Crear=Enviar'" >verGranel</a></td>
+            
+            <!--<td><a    href="editar_detellePedido.php?id=<?php //echo $mostrar['id'] ?>&turno=<?php //echo $turno?>&prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Editar</a></td>
+            <td><a href="#" data-href="eliminar_detallePedido.php?id=<?php //echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td>-->
+        </tr>
+        <?php
+    }
+    ?>
+</table>
+
         <br></br>
         
          <script type="text/javascript">
@@ -1058,139 +1058,125 @@ else{
     <!--espacio para poner la tabla útil para todos-->
     
     
-    <table class="table table-bordered table-striped"> 
-            <tr>
-                <!--<td>id</td>-->
-               
-                
-                <td>Referencia</td>
-                <td>Color</td>
-                <td>Pedidos</td>
-                <td>Granel</td>
-                <td>PorProgramar</td>
-                <td>Programados</td>
-                <td>Producidos</td>
-                <td>Pulidos</td>
-                <!--<td>EnSeparación</td>-->
-                <td>Separados</td>
-                <td>EnEmplaquetado</td>
-                <td>Emplaquetados</td>
-                <td>Revisión 1</td>
-                <td>Asignados</td>
-                <td>Empacados</td>
-                <td>Faltan</td>
-                <td>EnProceso</td>
-                <td>Historial</td>
-                <td>VerGranel</td>
-               
-                <!--<td>acción</td>
-                <td>acción</td>-->
-                
-                
-            </tr>
-            
-            <?php
-            //$sql="SELECT pedidoDetalles.*, referencias2.`nombre` AS 'referencia', colores2.`nombre` AS 'Color' FROM pedidoDetalles INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id` WHERE pedidoDetalles.`pedidoId` = '".$pedidoId."' ORDER BY pedidoDetalles.`id` DESC";
-            $sql = $consultaFiltros . " " . implode(" AND ", $filtros) . " GROUP BY pedidoId, colorId, referenciaId";
-            //echo $sql;
-            $result=mysqli_query($conexion,$sql);
-            
-            while($mostrar=mysqli_fetch_array($result)){
-                
-                /*
-                $nombreItem=$mostrar['referencia'].$mostrar['Color'];
-                $sumaItem[$nombreItem]=0;
-                
-                $sqlSumaJuegosEnProceso="SELECT pedidoDetalles.*, rotulos2.estacionId2 as estacionId, rotulos2.total as juegos FROM pedidoDetalles INNER JOIN rotulos2 ON pedidoDetalles.rotuloId = rotulos2.id WHERE pedidoDetalles.`pedidoId` = '".$pedidoId."' AND pedidoDetalles.`referenciaId` = '".$mostrar['referencia']."' AND pedidoDetalles.`colorId` = '".$mostrar['Color']."' AND rotuloId is not null GROUP BY rotuloId";
-                
-            $sqlSumaJuegosEnProceso= $this->conexion->conexion->prepare($sqlSumaJuegosEnProceso);
-            $sqlSumaJuegosEnProceso->execute();
-		    $datos = $sqlSumaJuegosEnProceso->fetch();
-		    
-		    
-		            $juegosItem[$nombreItem][] = $datos['juegos'];
-		            
-		            foreach($juegosItem[$nombreItem][] as $juegItem){
-		            $sumaItem[$nombreItem]=$sumaItem[$nombreItem]+$juegItem;
-		            }
-		            */
-                
-            ?>
-            <tr>
-                <!--<td><?php //echo $mostrar['id'] ?></td>-->
-                
-                
-                
-                
-                <td><?php echo $mostrar['referencia'] ?></td>
-                <td><?php echo $mostrar['Color'] ?></td>
-                <td><?php echo $mostrar["totalPedidos"] ?></td>
-                <td><?php echo $mostrar["totalGranel"]?></td>
-                <td><?php echo ($mostrar["totalPedidos"]*1.25)-($mostrar["totalRevision2"]+$mostrar["totalProgramados"])?></td>
-                
-                <td bgcolor="<?php if ((isset($mostrar["totalRevision2"]) ? $mostrar["totalRevision2"] : 0) + (isset($mostrar["totalProgramados"]) ? $mostrar["totalProgramados"] : 0) > (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) * 1.25) {
-        echo "B6FF8A";
-    } ?>"><?php echo isset($mostrar["totalProgramados"]) ? $mostrar["totalProgramados"] : '' ?></td>
-    
-    <td bgcolor="<?php if (isset($mostrar["totalProducidos"]) ? $mostrar["totalProducidos"] : 0 > (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
-        echo "B6FF8A";
-    } ?>"><?php echo isset($mostrar["totalProducidos"]) ? $mostrar["totalProducidos"] : '' ?></td>
-    
-    <td bgcolor="<?php if (isset($mostrar["totalPulidos"]) ? $mostrar["totalPulidos"] : 0 > (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
-        echo "B6FF8A";
-    } ?>"><?php echo isset($mostrar["totalPulidos"]) ? $mostrar["totalPulidos"] : '' ?></td>
-    
-    <!--<td bgcolor="<?php //if(isset($mostrar["totalEnSeparacion"]) ? $mostrar["totalEnSeparacion"] : 0 > (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)){
-    //echo "B6FF8A";
-    //} ?>"><?php //echo isset($mostrar["totalEnSeparacion"]) ? $mostrar["totalEnSeparacion"] : '' ?></td>-->
-    
-    <td bgcolor="<?php if (isset($mostrar["totalSeparados"]) ? $mostrar["totalSeparados"] : 0 > (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
-        echo "B6FF8A";
-    } ?>"><?php echo isset($mostrar["totalSeparados"]) ? $mostrar["totalSeparados"] : '' ?></td>
-    
-    <td bgcolor="<?php if (isset($mostrar["totalEnEmplaquetado"]) ? $mostrar["totalEnEmplaquetado"] : 0 > (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
-        echo "B6FF8A";
-    } ?>"><?php echo isset($mostrar["totalEnEmplaquetado"]) ? $mostrar["totalEnEmplaquetado"] : '' ?></td>
-    
-    <td bgcolor="<?php if (isset($mostrar["totalEmplaquetados"]) ? $mostrar["totalEmplaquetados"] : 0 >= (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
-        echo "B6FF8A";
-    } ?>"><?php echo isset($mostrar["totalEmplaquetados"]) ? $mostrar["totalEmplaquetados"] : '' ?></td>
-    
-    <td bgcolor="<?php if (isset($mostrar["totalRevision1"]) ? $mostrar["totalRevision1"] : 0 >= (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
-        echo "B6FF8A";
-    } ?>"><?php echo isset($mostrar["totalRevision1"]) ? $mostrar["totalRevision1"] : '' ?></td>
-    
-    <td bgcolor="<?php if (isset($mostrar["totalRevision2"]) ? $mostrar["totalRevision2"] : 0 >= (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
-        echo "B6FF8A";
-    } ?>"><?php echo isset($mostrar["totalRevision2"]) ? $mostrar["totalRevision2"] : '' ?></td>
-    
-    <td bgcolor="<?php
-        if (isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0 == (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
-            echo "B6FF8A";
-        } else if ((isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0) > (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) || ((isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0) - (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) == (isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0))) {
-            echo "FB413B";
+      <table class="table table-bordered table-striped"> 
+    <thead>
+        <tr>
+            <!--<td>id</td>-->
+            <td>Referencia</td>
+            <td>Color</td>
+            <td>Pedidos</td>
+            <td>Granel</td>
+            <td>PorProgramar</td>
+            <td>Programados</td>
+            <td>Producidos</td>
+            <td>Pulidos</td>
+            <!--<td>EnSeparación</td>-->
+            <td>Separados</td>
+            <td>EnEmplaquetado</td>
+            <td>Emplaquetados</td>
+            <td>Revisión 1</td>
+            <td>Asignados</td>
+            <td>Empacados</td>
+            <td>Faltan</td>
+            <td>EnProceso</td>
+            <td>Historial</td>
+            <td>VerGranel</td>
+            <!--<td>acción</td>
+            <td>acción</td>-->
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        //$sql="SELECT pedidoDetalles.*, referencias2.`nombre` AS 'referencia', colores2.`nombre` AS 'Color' FROM pedidoDetalles INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id` WHERE pedidoDetalles.`pedidoId` = '".$pedidoId."' ORDER BY pedidoDetalles.`id` DESC";
+        $sql= $consultaFiltros." ". implode(" AND ",$filtros) ." GROUP BY pedidoId, colorId, referenciaId ";
+        //echo $sql;
+        $result=mysqli_query($conexion,$sql);
+        
+        while($mostrar=mysqli_fetch_array($result)){
+        /*
+        $nombreItem=$mostrar['referencia'].$mostrar['Color'];
+        $sumaItem[$nombreItem]=0;
+        
+        $sqlSumaJuegosEnProceso="SELECT pedidoDetalles.*, rotulos2.estacionId2 as estacionId, rotulos2.total as juegos FROM pedidoDetalles INNER JOIN rotulos2 ON pedidoDetalles.rotuloId = rotulos2.id WHERE pedidoDetalles.`pedidoId` = '".$pedidoId."' AND pedidoDetalles.`referenciaId` = '".$mostrar['referencia']."' AND pedidoDetalles.`colorId` = '".$mostrar['Color']."' AND rotuloId is not null GROUP BY rotuloId";
+        
+        $sqlSumaJuegosEnProceso= $this->conexion->conexion->prepare($sqlSumaJuegosEnProceso);
+        $sqlSumaJuegosEnProceso->execute();
+        $datos = $sqlSumaJuegosEnProceso->fetch();
+        
+        $juegosItem[$nombreItem][] = $datos['juegos'];
+        
+        foreach($juegosItem[$nombreItem][] as $juegItem){
+            $sumaItem[$nombreItem]=$sumaItem[$nombreItem]+$juegItem;
         }
-        ?>"><?php echo isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : '' ?></td>
-    
-    <td bgcolor="<?php if ((isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) - (isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0) == 0) {
-        echo "B6FF8A";
-    } else if ((isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) - (isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0) < 0) {
-        echo "FB413B";
-    } ?>"><?php echo (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) - (isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0) ?></td>
-    
-    <td><?php echo isset($sumaItem[$nombreItem]) ? $sumaItem[$nombreItem] : '' ?></td>
-    
-    <td><a href="../control/trazarItem.php?idP=<?php echo isset($mostrar['pedidoId']) ? $mostrar['pedidoId'] : '' ?>&referenciaId=<?php echo isset($mostrar['referenciaId']) ? $mostrar['referenciaId'] : '' ?>&colorId=<?php echo isset($mostrar['colorId']) ? $mostrar['colorId'] : '' ?>&origenBusqueda=<?php echo isset($origenBusqueda) ? $origenBusqueda : '' ?>&Crear=Enviar" >Historial</a></td>
-    
-    <td><a href="../control/vistas/modulos/verTablaGranel.php?idP=<?php echo isset($mostrar['pedidoId']) ? $mostrar['pedidoId'] : '' ?>&referenciaId=<?php echo isset($mostrar['referenciaId']) ? $mostrar['referenciaId'] : '' ?>&colorId=<?php echo isset($mostrar['colorId']) ? $mostrar['colorId'] : '' ?>&Crear=Enviar" >verGranel</a></td>
-    
-    <!--<td><a    href="editar_detellePedido.php?id=<?php //echo $mostrar['id'] ?>&turno=<?php //echo $turno?>&prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Editar</a></td>
-    <td><a href="#" data-href="eliminar_detallePedido.php?id=<?php //echo $mostrar['id']; ?>" data-rg="<?= isset($mostrar['id']) ? $mostrar['id'] : '' ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td> -->
-</tr>
-            <?php
-            }
-            ?>
-        </table>
+        */
+        ?>
+        <tr>
+            <!--<td><?php //echo $mostrar['id'] ?></td>-->
+            <td><?php echo $mostrar['referencia'] ?></td>
+            <td><?php echo $mostrar['Color'] ?></td>
+            <td><?php echo max(0, $mostrar["totalPedidos"]) ?></td>
+            <td><?php echo max(0, $mostrar["totalGranel"]) ?></td>
+            <td><?php echo max(0, ($mostrar["totalPedidos"]*1.25)-($mostrar["totalRevision2"]+$mostrar["totalProgramados"])) ?></td>
+            <td bgcolor="<?php if (max(0, (isset($mostrar["totalRevision2"]) ? $mostrar["totalRevision2"] : 0) + (isset($mostrar["totalProgramados"]) ? $mostrar["totalProgramados"] : 0)) > max(0, (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) * 1.25)) {
+                echo "B6FF8A";
+            } ?>"><?php echo isset($mostrar["totalProgramados"]) ? $mostrar["totalProgramados"] : '' ?></td>
+
+<td bgcolor="<?php if (max(0, isset($mostrar["totalProducidos"]) ? $mostrar["totalProducidos"] : 0) > max(0, isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+    echo "B6FF8A";
+} ?>"><?php echo isset($mostrar["totalProducidos"]) ? $mostrar["totalProducidos"] : '' ?></td>
+
+<td bgcolor="<?php if (max(0, isset($mostrar["totalPulidos"]) ? $mostrar["totalPulidos"] : 0) > max(0, isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+    echo "B6FF8A";
+} ?>"><?php echo isset($mostrar["totalPulidos"]) ? $mostrar["totalPulidos"] : '' ?></td>
+
+<td bgcolor="<?php if (max(0, isset($mostrar["totalSeparados"]) ? $mostrar["totalSeparados"] : 0) > max(0, isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+    echo "B6FF8A";
+} ?>"><?php echo isset($mostrar["totalSeparados"]) ? $mostrar["totalSeparados"] : '' ?></td>
+
+<td bgcolor="<?php if (max(0, isset($mostrar["totalEnEmplaquetado"]) ? $mostrar["totalEnEmplaquetado"] : 0) > max(0, isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+    echo "B6FF8A";
+} ?>"><?php echo isset($mostrar["totalEnEmplaquetado"]) ? $mostrar["totalEnEmplaquetado"] : '' ?></td>
+
+<td bgcolor="<?php if (max(0, isset($mostrar["totalEmplaquetados"]) ? $mostrar["totalEmplaquetados"] : 0) >= max(0, isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+    echo "B6FF8A";
+} ?>"><?php echo isset($mostrar["totalEmplaquetados"]) ? $mostrar["totalEmplaquetados"] : '' ?></td>
+
+<td bgcolor="<?php if (max(0, isset($mostrar["totalRevision1"]) ? $mostrar["totalRevision1"] : 0) >= max(0, isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+    echo "B6FF8A";
+} ?>"><?php echo isset($mostrar["totalRevision1"]) ? $mostrar["totalRevision1"] : '' ?></td>
+
+<td bgcolor="<?php if (max(0, isset($mostrar["totalRevision2"]) ? $mostrar["totalRevision2"] : 0) >= max(0, isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+    echo "B6FF8A";
+} ?>"><?php echo isset($mostrar["totalRevision2"]) ? $mostrar["totalRevision2"] : '' ?></td>
+
+<td bgcolor="<?php
+if (max(0, isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0) == max(0, isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0)) {
+    echo "B6FF8A";
+} else if (max(0, isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0) > max(0, isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) || (max(0, isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0) - max(0, isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) == max(0, isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0))) {
+    echo "FB413B";
+}
+?>"><?php echo isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : '' ?></td>
+
+<td bgcolor="<?php if (max(0, (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) - (isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0)) == 0) {
+    echo "B6FF8A";
+} else if (max(0, (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) - (isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0)) < 0) {
+    echo "FB413B";
+}
+?>"><?php echo max(0, (isset($mostrar["totalPedidos"]) ? $mostrar["totalPedidos"] : 0) - (isset($mostrar["totalEmpacados"]) ? $mostrar["totalEmpacados"] : 0)) ?></td>
+
+<td><?php echo isset($sumaItem[$nombreItem]) ? $sumaItem[$nombreItem] : '' ?></td>
+
+
+            <td><?php echo isset($sumaItem[$nombreItem]) ? $sumaItem[$nombreItem] : '' ?></td>
+
+            <td><a href="../control/trazarItem.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&origenBusqueda=<?php echo $origenBusqueda ?>&Crear=Enviar'" >Historial</a></td>
+
+            <td><a href="../control/vistas/modulos/verTablaGranel.php?idP=<?php echo $mostrar['pedidoId']; ?>&referenciaId=<?php echo $mostrar['referenciaId'] ?>&colorId=<?php echo $mostrar['colorId'] ?>&Crear=Enviar'" >verGranel</a></td>
+        </tr>
+        <?php
+        }
+        ?>
+    </tbody>
         <br></br>
         
          <script type="text/javascript">
@@ -1252,7 +1238,7 @@ else{
     </script>
     
         
-<table class="table table-bordered table-striped"> 
+<<table class="table table-bordered table-striped"> 
         <tr>
                
                 <td COLSPAN= "13"><CENTER>TOTALES</CENTER></td>
@@ -1261,17 +1247,10 @@ else{
             <tr>
                
                 <td>Pedidos</td>
-                <td>Granel</td>
-                <td>Programados</td>
-                <td>Producidos</td>
-                <td>Pulidos</td>
-                <!--<td>EnSeparación</td>-->
-                <td>Separados</td>
-                <td>EnEmplaquetado</td>
-                <td>Emplaquetados</td>
-                <td>Revisión1</td>
-                <td>Asignados</td>
+               
                 <td>Empacados</td>
+                
+                <td>Faltante</td>
                 
                 
             </tr>
@@ -1284,28 +1263,19 @@ else{
             //echo $sqlSuma;
             //echo var_dump($filtros);
             
-            while($mostrarSuma=mysqli_fetch_array($resultSuma)){
+            while ($mostrarSuma = mysqli_fetch_array($resultSuma)) {
+    
+                $faltante = max(0, $faltante + ($mostrarSuma["totalPedidos"] - $mostrarSuma["totalEmpacados"]));
             ?>
-            <tr>
-                
-                <td><?php echo $mostrarSuma['totalPedidos'] ?></td>
-                <td><?php echo $mostrarSuma['totalGranel'] ?></td>
-                <td><?php echo $mostrarSuma['totalProgramados'] ?></td>
-                <td><?php echo $mostrarSuma['totalProducidos'] ?></td>
-                <td><?php echo $mostrarSuma['totalPulidos'] ?></td>
-                <!--<td><?php //echo $mostrarSuma['totalEnSeparacion'] ?></td>-->
-                <td><?php echo $mostrarSuma['totalSeparados'] ?></td>
-                <td><?php echo $mostrarSuma['totalEnEmplaquetado'] ?></td>
-                <td><?php echo $mostrarSuma['totalEmplaquetados'] ?></td>
-                <td><?php echo $mostrarSuma['totalRevision1'] ?></td>
-                <td><?php echo $mostrarSuma['totalRevision2'] ?></td>
-                <td><?php echo $mostrarSuma['totalEmpacados'] ?></td>
-                
-                
-            </tr>
+                <tr>
+                    <td><?php echo max(0, $mostrarSuma['totalPedidos']) ?></td>
+                    <td><?php echo max(0, $mostrarSuma['totalEmpacados']) ?></td>
+                    <td><?php echo max(0, $faltante) ?></td>
+                </tr>
             <?php
             }
             ?>
+            
         </table>
         <br></br>
     

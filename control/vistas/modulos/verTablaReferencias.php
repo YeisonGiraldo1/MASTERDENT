@@ -8,31 +8,34 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 <head>
     <meta charset="UTF-8">
     <title>Referencias</title>
+    <!-- Agrega las referencias a Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
-<body>
-    
-    <button onclick="location.href='../control'">Inicio</button>
+<body class="container">
 
-    <h1>Tabla Referencias</h1>
+    <button class="btn btn-primary mt-3" onclick="location.href='../control'">Inicio</button>
+
+    <h1 class="mt-3">Tabla Referencias</h1>
     
     <br>
 
-    
-        <table border="1">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
             <tr>
-                <td>id</td>
-                <td>nombre</td>
-                <td>juegos</td>
-                <td>totalMoldes</td>
-                <td>tipo</td>
-                <td>capas</td>
+                <th>id</th>
+                <th>nombre</th>
+                <th>juegos</th>
+                <th>totalMoldes</th>
+                <th>tipo</th>
+                <th>capas</th>
             </tr>
-            
+        </thead>
+        <tbody>
             <?php
-            $sql="SELECT * from referencias2";
-            $result=mysqli_query($conexion,$sql);
+            $sql = "SELECT * FROM referencias2";
+            $result = mysqli_query($conexion, $sql);
             
-            while($mostrar=mysqli_fetch_array($result)){
+            while ($mostrar = mysqli_fetch_array($result)) {
             ?>
             <tr>
                 <td><?php echo $mostrar['id'] ?></td>
@@ -45,9 +48,12 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
             <?php
             }
             ?>
-        </table>
+        </tbody>
+    </table>
 
-
-    
+    <!-- Agrega la referencia a Bootstrap JS si es necesario -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
 </body>
 </html>

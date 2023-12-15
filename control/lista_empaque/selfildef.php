@@ -5,6 +5,33 @@
       
 
     ?>
+<html>
+  <head>
+    <style>
+          body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../Public/imagenes/moldeado2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+    </style>
+  </head>
+<body>
+  
+
+
+
     <br><br><br><br><br><br><br><br>
     <button type="button"  style="margin-left:80%;"><a href="filtrados.php">REGRESAR</a></button>
       <div style="border-style:solid;border-color:orangered;border-width:1px;padding:15px;width:40%;height:15%;margin:auto;">
@@ -135,3 +162,5 @@ PEDIDO
 <?php
     }
 ?>
+</body>
+</html>

@@ -77,6 +77,27 @@ if ($rol == 1 or $rol == 3) {
     .viewContainer .view2 button:hover {
       background-color: rgb(255, 255, 250);
     }
+
+    
+        body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../Public/imagenes/moldeado2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+        
+ 
   </style>
 
   <body style="overflow-y: scroll;"> <!--hace que funcione el scroll correctamente  -->

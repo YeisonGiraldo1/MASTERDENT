@@ -171,9 +171,41 @@ $resultCol=mysqli_query($conexion,$sqlCol);
     }
     
     
-    $consultaFiltros= 'SELECT pedidoDetalles.*, sum(pedidoDetalles.`enEmplaquetado`) as totalAEmplaquetar, emplaquetadores.`nombre` as nombreEmplaquetador, emplaquetadores.`categoria` as categoria, referencias2.`nombre` AS referencia, referencias2.`tipo` AS tipo, colores2.`nombre` AS Color, pedidos2.`codigoP` as codigoP, pedidos2.`linea` as linea FROM pedidoDetalles INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id` INNER JOIN pedidos2 ON pedidoDetalles.`pedidoId`= pedidos2.`idP` INNER JOIN emplaquetadores ON pedidoDetalles.`colaborador` = emplaquetadores.`id` WHERE ';
-    
-    $consultaSuma = 'select pedidoDetalles.*, referencias2.`nombre` AS referencia, referencias2.`tipo` AS tipo, sum(pedidoDetalles.`enEmplaquetado`) as totalAEmplaquetar, pedidos2.`codigoP` as codigo, pedidos2.`linea` as linea, emplaquetadores.`categoria` as categoria, colores2.`nombre` AS Color FROM pedidoDetalles INNER JOIN referencias2 ON pedidoDetalles.`referenciaId`= referencias2.`id` INNER JOIN pedidos2 ON pedidoDetalles.`pedidoId`= pedidos2.`idP` INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id` INNER JOIN emplaquetadores ON pedidoDetalles.`colaborador` = emplaquetadores.`id` WHERE ';
+    $consultaFiltros = 'SELECT
+    pedidoDetalles.*,
+    SUM(GREATEST(pedidoDetalles.`enEmplaquetado`, 0)) as totalAEmplaquetar,
+    emplaquetadores.`nombre` as nombreEmplaquetador,
+    emplaquetadores.`categoria` as categoria,
+    referencias2.`nombre` AS referencia,
+    referencias2.`tipo` AS tipo,
+    colores2.`nombre` AS Color,
+    pedidos2.`codigoP` as codigoP,
+    pedidos2.`linea` as linea
+FROM
+    pedidoDetalles
+    INNER JOIN referencias2 ON pedidoDetalles.`referenciaId` = referencias2.`id`
+    INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id`
+    INNER JOIN pedidos2 ON pedidoDetalles.`pedidoId` = pedidos2.`idP`
+    INNER JOIN emplaquetadores ON pedidoDetalles.`colaborador` = emplaquetadores.`id`
+WHERE ';
+
+$consultaSuma = 'SELECT
+    pedidoDetalles.*,
+    referencias2.`nombre` AS referencia,
+    referencias2.`tipo` AS tipo,
+    SUM(GREATEST(pedidoDetalles.`enEmplaquetado`, 0)) as totalAEmplaquetar,
+    pedidos2.`codigoP` as codigo,
+    pedidos2.`linea` as linea,
+    emplaquetadores.`categoria` as categoria,
+    colores2.`nombre` AS Color
+FROM
+    pedidoDetalles
+    INNER JOIN referencias2 ON pedidoDetalles.`referenciaId` = referencias2.`id`
+    INNER JOIN pedidos2 ON pedidoDetalles.`pedidoId` = pedidos2.`idP`
+    INNER JOIN colores2 ON pedidoDetalles.`colorId` = colores2.`id`
+    INNER JOIN emplaquetadores ON pedidoDetalles.`colaborador` = emplaquetadores.`id`
+WHERE ';
+
     
   }
   
@@ -437,7 +469,7 @@ $resultNombreEmplaquetador=mysqli_query($conexion,$sqlNombreEmplaquetador);
                 <td><?php echo $mostrar['referencia'] ?></td>
                 <td><?php echo $mostrar['Color'] ?></td>
                 <td><?php echo $mostrar["codigoP"] ?></td>
-                <td><?php echo $mostrar["totalAEmplaquetar"] ?></td>
+                <td><?php echo $totalAEmplaquetar = max(0, $mostrar["totalAEmplaquetar"]) ?></td>
                 <td><?php echo $mostrar["nombreEmplaquetador"] ?></td>
                 <td><?php echo $mostrar["fechaCreacion"] ?></td>
                 
@@ -538,7 +570,7 @@ $resultNombreEmplaquetador=mysqli_query($conexion,$sqlNombreEmplaquetador);
             <tr>
                 
                
-                <td><?php echo $mostrarSuma['totalAEmplaquetar'] ?></td>
+                <td><?php echo $totalAEmplaquetar = max(0,$mostrarSuma['totalAEmplaquetar']) ?></td>
                
                 
                 

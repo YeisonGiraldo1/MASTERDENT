@@ -143,7 +143,7 @@
 </head>
 <body>
     
-    <button class="btn btn-primary"  onclick="location.href='../control'">Inicio</button>
+    <button class="btn btn-primary"  onclick="location.href='../../../control'">Inicio</button>
 <center>
 
 

@@ -14,6 +14,27 @@ if($result>0) { while ($data =mysqli_fetch_assoc($query))
 <!doctype html>
 <html lang="en">
   <head>
+  <style>
+          body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../../../Public/imagenes/almacen2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+
+        
+    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EDITAR LOTES</title>

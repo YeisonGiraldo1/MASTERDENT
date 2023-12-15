@@ -421,6 +421,29 @@ if ($tiempoLaborado != 0) {
 </script>
 		-->	
 <head>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+           
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+
+       
+       
+        
+    </style>
 	<meta charset="UTF-8">
 	<title>PrensadasFiltradas</title>
 </head>

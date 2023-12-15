@@ -17,12 +17,34 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
  
  <html>
 <head>
+<style>
+          body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../../Public/imagenes/moldeado2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+        h4{
+          color: white;
+        }
+    </style>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 <body>
 <br>
-<button type="button"  style="margin-left:80%;"><a  href="../progProduccion/progProduccion1.php">REGRESAR</a></button>
+<a  class="btn btn-primary" style="margin-left:80%;" href="../progProduccion/progProduccion1.php">REGRESAR</a>
 <br>
 
 <div class="forma"  style="width:600px; margin-left:400px;border-style:solid;border-width:1px;border-color:black;">
@@ -73,7 +95,7 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 </select> <br>
 
 
-<input type="submit"value='Enviar'>
+<input class="btn btn-success" type="submit"value='Enviar'>
 
 
 </form>

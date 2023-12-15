@@ -41,6 +41,7 @@ session_start();
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <title>Programación de Producción</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -54,6 +55,13 @@ session_start();
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../../Public/imagenes/moldeado2.jpeg');
+            background-size: cover;
         }
 
         .container {
@@ -88,7 +96,18 @@ session_start();
             font-weight: bold;
             text-align: center;
         }
+
+    
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
     </style>
+   
 </head>
 
 <body>

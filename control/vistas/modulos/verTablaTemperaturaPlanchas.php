@@ -33,6 +33,33 @@ if (isset($_GET['eliminar'])) {
     <meta charset="UTF-8">
     <title>TemperaturaPrensas</title>
 
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../../../Public/imagenes/moldeado3.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+
+        .gray-table {
+            background-color: #ccc; /* Color gris de fondo */
+        }
+
+       
+       
+        
+    </style>
     <!-- Agrega el enlace a Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
@@ -52,11 +79,11 @@ if (isset($_GET['eliminar'])) {
 </head>
 
 <body>
-    <button onclick="location.href='../control'" class="btn btn-primary">Inicio</button>
+    <button onclick="location.href='../../../control/index.php'" class="btn btn-primary">Inicio</button>
     <br>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 gray-table">
                 <table class="table table-bordered">
                     <tr>
                         <td rowspan="3">MASTERDENT</td>
@@ -75,7 +102,7 @@ if (isset($_GET['eliminar'])) {
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 gray-table">
                 <table class="table table-bordered">
                     <tr>
                         <td>Prensa</td>

@@ -22,8 +22,8 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
        $turno=$_POST ["turno"];
        
      
-$fecha = substr($fecha, intval (-12));
-$turno = substr($turno, intval (-10));
+// $fecha = substr($fecha, intval (-12));
+// $turno = substr($turno, intval (-10));
 //$prensada = substr($prensada, int -2);
         
         //elimino los espacios en blanco del string turno.
@@ -58,9 +58,11 @@ var_dump($prensada);*/
     	<button onclick="location.href='../control/progProduccion/cambiarTurno.php?prensada=<?php //echo $prensada?>&fecha=<?php //echo $fecha?> ">Cambiar Turno</button>-->
 			
 <head>
-    <button onclick="location.href='../../control'">Inicio</button>
+    <button class="btn btn-primary" onclick="location.href='../../control'">Inicio</button>
 	<meta charset="UTF-8">
 	<title>Producidos</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	
 	 <!---->
     <!--<link rel="stylesheet" href="cssProyecto/estilosTablas.css"> -->
@@ -84,10 +86,34 @@ var_dump($prensada);*/
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
 	
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../../Public/imagenes/moldeado2.jpeg');
+            background-size: cover;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .table-container {
+            margin-bottom: 20px;
+        }
+
+        .gray-table {
+            background-color: #ccc;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
     <center>
-  <div class="row">
+  <div class="row table-container">
             <form action="actualizaProducidos.php" method="POST">
     <?php
         //reviso el valor de la variable: aImprimir y dependiendo de éste presento la hoja o las etiquetas
@@ -111,8 +137,8 @@ var_dump($prensada);*/
     <br>
     -->
   <!--<h1>Regitro de juegos producidos</h1>-->
-    
-        <table border="1">
+  <div class="col-md-12">
+  <table class="table table-bordered table-striped table-hover gray-table">
             
             <tr>
             <!--Encabezado general de la tabla-->
@@ -280,18 +306,18 @@ var_dump($prensada);*/
                 <td><?php echo $mostrar['incisal'] ?></td>
                 <td><?php echo $mostrar['juegos'] ?></td>
                 
-                <td><?php "   "//echo $mostrar['vuelta1'] ?></td>
-                <td><?php "   "//echo $mostrar['vuelta2'] ?></td>
-                <td><?php "   "//echo $mostrar['vuelta3'] ?></td>
-                <td><?php "   "//echo $mostrar['vuelta4'] ?></td>
-                <td><?php "   "//echo $mostrar['vuelta5'] ?></td>
-                <td><?php "   "//echo $mostrar['vuelta6'] ?></td>
-                <td><?php "   "//echo $mostrar['vuelta7'] ?></td>
-                <td><?php "   "//echo $mostrar['vuelta8'] ?></td>
-                <td><?php "   "//echo $mostrar['vuelta9'] ?></td>
-                <td><?php "   "//echo $mostrar['vuelta10'] ?></td>
-                <td><?php "   "//echo $mostrar['vuelta11'] ?></td>
-                <td><?php "   "//echo $mostrar['vuelta12'] ?></td>
+                <td><?php echo $mostrar['vuelta1'] ?></td>
+                <td><?php echo $mostrar['vuelta2'] ?></td>
+                <td><?php echo $mostrar['vuelta3'] ?></td>
+                <td><?php echo $mostrar['vuelta4'] ?></td>
+                <td><?php echo $mostrar['vuelta5'] ?></td>
+                <td><?php echo $mostrar['vuelta6'] ?></td>
+                <td><?php echo $mostrar['vuelta7'] ?></td>
+                <td><?php echo $mostrar['vuelta8'] ?></td>
+                <td><?php echo isset($mostrar['vuelta9']) ? $mostrar['vuelta9'] : ''; ?></td>
+    <td><?php echo isset($mostrar['vuelta10']) ? $mostrar['vuelta10'] : ''; ?></td>
+    <td><?php echo isset($mostrar['vuelta11']) ? $mostrar['vuelta11'] : ''; ?></td>
+    <td><?php echo isset($mostrar['vuelta12']) ? $mostrar['vuelta12'] : ''; ?></td>
                 <td><?php echo $mostrar['total'] ?></td>
                 <td><label for="producidos<?php echo $mostrar['id']  ?>" class="form-label"></label><input type="text" class="form-control" id="producidos<?php echo $mostrar['id']  ?>" name="producidos<?php echo $mostrar['id']  ?>" style="width: 40px" ></td>
                 <!--<td><?php //echo $mostrar['nota'] ?></td>-->
@@ -393,7 +419,9 @@ var_dump($prensada);*/
             </tr>
         </table>
         
-        
+    </div>
+    
+        </div>
                   <input name="cantidadRotulos" type="hidden" value=" <?php
                         echo $cantidadRotulos; 
                     ?>">
@@ -425,5 +453,6 @@ var_dump($prensada);*/
   
             ?>
             
+</div>            
             </body>
 </html>

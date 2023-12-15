@@ -16,7 +16,7 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
     <link href="cssProyecto/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="cssProyecto/slide.css">
     <!--bootstrap-->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -33,15 +33,15 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
 
 </head>
 <body>
-    
-    <button onclick="location.href='../control'">Inicio</button>
+    <div class="container">
+    <button class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
 
     <h1>Tabla Rotulos</h1>
     
     <br>
 
     
-        <table border="1">
+        <table class="table table-striped">
             <tr>
                 <!--<td>id</td>-->
                 <td>id</td><!--presento el código del rótulo con el nombre de id-->
@@ -99,9 +99,9 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
                 <td><?php echo $mostrar['vuelta7'] ?></td>
                 <td><?php echo $mostrar['vuelta8'] ?></td>            
                 <td><?php echo $mostrar['total'] ?></td>
-                <td><a    href="editar_rotulo.php?id=<?php echo $mostrar['id']; ?> ">Editar</a></td>
+                <td><a    href="editar_rotulo.php?id=<?php echo $mostrar['id']; ?> "><i class="fas fa-edit" style="color: blue;"></i></a></td>
                 <!-- <td><a href="#" data-href="eliminar_rotulo.php?id=<?php echo $mostrar['id']; ?>" data-rg="<?= $mostrar['id'] ?>" id="delRg" data-toggle="modal" class="btn btn-danger" data-target="#confirm-delete">Eliminar</a></td> -->
-                <td><a href="#" class="eliminar-btn" data-id="<?php echo $mostrar['id']; ?>">Eliminar</a></td>
+                <td><a href="#" class="eliminar-btn" data-id="<?php echo $mostrar['id']; ?>"><i class="fas fa-trash" style="color: red;"></i></a></td>
                 
             </tr>
             <?php
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-    
+    </div>
     <br></br>
 </body>
 </html>

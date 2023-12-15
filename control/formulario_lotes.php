@@ -14,6 +14,29 @@ $conexion = mysqli_connect("localhost", "root", "", "u638142989_MasterdentDB");
 <html lang="en">
 
 <head>
+<style>
+          body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../Public/imagenes/almacen2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+
+        .gray-table {
+            background-color: #ccc; /* Color gris de fondo */
+        }
+    </style>
     <button class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
     <br>
     <meta charset="UTF-8">
@@ -68,7 +91,7 @@ $conexion = mysqli_connect("localhost", "root", "", "u638142989_MasterdentDB");
             <br>
 
 
-            <table class="table table-striped">
+            <table class="table table-striped gray-table">
                 <tr>
                     <td>id</td>
                     <td>Número</td>

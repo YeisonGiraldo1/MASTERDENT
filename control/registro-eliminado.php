@@ -1,30 +1,29 @@
 <?php
-
-$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
+$conexion = mysqli_connect("localhost", "root", "", "u638142989_MasterdentDB");
 $id = $_GET['id'];
-//echo "id = ". $id;
-$datoRef="";
-$datoSupInf="";
-$datoColor="";
-$pedido="";
-$datoJuegos="";
 
-//según el id de la lista de empaque consulto los demás datos para realizar la eliminación del detalle
+$datoRef = "";
+$datoSupInf = "";
+$datoColor = "";
+$pedido = "";
+$datoJuegos = "";
+$refId = ""; // Inicializar la variable $refId
+$colorId = ""; // Inicializar la variable $colorId
 
- $sql="select *  FROM listaEmpaque WHERE id = '".$id."'";
-            $result=mysqli_query($conexion,$sql);
-            
-            while($mostrar=mysqli_fetch_array($result)){
-            
-                
-                $datoRef = $mostrar['mold'];
-                $datoSupInf = $mostrar['uppLow'];
-                $datoColor = $mostrar['shade'];
-                $pedido= $mostrar['pedidoId'];
-                $datoJuegos = $mostrar['juegos'];
+$sql = "SELECT *  FROM listaEmpaque WHERE id = '" . $id . "'";
+$result = mysqli_query($conexion, $sql);
 
-         
-            }
+$sqlColorId = "SELECT id FROM `colores2` WHERE `nombre` ='" . $datoColor . "'";
+$resultColorId = mysqli_query($conexion, $sqlColorId);
+
+while ($mostrarColorId = mysqli_fetch_array($resultColorId)) {
+    $colorId = $mostrarColorId['id'];
+    $datoRef = $mostrar['mold'];
+    $datoSupInf = $mostrar['uppLow'];
+    $datoColor = $mostrar['shade'];
+    $pedido = $mostrar['pedidoId'];
+    $datoJuegos = $mostrar['juegos'];
+}
             //echo "/juegos = ". $datoJuegos;
             
            /* 
@@ -86,7 +85,10 @@ $datoJuegos="";
 //$sql_Detalles1 = "DELETE FROM `pedidoDetalles` WHERE `pedidoId`='".$pedido."' AND `referenciaId` ='".$refId."' AND `colorId`='".$colorId."'AND `empacados`='".$datoJuegos."'";
 //$resultDetalles1 = mysqli_query($conexion, $sql_Detalles1);
 
-$sql_Detalles1 = "INSERT INTO `pedidoDetalles` (`id`, `pedidoId`, `referenciaId`, `colorId`, `rotuloId`, `juegos`, `granel`, `programados`, `producidos`, `pulidos`, `enSeparacion`, `separado`, `enEmplaquetado`, `emplaquetados`, `revision1`, `revision2`, `empacados`, `calidad`, `colaborador`, `fechaCreacion`) values (NULL,'".$pedido."','".$refId."','".$colorId."',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'".-$datoJuegos."',NULL,NULL,(select DATE_SUB(NOW(),INTERVAL 5 HOUR)))";
+$negativoDatoJuegos = -intval($datoJuegos);
+
+// Construye la consulta con la variable
+$sql_Detalles1 = "INSERT INTO `pedidoDetalles` (`id`, `pedidoId`, `referenciaId`, `colorId`, `rotuloId`, `juegos`, `granel`, `programados`, `producidos`, `pulidos`, `enSeparacion`, `separado`, `enEmplaquetado`, `emplaquetados`, `revision1`, `revision2`, `empacados`, `calidad`, `colaborador`, `fechaCreacion`) values (NULL,'".$pedido."','".$refId."','".$colorId."',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'".$negativoDatoJuegos."',NULL,NULL,(select DATE_SUB(NOW(),INTERVAL 5 HOUR)))";
 		    
 $resultDetalles1 = mysqli_query($conexion,$sql_Detalles1);
 
@@ -101,4 +103,16 @@ echo"</br>";
 echo "id de la color= ".$colorId;
 */
 
+
+
 ?>
+
+<html lang="en">
+			    <body>
+			        
+			<!--<button onclick="location.href='https://trazabilidadmasterdent.online/control/formulario_pedidos.php'">Nuevo Registro</button>
+			<button onclick="location.href='https://trazabilidadmasterdent.online/control'">Inicio</button>-->
+			<meta http-equiv="refresh" content="0.3; url= ../../../control>
+	
+</body>
+</html>

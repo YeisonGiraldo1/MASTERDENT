@@ -21,23 +21,43 @@ if($resultado>0){
 <html>
 
 <head>
-    <button onclick="location.href='../control'">Inicio</button>
+<style>
+          body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../../Public/imagenes/moldeado2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+    </style>
+    <button class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous'>
 </head>
 
 <body>
-<div>
+
+<div class="container">
   <br>
   <div style="display:center;">
   <br>
   <h1>RESULTADOS INVIMA </h1>&nbsp;&nbsp;
    <br>
-  <button type="button"  style="margin-left:60%;"><a href="invima.php">REGRESAR</a></button>
-  <button type="button"><a href="exportar_invima.php?Seleccionado=<?php echo $Seleccionado?>&Selecciono_ano=<?php echo $Selecciono_ano?>">Exportar a Excel</a></button>
+<a class="btn btn-primary" style="margin-left:60%;" href="invima.php">REGRESAR</a>
+<a class="btn btn-primary" href="exportar_invima.php?Seleccionado=<?php echo $Seleccionado?>&Selecciono_ano=<?php echo $Selecciono_ano?>">Exportar a Excel</a>
 </div>
 <br><br>
 
-<table class='table'>
+<table  class="table table-dark">
   <thead>
     <tr>
       <th scope='col'  hidden>ID</th>
@@ -75,7 +95,8 @@ if($resultado>0){
     </div>
     
     </body>
-    
+    </div>
+<div>
     
     </html>
     

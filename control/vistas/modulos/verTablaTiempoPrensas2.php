@@ -9,6 +9,33 @@ $prensa=$_GET["prensa"];
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../../../Public/imagenes/moldeado2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+
+        .gray-table {
+            background-color: #ccc; /* Color gris de fondo */
+        }
+
+       
+        
+    </style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />    <meta charset="UTF-8">
     <title>Tiempo_Prensas</title>
 </head>
@@ -360,7 +387,7 @@ $prensa=$_GET["prensa"];
         <h1 class="h4">Prensas</h1>
         <br>
         <section class="mt-4">
-            <div class="table-responsive">
+            <div class="table-responsive gray-table">
                 <table class="table table-bordered table-striped">
                     <tr>
                         <th>Id</th>

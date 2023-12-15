@@ -5,6 +5,30 @@ $conexion = mysqli_connect("localhost", "root", "", "u638142989_MasterdentDB");
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../../../Public/imagenes/moldeado2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+        
+ 
+        .gray-table {
+            background-color: #ccc; /* Color gris de fondo */
+        }
+  </style>
     <meta charset="UTF-8">
     <title>Prensadas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -13,7 +37,7 @@ $conexion = mysqli_connect("localhost", "root", "", "u638142989_MasterdentDB");
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6">
-                <button class="btn btn-primary" onclick="location.href='../control/'">Inicio</button>
+                <button class="btn btn-primary" onclick="location.href='../../../control'">Inicio</button>
             </div>
         </div>
     </div>
@@ -41,7 +65,7 @@ $conexion = mysqli_connect("localhost", "root", "", "u638142989_MasterdentDB");
     <div class="container mt-5">
         <h1 class="text-center">Tabla Prensadas</h1>
         <br>
-        <table class="table table-bordered">
+        <table class="table table-bordered gray-table">
             <thead>
                 <tr>
                     <th>id</th>

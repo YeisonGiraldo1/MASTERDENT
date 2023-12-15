@@ -9,9 +9,7 @@ $id = $_GET["id"];
 $borrar = mysqli_query($conexion, "DELETE  FROM lotes2 WHERE  id='$id '");
 mysqli_close($conexion);
 
-echo file_exists("./control/formulario_lotes.php") ? "Exists2" : "Not exists2";
-exit;
 echo "<script>
 alert('LOS DATOS HAN SIDO BORRADOS PERMANENTEMENTE Y NO PODRAS  RECUPERARLOS');
-window.location='../control/formulario_lotes.php';
+window.location='http://localhost/Masterdent_6_dic/control/vistas/modulos/verTablaLotes.php';
 </script>";

@@ -79,7 +79,7 @@ $id=$_GET["id"];
 <p style="font-size:20px;">  Si eliminas este  dato del pedido, no podras  recuperarlo, esto significa que toda la informacion relacionada  con este  desaparecerá  de la base de datos del sistema de forma permanente. </p>
 <br><br>
 
-<form action="eliminarPedidoDefinitivo.php" method="POST">
+<form action="eliminarPedidoDefinitivoG.php" method="POST">
   <input type="text" name="id"  value="<?php  echo $id;?>"  hidden>
 
 
@@ -89,7 +89,7 @@ $id=$_GET["id"];
 </form>
 &nbsp;&nbsp;&nbsp;
 
-<form action="../modulos/verTablaPedidos.php" method="GET">
+<form action="../modulos/verTablaListasGeneral.php" method="GET">
   <input type="text" name="id"  value="<?php  echo $id;?>"  hidden>
 <input  type="submit" value="CANCELAR"  style="width:150px;height:50px;" id="botones">
 </div>

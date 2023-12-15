@@ -32,6 +32,30 @@ $date = explode ("-",$fecha);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../../Public/imagenes/moldeado2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+
+       
+
+       
+        
+    </style>
     <button class="btn btn-primary" onclick="location.href='../control'">Inicio</button>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

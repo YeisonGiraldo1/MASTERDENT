@@ -37,9 +37,30 @@ if(!isset ($_SESSION['Cedula']) or !isset($_SESSION['Contrasena'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
 	<meta charset="UTF-8">
 	<title>Moldes</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <style>
+        body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../Public/imagenes/moldeado2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+        
+    </style>
 </head>
 <body  style="overflow-y: scroll;">
    

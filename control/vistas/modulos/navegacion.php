@@ -30,128 +30,130 @@ if (isset($_SESSION['Nombres']) && isset($_SESSION['Apellidos'])) {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            text-decoration: none;
-            font-family: "Open Sans", sans-serif;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        font-family: "Open Sans", sans-serif;
+    }
 
-        }
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
 
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
+    body {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
 
-        body {
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-        }
+    header {
+        width: 100%;
+        background-color: #284886;
+        padding: 1rem;
+    }
 
-        header {
-            width: 100%;
-            background-color: #284886;
-            padding: 1rem;
-        }
+    .interior {
+        max-width: 100%;
+        padding: 0 10px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-        .interior {
-            max-width: 100%;
-            padding: 0 10px;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+    .logo {
+        float: left;
+        padding: 15px 20px 0;
+    }
 
-        .logo {
-            float: left;
-            padding: 15px 20px 0;
-        }
+    .logo img {
+        height: 60px;
+    }
 
-        .logo img {
-            height: 60px;
-        }
+    .logo img:hover {
+        transform: scale(1.1);
+    }
 
-        .logo img:hover {
-            transform: scale(1.1);
-        }
+    .navegacion ul {
+        list-style: none;
+        padding: 0 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+    }
 
-        .navegacion ul {
-            list-style: none;
-            padding: 0 10px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            align-items: center;
-        }
+    .navegacion ul li {
+        display: inline-block;
+        position: relative;
+        transition: .3s linear;
+    }
 
-        .navegacion ul li {
-            display: inline-block;
-            position: relative;
-            transition: .3s linear;
-        }
+    .navegacion ul li:hover {
+        transform: scale(1.1);
+    }
 
-        .navegacion ul li:hover {
-            transform: scale(1.1);
-        }
+    .navegacion ul li a {
+        color: #ffffff; /* Blanco intenso */
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 12px 20px;
+        transition: .3s linear;
+        text-stroke: 1px white; /* Contorno blanco */
+        text-shadow: 1px 1px 2px white; /* Sombra blanca */
+    }
 
-        .navegacion ul li a {
-            color: #284886;
-            text-align: center;
-            text-transform: uppercase;
-            font-size: 14px;
-            font-weight: bold;
-            padding: 12px 20px;
-            transition: .3s linear;
-        }
+    .navegacion ul li a:hover {
+        color: #ffffff; /* Blanco intenso */
+        transform: scale(1.1);
+    }
 
-        .navegacion ul li a:hover {
-            color: #284886;
-            transform: scale(1.1);
-        }
+    .navegacion ul li:hover .hijos {
+        display: block;
+    }
 
-        .navegacion ul li:hover .hijos {
-            display: block;
-        }
+    .navegacion .submenu {
+        background-color: #284886;
+    }
 
-        .navegacion .submenu {
-            background-color: #284886;
-        }
+    .navegacion .submenu .hijos {
+        display: none;
+        background: #284886;
+        position: absolute;
+        width: auto;
+    }
 
-        .navegacion .submenu .hijos {
-            display: none;
-            background: #284886;
-            position: absolute;
-            width: auto;
-        }
+    .navegacion .submenu .hijos li {
+        display: block;
+        overflow: hidden;
+        border-bottom: none;
+    }
 
-        .navegacion .submenu .hijos li {
-            display: block;
-            overflow: hidden;
-            border-bottom: none;
-        }
+    .navegacion .submenu .hijos li a {
+        display: block;
+    }
 
-        .navegacion .submenu .hijos li a {
-            display: block;
-        }
+    .navegacion ul li:hover .subhijos {
+        display: block;
+    }
 
-        .navegacion ul li:hover .subhijos {
-            display: block;
-        }
+    .navegacion li ul li .subhijos {
+        position: relative;
+    }
 
-        .navegacion li ul li .subhijos {
-            position: relative;
-        }
+    /* Additional CSS for dropdown on hover */
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+    }
+</style>
 
-        /* Additional CSS for dropdown on hover */
-        .nav-item.dropdown:hover .dropdown-menu {
-            display: block;
-        }
-    </style>
 
 
 </head>

@@ -99,7 +99,7 @@ $juegosAsignados = "";
 
         <?php
         while ($mostrar5 = mysqli_fetch_array($result5)) {
-            $juegosAsignados = $mostrar5['totalAsignado'];
+            $juegosAsignados = max(0, $mostrar5['totalAsignado']);
             ?>
             <td><?php echo $juegosAsignados; ?></td>
             <?php

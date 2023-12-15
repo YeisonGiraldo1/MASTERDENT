@@ -7,6 +7,32 @@ if (mysqli_connect_errno()) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style>
+        body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../../../Public/imagenes/moldeado2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+
+        .gray-table {
+            background-color: #ccc; /* Color gris de fondo */
+        }
+
+       
+        
+    </style>
     <meta charset="UTF-8">
     <title>Tiempo_Prensas</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -49,8 +75,8 @@ if (mysqli_connect_errno()) {
         </form>
         <section class="mt-4">
             <h2 class="h4">Tabla Tiempos Prensas</h2>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped">
+            <div class="table-responsive gray-table">
+                <table class="table table-bordered table-striped table-hover">
                     <thead class="thead-dark">
                         <tr>
                             <th>Id</th>

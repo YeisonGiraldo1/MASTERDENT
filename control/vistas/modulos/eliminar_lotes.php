@@ -99,7 +99,7 @@ if (isset($_GET["id"])) {
       </form>
       &nbsp;&nbsp;&nbsp;
 
-      <form action="verTablaLotes.php" method="GET">
+      <form action="../modulos/verTablaLotes.php" method="GET">
         <input type="text" name="id" value="<?php echo $id; ?>" hidden>
         <input type="submit" value="CANCELAR" style="width:150px;height:50px;" id="botones">
     </div>

@@ -1,124 +1,54 @@
 <?php
 
-$conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
- //$ActualizarDespuesDe = 60;
- 
- $totalInventario=0;
-    
-    // Envíe un encabezado Refresh al navegador preferido.
-   //header('Refresh: '.$ActualizarDespuesDe);
-    $fechaDesde = isset( $_POST['fechaDesde'] ) ? $_POST['fechaDesde'] : '';
-    $fechaHasta = isset( $_POST['fechaHasta'] ) ? $_POST['fechaHasta'] : '';
-    
-    $filtros = array();
-    
-    if ($fechaDesde != '' && $fechaHasta != ''){
-            $filtros[]= "pedidoDetalles.fechaCreacion BETWEEN '$fechaDesde%' AND '$fechaHasta%'";
-    }
-    if (empty($filtros)) {
-        $filtros[] = "1";
-    } else {
-        if (is_null($filtros[0])) {
-            $filtros[0] = "1";
-        }
-    }
-    
-    $consultaFiltros='select sum(revision2) as total, pedidos2.linea as linea FROM pedidoDetalles INNER JOIN pedidos2 ON pedidoDetalles.pedidoId = pedidos2.idP WHERE ';
-    
-    $consultaSuma = 'select sum(revision2) as total, pedidos2.linea as linea FROM pedidoDetalles INNER JOIN pedidos2 ON pedidoDetalles.pedidoId = pedidos2.idP WHERE ';
-    
-    $consultaSTARPLUS = $consultaFiltros." ".implode(" AND ",$filtros) ." AND linea = 'STARPLUS'";
-    $resultSTARPLUS=mysqli_query($conexion, $consultaSTARPLUS);
-            
-            //echo $consultaSTARPLUS;
-            //echo var_dump($filtros);
-            
-            while($mostrarSTARPLUS=mysqli_fetch_array($resultSTARPLUS)){
-                $sumaSTARPLUS=$mostrarSTARPLUS['total'];
-                $totalInventario=$totalInventario+$mostrarSTARPLUS['total'];
-            }
-            
-    ////////////////
-    
-    $consultaRESISTAL = $consultaFiltros." ".implode(" AND ",$filtros) ." AND linea = 'RESISTAL'";
-    $resultRESISTAL=mysqli_query($conexion, $consultaRESISTAL);
-            
-            //echo $consultaRESISTAL;
-            //echo var_dump($filtros);
-            
-            while($mostrarRESISTAL=mysqli_fetch_array($resultRESISTAL)){
-                $sumaRESISTAL=$mostrarRESISTAL['total'];
-                $totalInventario=$totalInventario+$mostrarRESISTAL['total'];
-            }
-            
-    ////////////
-    
-    $consultaUHLERPLUS = $consultaFiltros." ".implode(" AND ",$filtros) ." AND linea = 'UHLERPLUS'";
-    $resultUHLERPLUS=mysqli_query($conexion, $consultaUHLERPLUS);
-            
-            //echo $consultaUHLERPLUS;
-            //echo var_dump($filtros);
-            
-            while($mostrarUHLERPLUS=mysqli_fetch_array($resultUHLERPLUS)){
-                $sumaUHLERPLUS=$mostrarUHLERPLUS['total'];
-                $totalInventario=$totalInventario+$mostrarUHLERPLUS['total'];
-            }
-            
-    /////////////
-    $consultaREVEAL = $consultaFiltros." ".implode(" AND ",$filtros) ." AND linea = 'REVEAL'";
-    $resultREVEAL=mysqli_query($conexion, $consultaREVEAL);
-            
-            //echo $consultaREVEAL;
-            //echo var_dump($filtros);
-            
-            while($mostrarREVEAL=mysqli_fetch_array($resultREVEAL)){
-                $sumaREVEAL=$mostrarREVEAL['total'];
-                $totalInventario=$totalInventario+$mostrarREVEAL['total'];
-            }
-            
-    /////////////////////
-    
-    $consultaSTARDENT = $consultaFiltros." ".implode(" AND ",$filtros) ." AND linea = 'STARDENT'";
-    $resultSTARDENT=mysqli_query($conexion, $consultaSTARDENT);
-            
-            //echo $consultaSTARDENT;
-            //echo var_dump($filtros);
-            
-            while($mostrarSTARDENT=mysqli_fetch_array($resultSTARDENT)){
-                $sumaSTARDENT=$mostrarSTARDENT['total'];
-                $totalInventario=$totalInventario+$mostrarSTARDENT['total'];
-            }
-            
-    $consultaSTARVIT = $consultaFiltros." ".implode(" AND ",$filtros) ." AND linea = 'STARVIT'";
-    $resultSTARVIT=mysqli_query($conexion, $consultaSTARVIT);
-            
-            //echo $consultaSTARVIT;
-            //echo var_dump($filtros);
-            
-            while($mostrarSTARVIT=mysqli_fetch_array($resultSTARVIT)){
-                $sumaSTARVIT=$mostrarSTARVIT['total'];
-                $totalInventario=$totalInventario+$mostrarSTARVIT['total'];
-            }
-            
-    ///////////////////
-    
-    $consultaZENITH = $consultaFiltros." ".implode(" AND ",$filtros) ." AND linea = 'ZENITH'";
-    $resultZENITH=mysqli_query($conexion, $consultaZENITH);
-            
-            //echo $consultaZENITH;
-            //echo var_dump($filtros);
-            
-            while($mostrarZENITH=mysqli_fetch_array($resultZENITH)){
-                $sumaZENITH=$mostrarZENITH['total'];
-                $totalInventario=$totalInventario+$mostrarZENITH['total'];
-            }
-            
-    ////////////////
-    
-  
+$conexion = mysqli_connect("localhost", "root", "", "u638142989_MasterdentDB");
 
+$totalInventario = 0;
+
+$fechaDesde = isset($_POST['fechaDesde']) ? $_POST['fechaDesde'] : '';
+$fechaHasta = isset($_POST['fechaHasta']) ? $_POST['fechaHasta'] : '';
+
+$filtros = array();
+
+if ($fechaDesde != '' && $fechaHasta != '') {
+    $filtros[] = "pedidoDetalles.fechaCreacion BETWEEN '$fechaDesde%' AND '$fechaHasta%'";
+}
+
+if (empty($filtros)) {
+    $filtros[] = "1";
+} else {
+    if (is_null($filtros[0])) {
+        $filtros[0] = "1";
+    }
+}
+
+$consultaFiltros = 'select sum(revision2) as total, pedidos2.linea as linea FROM pedidoDetalles INNER JOIN pedidos2 ON pedidoDetalles.pedidoId = pedidos2.idP WHERE ';
+
+$sumaSTARPLUS = calcularSumaLinea($conexion, $consultaFiltros, $filtros, 'STARPLUS', $totalInventario);
+$sumaRESISTAL = calcularSumaLinea($conexion, $consultaFiltros, $filtros, 'RESISTAL', $totalInventario);
+$sumaUHLERPLUS = calcularSumaLinea($conexion, $consultaFiltros, $filtros, 'UHLERPLUS', $totalInventario);
+$sumaREVEAL = calcularSumaLinea($conexion, $consultaFiltros, $filtros, 'REVEAL', $totalInventario);
+$sumaSTARDENT = calcularSumaLinea($conexion, $consultaFiltros, $filtros, 'STARDENT', $totalInventario);
+$sumaSTARVIT = calcularSumaLinea($conexion, $consultaFiltros, $filtros, 'STARVIT', $totalInventario);
+$sumaZENITH = calcularSumaLinea($conexion, $consultaFiltros, $filtros, 'ZENITH', $totalInventario);
+
+function calcularSumaLinea($conexion, $consultaFiltros, $filtros, $linea, &$totalInventario)
+{
+    $consulta = $consultaFiltros . " " . (empty($filtros) ? "" : implode(" AND ", $filtros)) . " AND linea = '$linea'";
+    $result = mysqli_query($conexion, $consulta);
+
+    $suma = 0;
+
+    while ($mostrar = mysqli_fetch_array($result)) {
+        $total = $mostrar['total'];
+        $suma += max(0, $total);
+        $totalInventario += max(0, $total);
+    }
+
+    return $suma;
+}
+
+// Resto del código HTML
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -126,6 +56,29 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
     <meta charset="UTF-8">
     <title>TerminadoConsolidado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+          body {
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('../Public/imagenes/almacen2.jpeg');
+            background-size: cover;
+        }
+           .image-container {
+            display: flex;
+        }
+
+        .image {
+            width: 50%;
+            margin: 0 10px;
+        }
+
+        .gray-table {
+            background-color: #ccc; /* Color gris de fondo */
+        }
+    </style>
 </head>
 </head>
 <body>
@@ -173,7 +126,7 @@ $conexion = mysqli_connect("localhost","root","","u638142989_MasterdentDB");
     }
     ?>
    
-   <table style="margin-top: 30px;" class="table table-bordered table-striped">
+   <table style="margin-top: 30px;" class="table table-bordered table-striped gray-table">
             <tr>
                 
                 <td><H2>LÍNEA</H2></td>
@@ -274,7 +227,7 @@ $.ajax({
  
 
          <br>
-<table  class="table table-bordered table-striped">
+<table  class="table table-bordered table-striped gray-table">
             <tr>
                
               
